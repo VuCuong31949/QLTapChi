@@ -1,0 +1,52 @@
+﻿@model IEnumerable<QLTapChi.Models.PhanCong>
+
+@{
+    ViewBag.Title = "DanhSachPhanCong";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>DanhSachPhanCong</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayPhanCong)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayKetThuc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NguoiDung.HoTen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TapChiBaiViet.TieuDe)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayPhanCong)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayKetThuc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NguoiDung.HoTen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TapChiBaiViet.TieuDe)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IDPhanCong }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IDPhanCong }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IDPhanCong })
+        </td>
+    </tr>
+}
+
+</table>

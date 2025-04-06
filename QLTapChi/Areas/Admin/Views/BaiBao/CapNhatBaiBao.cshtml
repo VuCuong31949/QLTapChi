@@ -1,0 +1,121 @@
+﻿@model QLTapChi.Models.TapChiBaiViet
+@using QLTapChi.Models;
+@{
+    ViewBag.Title = "CapNhatBaiBao";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    QLTapChiEntities db = new QLTapChiEntities();
+}
+
+<h2>CapNhatBaiBao</h2>
+
+@using (Html.BeginForm("CapNhatBaiBao", "BaiBao", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>TapChiBaiViet</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.IDTapChiBaiViet)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TieuDe, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TieuDe, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TacGia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TacGia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TacGia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NoiDung, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Lĩnh vực</label>
+            <div class="col-md-10">
+
+                @{
+                    var linhvuc = db.LinhVucs.ToList();
+                }
+                <select class="form-control" name="IDLinhVuc">
+
+                    @foreach (var item in linhvuc)
+                    {
+                        <option value="@item.IDLinhVuc" )>@item.TenLinhVuc</option>
+                    }
+                </select>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Trạng Thái</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TrangThai, new { htmlAttributes = new { @class = "form-control" } })
+                <select class="form-control" id="PhanBien" name="PhanBien">
+                    <option value="1" @(Model.TrangThai == null || Model.TrangThai == 1 ? "selected" : "")>Chưa phản biện</option>
+                    <option value="2" @(Model.TrangThai == 2 ? "selected" : "")>Đã phản biện</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.TrangThai, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NgayGui, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NgayGui, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NgayGui, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GhiChu, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="col-md-10">
+                    @Html.TextAreaFor(x => x.GhiChu, new { @class = "form-control", @id = "txtDetail" })
+                </div>
+                @Html.ValidationMessageFor(model => model.GhiChu, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section  scripts{
+    <script>
+       
+        $(document).ready(function () {
+            CKEDITOR.replace('txtDetail', {
+                customConfig: '/Content/ckeditor/config.js',
+                extraAllowedContent: 'span',
+            });
+        });
+        function BrowseServer(field) {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                document.getElementById(field).value = fileUrl;
+            };
+            finder.popup();
+        }
+    </script>
+}

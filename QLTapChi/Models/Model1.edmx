@@ -1,0 +1,695 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QLTapChiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BienTapVien">
+          <Key>
+            <PropertyRef Name="IDBienTapVien" />
+          </Key>
+          <Property Name="IDBienTapVien" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="MatKhau" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="SDT" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="QuocGia" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ChuyenNganh" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LinhVuc">
+          <Key>
+            <PropertyRef Name="IDLinhVuc" />
+          </Key>
+          <Property Name="IDLinhVuc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenLinhVuc" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NguoiDung">
+          <Key>
+            <PropertyRef Name="IDNguoiDung" />
+          </Key>
+          <Property Name="IDNguoiDung" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="MatKhau" Type="varchar" MaxLength="70" Nullable="false" />
+          <Property Name="SDT" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="QuocGia" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IDLinhVuc" Type="int" />
+          <Property Name="ChucDanh" Type="nvarchar" MaxLength="100" />
+          <Property Name="GioiTinh" Type="int" />
+          <Property Name="ToChuc" Type="nvarchar" MaxLength="100" />
+          <Property Name="PhanBien" Type="bit" />
+        </EntityType>
+        <EntityType Name="NguoiDung_VaiTro">
+          <Key>
+            <PropertyRef Name="IDNguoiDung" />
+            <PropertyRef Name="IDVaiTro" />
+          </Key>
+          <Property Name="IDNguoiDung" Type="int" Nullable="false" />
+          <Property Name="IDVaiTro" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PhanBien">
+          <Key>
+            <PropertyRef Name="IDPhanBien" />
+          </Key>
+          <Property Name="IDPhanBien" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NhanXet" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="NgayPhanBien" Type="date" Nullable="false" />
+          <Property Name="IDTapChiBaiViet" Type="int" Nullable="false" />
+          <Property Name="IDNguoiPhanBien" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PhanCong">
+          <Key>
+            <PropertyRef Name="IDPhanCong" />
+          </Key>
+          <Property Name="IDPhanCong" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NgayPhanCong" Type="date" Nullable="false" />
+          <Property Name="NgayKetThuc" Type="date" />
+          <Property Name="IDTapChiBaiViet" Type="int" Nullable="false" />
+          <Property Name="IDNguoiPhanBien" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TapChiBaiViet">
+          <Key>
+            <PropertyRef Name="IDTapChiBaiViet" />
+          </Key>
+          <Property Name="IDTapChiBaiViet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TieuDe" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="TacGia" Type="nvarchar" MaxLength="300" Nullable="false" />
+          <Property Name="NoiDung" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="IDLinhVuc" Type="int" Nullable="false" />
+          <Property Name="TrangThai" Type="int" />
+          <Property Name="NgayGui" Type="date" Nullable="false" />
+          <Property Name="GhiChu" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="VaiTro">
+          <Key>
+            <PropertyRef Name="IDVaiTro" />
+          </Key>
+          <Property Name="IDVaiTro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenVaiTro" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="XuatBan">
+          <Key>
+            <PropertyRef Name="IDXuatBan" />
+          </Key>
+          <Property Name="IDXuatBan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SoTapChi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NgayXuatBan" Type="date" Nullable="false" />
+          <Property Name="IDTapChiBaiViet" Type="int" Nullable="false" />
+          <Property Name="IDBienTapVien" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__NguoiDung__IDLin__3B75D760">
+          <End Role="LinhVuc" Type="Self.LinhVuc" Multiplicity="0..1" />
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LinhVuc">
+              <PropertyRef Name="IDLinhVuc" />
+            </Principal>
+            <Dependent Role="NguoiDung">
+              <PropertyRef Name="IDLinhVuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NguoiDung__IDNgu__403A8C7D">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
+          <End Role="NguoiDung_VaiTro" Type="Self.NguoiDung_VaiTro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="IDNguoiDung" />
+            </Principal>
+            <Dependent Role="NguoiDung_VaiTro">
+              <PropertyRef Name="IDNguoiDung" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NguoiDung__IDVai__412EB0B6">
+          <End Role="VaiTro" Type="Self.VaiTro" Multiplicity="1" />
+          <End Role="NguoiDung_VaiTro" Type="Self.NguoiDung_VaiTro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VaiTro">
+              <PropertyRef Name="IDVaiTro" />
+            </Principal>
+            <Dependent Role="NguoiDung_VaiTro">
+              <PropertyRef Name="IDVaiTro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PhanBien__IDNguo__4AB81AF0">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
+          <End Role="PhanBien" Type="Self.PhanBien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="IDNguoiDung" />
+            </Principal>
+            <Dependent Role="PhanBien">
+              <PropertyRef Name="IDNguoiPhanBien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PhanBien__IDTapC__49C3F6B7">
+          <End Role="TapChiBaiViet" Type="Self.TapChiBaiViet" Multiplicity="1" />
+          <End Role="PhanBien" Type="Self.PhanBien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TapChiBaiViet">
+              <PropertyRef Name="IDTapChiBaiViet" />
+            </Principal>
+            <Dependent Role="PhanBien">
+              <PropertyRef Name="IDTapChiBaiViet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PhanCong__IDNguo__4F7CD00D">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
+          <End Role="PhanCong" Type="Self.PhanCong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="IDNguoiDung" />
+            </Principal>
+            <Dependent Role="PhanCong">
+              <PropertyRef Name="IDNguoiPhanBien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PhanCong__IDTapC__4E88ABD4">
+          <End Role="TapChiBaiViet" Type="Self.TapChiBaiViet" Multiplicity="1" />
+          <End Role="PhanCong" Type="Self.PhanCong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TapChiBaiViet">
+              <PropertyRef Name="IDTapChiBaiViet" />
+            </Principal>
+            <Dependent Role="PhanCong">
+              <PropertyRef Name="IDTapChiBaiViet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TapChiBai__IDLin__45F365D3">
+          <End Role="LinhVuc" Type="Self.LinhVuc" Multiplicity="1" />
+          <End Role="TapChiBaiViet" Type="Self.TapChiBaiViet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LinhVuc">
+              <PropertyRef Name="IDLinhVuc" />
+            </Principal>
+            <Dependent Role="TapChiBaiViet">
+              <PropertyRef Name="IDLinhVuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__XuatBan__IDBienT__5441852A">
+          <End Role="BienTapVien" Type="Self.BienTapVien" Multiplicity="1" />
+          <End Role="XuatBan" Type="Self.XuatBan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BienTapVien">
+              <PropertyRef Name="IDBienTapVien" />
+            </Principal>
+            <Dependent Role="XuatBan">
+              <PropertyRef Name="IDBienTapVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__XuatBan__IDTapCh__534D60F1">
+          <End Role="TapChiBaiViet" Type="Self.TapChiBaiViet" Multiplicity="1" />
+          <End Role="XuatBan" Type="Self.XuatBan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TapChiBaiViet">
+              <PropertyRef Name="IDTapChiBaiViet" />
+            </Principal>
+            <Dependent Role="XuatBan">
+              <PropertyRef Name="IDTapChiBaiViet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLTapChiModelStoreContainer">
+          <EntitySet Name="BienTapVien" EntityType="Self.BienTapVien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LinhVuc" EntityType="Self.LinhVuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NguoiDung" EntityType="Self.NguoiDung" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NguoiDung_VaiTro" EntityType="Self.NguoiDung_VaiTro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhanBien" EntityType="Self.PhanBien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PhanCong" EntityType="Self.PhanCong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TapChiBaiViet" EntityType="Self.TapChiBaiViet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VaiTro" EntityType="Self.VaiTro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="XuatBan" EntityType="Self.XuatBan" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__NguoiDung__IDLin__3B75D760" Association="Self.FK__NguoiDung__IDLin__3B75D760">
+            <End Role="LinhVuc" EntitySet="LinhVuc" />
+            <End Role="NguoiDung" EntitySet="NguoiDung" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NguoiDung__IDNgu__403A8C7D" Association="Self.FK__NguoiDung__IDNgu__403A8C7D">
+            <End Role="NguoiDung" EntitySet="NguoiDung" />
+            <End Role="NguoiDung_VaiTro" EntitySet="NguoiDung_VaiTro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NguoiDung__IDVai__412EB0B6" Association="Self.FK__NguoiDung__IDVai__412EB0B6">
+            <End Role="VaiTro" EntitySet="VaiTro" />
+            <End Role="NguoiDung_VaiTro" EntitySet="NguoiDung_VaiTro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PhanBien__IDNguo__4AB81AF0" Association="Self.FK__PhanBien__IDNguo__4AB81AF0">
+            <End Role="NguoiDung" EntitySet="NguoiDung" />
+            <End Role="PhanBien" EntitySet="PhanBien" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PhanBien__IDTapC__49C3F6B7" Association="Self.FK__PhanBien__IDTapC__49C3F6B7">
+            <End Role="TapChiBaiViet" EntitySet="TapChiBaiViet" />
+            <End Role="PhanBien" EntitySet="PhanBien" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PhanCong__IDNguo__4F7CD00D" Association="Self.FK__PhanCong__IDNguo__4F7CD00D">
+            <End Role="NguoiDung" EntitySet="NguoiDung" />
+            <End Role="PhanCong" EntitySet="PhanCong" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PhanCong__IDTapC__4E88ABD4" Association="Self.FK__PhanCong__IDTapC__4E88ABD4">
+            <End Role="TapChiBaiViet" EntitySet="TapChiBaiViet" />
+            <End Role="PhanCong" EntitySet="PhanCong" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TapChiBai__IDLin__45F365D3" Association="Self.FK__TapChiBai__IDLin__45F365D3">
+            <End Role="LinhVuc" EntitySet="LinhVuc" />
+            <End Role="TapChiBaiViet" EntitySet="TapChiBaiViet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__XuatBan__IDBienT__5441852A" Association="Self.FK__XuatBan__IDBienT__5441852A">
+            <End Role="BienTapVien" EntitySet="BienTapVien" />
+            <End Role="XuatBan" EntitySet="XuatBan" />
+          </AssociationSet>
+          <AssociationSet Name="FK__XuatBan__IDTapCh__534D60F1" Association="Self.FK__XuatBan__IDTapCh__534D60F1">
+            <End Role="TapChiBaiViet" EntitySet="TapChiBaiViet" />
+            <End Role="XuatBan" EntitySet="XuatBan" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLTapChiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BienTapVien">
+          <Key>
+            <PropertyRef Name="IDBienTapVien" />
+          </Key>
+          <Property Name="IDBienTapVien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoTen" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MatKhau" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DiaChi" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="QuocGia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ChuyenNganh" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="XuatBans" Relationship="Self.FK__XuatBan__IDBienT__5441852A" FromRole="BienTapVien" ToRole="XuatBan" />
+        </EntityType>
+        <EntityType Name="LinhVuc">
+          <Key>
+            <PropertyRef Name="IDLinhVuc" />
+          </Key>
+          <Property Name="IDLinhVuc" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenLinhVuc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="NguoiDungs" Relationship="Self.FK__NguoiDung__IDLin__3B75D760" FromRole="LinhVuc" ToRole="NguoiDung" />
+          <NavigationProperty Name="TapChiBaiViets" Relationship="Self.FK__TapChiBai__IDLin__45F365D3" FromRole="LinhVuc" ToRole="TapChiBaiViet" />
+        </EntityType>
+        <EntityType Name="NguoiDung">
+          <Key>
+            <PropertyRef Name="IDNguoiDung" />
+          </Key>
+          <Property Name="IDNguoiDung" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoTen" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MatKhau" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="SDT" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DiaChi" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="QuocGia" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IDLinhVuc" Type="Int32" />
+          <Property Name="ChucDanh" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GioiTinh" Type="Int32" />
+          <Property Name="ToChuc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PhanBien" Type="Boolean" />
+          <NavigationProperty Name="LinhVuc" Relationship="Self.FK__NguoiDung__IDLin__3B75D760" FromRole="NguoiDung" ToRole="LinhVuc" />
+          <NavigationProperty Name="PhanBiens" Relationship="Self.FK__PhanBien__IDNguo__4AB81AF0" FromRole="NguoiDung" ToRole="PhanBien" />
+          <NavigationProperty Name="PhanCongs" Relationship="Self.FK__PhanCong__IDNguo__4F7CD00D" FromRole="NguoiDung" ToRole="PhanCong" />
+          <NavigationProperty Name="VaiTroes" Relationship="Self.NguoiDung_VaiTro" FromRole="NguoiDung" ToRole="VaiTro" />
+        </EntityType>
+        <EntityType Name="PhanBien">
+          <Key>
+            <PropertyRef Name="IDPhanBien" />
+          </Key>
+          <Property Name="IDPhanBien" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NhanXet" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NgayPhanBien" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDTapChiBaiViet" Type="Int32" Nullable="false" />
+          <Property Name="IDNguoiPhanBien" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NguoiDung" Relationship="Self.FK__PhanBien__IDNguo__4AB81AF0" FromRole="PhanBien" ToRole="NguoiDung" />
+          <NavigationProperty Name="TapChiBaiViet" Relationship="Self.FK__PhanBien__IDTapC__49C3F6B7" FromRole="PhanBien" ToRole="TapChiBaiViet" />
+        </EntityType>
+        <EntityType Name="PhanCong">
+          <Key>
+            <PropertyRef Name="IDPhanCong" />
+          </Key>
+          <Property Name="IDPhanCong" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NgayPhanCong" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NgayKetThuc" Type="DateTime" Precision="0" />
+          <Property Name="IDTapChiBaiViet" Type="Int32" Nullable="false" />
+          <Property Name="IDNguoiPhanBien" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NguoiDung" Relationship="Self.FK__PhanCong__IDNguo__4F7CD00D" FromRole="PhanCong" ToRole="NguoiDung" />
+          <NavigationProperty Name="TapChiBaiViet" Relationship="Self.FK__PhanCong__IDTapC__4E88ABD4" FromRole="PhanCong" ToRole="TapChiBaiViet" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TapChiBaiViet">
+          <Key>
+            <PropertyRef Name="IDTapChiBaiViet" />
+          </Key>
+          <Property Name="IDTapChiBaiViet" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TieuDe" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TacGia" Type="String" MaxLength="300" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NoiDung" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IDLinhVuc" Type="Int32" Nullable="false" />
+          <Property Name="TrangThai" Type="Int32" />
+          <Property Name="NgayGui" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="GhiChu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LinhVuc" Relationship="Self.FK__TapChiBai__IDLin__45F365D3" FromRole="TapChiBaiViet" ToRole="LinhVuc" />
+          <NavigationProperty Name="PhanBiens" Relationship="Self.FK__PhanBien__IDTapC__49C3F6B7" FromRole="TapChiBaiViet" ToRole="PhanBien" />
+          <NavigationProperty Name="PhanCongs" Relationship="Self.FK__PhanCong__IDTapC__4E88ABD4" FromRole="TapChiBaiViet" ToRole="PhanCong" />
+          <NavigationProperty Name="XuatBans" Relationship="Self.FK__XuatBan__IDTapCh__534D60F1" FromRole="TapChiBaiViet" ToRole="XuatBan" />
+        </EntityType>
+        <EntityType Name="VaiTro">
+          <Key>
+            <PropertyRef Name="IDVaiTro" />
+          </Key>
+          <Property Name="IDVaiTro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenVaiTro" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="NguoiDungs" Relationship="Self.NguoiDung_VaiTro" FromRole="VaiTro" ToRole="NguoiDung" />
+        </EntityType>
+        <EntityType Name="XuatBan">
+          <Key>
+            <PropertyRef Name="IDXuatBan" />
+          </Key>
+          <Property Name="IDXuatBan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SoTapChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NgayXuatBan" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IDTapChiBaiViet" Type="Int32" Nullable="false" />
+          <Property Name="IDBienTapVien" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="BienTapVien" Relationship="Self.FK__XuatBan__IDBienT__5441852A" FromRole="XuatBan" ToRole="BienTapVien" />
+          <NavigationProperty Name="TapChiBaiViet" Relationship="Self.FK__XuatBan__IDTapCh__534D60F1" FromRole="XuatBan" ToRole="TapChiBaiViet" />
+        </EntityType>
+        <Association Name="FK__XuatBan__IDBienT__5441852A">
+          <End Role="BienTapVien" Type="Self.BienTapVien" Multiplicity="1" />
+          <End Role="XuatBan" Type="Self.XuatBan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BienTapVien">
+              <PropertyRef Name="IDBienTapVien" />
+            </Principal>
+            <Dependent Role="XuatBan">
+              <PropertyRef Name="IDBienTapVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NguoiDung__IDLin__3B75D760">
+          <End Role="LinhVuc" Type="Self.LinhVuc" Multiplicity="0..1" />
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LinhVuc">
+              <PropertyRef Name="IDLinhVuc" />
+            </Principal>
+            <Dependent Role="NguoiDung">
+              <PropertyRef Name="IDLinhVuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TapChiBai__IDLin__45F365D3">
+          <End Role="LinhVuc" Type="Self.LinhVuc" Multiplicity="1" />
+          <End Role="TapChiBaiViet" Type="Self.TapChiBaiViet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LinhVuc">
+              <PropertyRef Name="IDLinhVuc" />
+            </Principal>
+            <Dependent Role="TapChiBaiViet">
+              <PropertyRef Name="IDLinhVuc" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PhanBien__IDNguo__4AB81AF0">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
+          <End Role="PhanBien" Type="Self.PhanBien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="IDNguoiDung" />
+            </Principal>
+            <Dependent Role="PhanBien">
+              <PropertyRef Name="IDNguoiPhanBien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PhanCong__IDNguo__4F7CD00D">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
+          <End Role="PhanCong" Type="Self.PhanCong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="IDNguoiDung" />
+            </Principal>
+            <Dependent Role="PhanCong">
+              <PropertyRef Name="IDNguoiPhanBien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PhanBien__IDTapC__49C3F6B7">
+          <End Role="TapChiBaiViet" Type="Self.TapChiBaiViet" Multiplicity="1" />
+          <End Role="PhanBien" Type="Self.PhanBien" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TapChiBaiViet">
+              <PropertyRef Name="IDTapChiBaiViet" />
+            </Principal>
+            <Dependent Role="PhanBien">
+              <PropertyRef Name="IDTapChiBaiViet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PhanCong__IDTapC__4E88ABD4">
+          <End Role="TapChiBaiViet" Type="Self.TapChiBaiViet" Multiplicity="1" />
+          <End Role="PhanCong" Type="Self.PhanCong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TapChiBaiViet">
+              <PropertyRef Name="IDTapChiBaiViet" />
+            </Principal>
+            <Dependent Role="PhanCong">
+              <PropertyRef Name="IDTapChiBaiViet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__XuatBan__IDTapCh__534D60F1">
+          <End Role="TapChiBaiViet" Type="Self.TapChiBaiViet" Multiplicity="1" />
+          <End Role="XuatBan" Type="Self.XuatBan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TapChiBaiViet">
+              <PropertyRef Name="IDTapChiBaiViet" />
+            </Principal>
+            <Dependent Role="XuatBan">
+              <PropertyRef Name="IDTapChiBaiViet" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NguoiDung_VaiTro">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="*" />
+          <End Role="VaiTro" Type="Self.VaiTro" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="QLTapChiEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BienTapViens" EntityType="Self.BienTapVien" />
+          <EntitySet Name="LinhVucs" EntityType="Self.LinhVuc" />
+          <EntitySet Name="NguoiDungs" EntityType="Self.NguoiDung" />
+          <EntitySet Name="PhanBiens" EntityType="Self.PhanBien" />
+          <EntitySet Name="PhanCongs" EntityType="Self.PhanCong" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TapChiBaiViets" EntityType="Self.TapChiBaiViet" />
+          <EntitySet Name="VaiTroes" EntityType="Self.VaiTro" />
+          <EntitySet Name="XuatBans" EntityType="Self.XuatBan" />
+          <AssociationSet Name="FK__XuatBan__IDBienT__5441852A" Association="Self.FK__XuatBan__IDBienT__5441852A">
+            <End Role="BienTapVien" EntitySet="BienTapViens" />
+            <End Role="XuatBan" EntitySet="XuatBans" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NguoiDung__IDLin__3B75D760" Association="Self.FK__NguoiDung__IDLin__3B75D760">
+            <End Role="LinhVuc" EntitySet="LinhVucs" />
+            <End Role="NguoiDung" EntitySet="NguoiDungs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TapChiBai__IDLin__45F365D3" Association="Self.FK__TapChiBai__IDLin__45F365D3">
+            <End Role="LinhVuc" EntitySet="LinhVucs" />
+            <End Role="TapChiBaiViet" EntitySet="TapChiBaiViets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PhanBien__IDNguo__4AB81AF0" Association="Self.FK__PhanBien__IDNguo__4AB81AF0">
+            <End Role="NguoiDung" EntitySet="NguoiDungs" />
+            <End Role="PhanBien" EntitySet="PhanBiens" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PhanCong__IDNguo__4F7CD00D" Association="Self.FK__PhanCong__IDNguo__4F7CD00D">
+            <End Role="NguoiDung" EntitySet="NguoiDungs" />
+            <End Role="PhanCong" EntitySet="PhanCongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PhanBien__IDTapC__49C3F6B7" Association="Self.FK__PhanBien__IDTapC__49C3F6B7">
+            <End Role="TapChiBaiViet" EntitySet="TapChiBaiViets" />
+            <End Role="PhanBien" EntitySet="PhanBiens" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PhanCong__IDTapC__4E88ABD4" Association="Self.FK__PhanCong__IDTapC__4E88ABD4">
+            <End Role="TapChiBaiViet" EntitySet="TapChiBaiViets" />
+            <End Role="PhanCong" EntitySet="PhanCongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__XuatBan__IDTapCh__534D60F1" Association="Self.FK__XuatBan__IDTapCh__534D60F1">
+            <End Role="TapChiBaiViet" EntitySet="TapChiBaiViets" />
+            <End Role="XuatBan" EntitySet="XuatBans" />
+          </AssociationSet>
+          <AssociationSet Name="NguoiDung_VaiTro" Association="Self.NguoiDung_VaiTro">
+            <End Role="NguoiDung" EntitySet="NguoiDungs" />
+            <End Role="VaiTro" EntitySet="VaiTroes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLTapChiModelStoreContainer" CdmEntityContainer="QLTapChiEntities">
+          <EntitySetMapping Name="BienTapViens">
+            <EntityTypeMapping TypeName="QLTapChiModel.BienTapVien">
+              <MappingFragment StoreEntitySet="BienTapVien">
+                <ScalarProperty Name="IDBienTapVien" ColumnName="IDBienTapVien" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="QuocGia" ColumnName="QuocGia" />
+                <ScalarProperty Name="ChuyenNganh" ColumnName="ChuyenNganh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LinhVucs">
+            <EntityTypeMapping TypeName="QLTapChiModel.LinhVuc">
+              <MappingFragment StoreEntitySet="LinhVuc">
+                <ScalarProperty Name="IDLinhVuc" ColumnName="IDLinhVuc" />
+                <ScalarProperty Name="TenLinhVuc" ColumnName="TenLinhVuc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NguoiDungs">
+            <EntityTypeMapping TypeName="QLTapChiModel.NguoiDung">
+              <MappingFragment StoreEntitySet="NguoiDung">
+                <ScalarProperty Name="IDNguoiDung" ColumnName="IDNguoiDung" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="QuocGia" ColumnName="QuocGia" />
+                <ScalarProperty Name="IDLinhVuc" ColumnName="IDLinhVuc" />
+                <ScalarProperty Name="ChucDanh" ColumnName="ChucDanh" />
+                <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+                <ScalarProperty Name="ToChuc" ColumnName="ToChuc" />
+                <ScalarProperty Name="PhanBien" ColumnName="PhanBien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhanBiens">
+            <EntityTypeMapping TypeName="QLTapChiModel.PhanBien">
+              <MappingFragment StoreEntitySet="PhanBien">
+                <ScalarProperty Name="IDPhanBien" ColumnName="IDPhanBien" />
+                <ScalarProperty Name="NhanXet" ColumnName="NhanXet" />
+                <ScalarProperty Name="NgayPhanBien" ColumnName="NgayPhanBien" />
+                <ScalarProperty Name="IDTapChiBaiViet" ColumnName="IDTapChiBaiViet" />
+                <ScalarProperty Name="IDNguoiPhanBien" ColumnName="IDNguoiPhanBien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PhanCongs">
+            <EntityTypeMapping TypeName="QLTapChiModel.PhanCong">
+              <MappingFragment StoreEntitySet="PhanCong">
+                <ScalarProperty Name="IDPhanCong" ColumnName="IDPhanCong" />
+                <ScalarProperty Name="NgayPhanCong" ColumnName="NgayPhanCong" />
+                <ScalarProperty Name="NgayKetThuc" ColumnName="NgayKetThuc" />
+                <ScalarProperty Name="IDTapChiBaiViet" ColumnName="IDTapChiBaiViet" />
+                <ScalarProperty Name="IDNguoiPhanBien" ColumnName="IDNguoiPhanBien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="QLTapChiModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TapChiBaiViets">
+            <EntityTypeMapping TypeName="QLTapChiModel.TapChiBaiViet">
+              <MappingFragment StoreEntitySet="TapChiBaiViet">
+                <ScalarProperty Name="IDTapChiBaiViet" ColumnName="IDTapChiBaiViet" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="TacGia" ColumnName="TacGia" />
+                <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+                <ScalarProperty Name="IDLinhVuc" ColumnName="IDLinhVuc" />
+                <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+                <ScalarProperty Name="NgayGui" ColumnName="NgayGui" />
+                <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VaiTroes">
+            <EntityTypeMapping TypeName="QLTapChiModel.VaiTro">
+              <MappingFragment StoreEntitySet="VaiTro">
+                <ScalarProperty Name="IDVaiTro" ColumnName="IDVaiTro" />
+                <ScalarProperty Name="TenVaiTro" ColumnName="TenVaiTro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XuatBans">
+            <EntityTypeMapping TypeName="QLTapChiModel.XuatBan">
+              <MappingFragment StoreEntitySet="XuatBan">
+                <ScalarProperty Name="IDXuatBan" ColumnName="IDXuatBan" />
+                <ScalarProperty Name="SoTapChi" ColumnName="SoTapChi" />
+                <ScalarProperty Name="NgayXuatBan" ColumnName="NgayXuatBan" />
+                <ScalarProperty Name="IDTapChiBaiViet" ColumnName="IDTapChiBaiViet" />
+                <ScalarProperty Name="IDBienTapVien" ColumnName="IDBienTapVien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="NguoiDung_VaiTro" TypeName="QLTapChiModel.NguoiDung_VaiTro" StoreEntitySet="NguoiDung_VaiTro">
+            <EndProperty Name="NguoiDung">
+              <ScalarProperty Name="IDNguoiDung" ColumnName="IDNguoiDung" />
+            </EndProperty>
+            <EndProperty Name="VaiTro">
+              <ScalarProperty Name="IDVaiTro" ColumnName="IDVaiTro" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

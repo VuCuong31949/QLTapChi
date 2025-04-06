@@ -1,0 +1,59 @@
+﻿@model QLTapChi.Models.NguoiDung
+
+@{
+    ViewBag.Title = "TKCaNhan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-4">
+            <div class="profile-header text-center p-4 bg-light rounded">
+                <h3 class="mb-1">@Model.HoTen</h3>
+                <p class="text-muted mb-2">@Model.ChucDanh</p>
+                <p class="text-muted">@Model.ToChuc</p>
+                <div class="d-flex justify-content-center mt-3">
+                    @Html.ActionLink("Chỉnh sửa","CapNhatTaiKhoan", "TaiKhoan", new { id = Model.IDNguoiDung }, new { @class = "btn btn-primary me-2" })
+                    <a href="#" class="btn btn-outline-secondary">
+                        <i class="fas fa-download me-1"></i> Xuất PDF
+                    </a>
+                </div>
+            </div>
+
+            <div class="card mt-4 shadow-sm">
+                <div class="card-header bg-primary text-white">Thông tin liên hệ</div>
+                <div class="card-body">
+                    <p><strong>Email:</strong> @Model.Email</p>
+                    <p><strong>Số điện thoại:</strong> @Model.SDT</p>
+                    <p><strong>Địa chỉ:</strong> @Model.DiaChi</p>
+                    <p><strong>Quốc gia:</strong> @Model.QuocGia</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-8">
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">Thông tin cá nhân</div>
+                <div class="card-body">
+                    <p><strong>Họ và tên:</strong> @Model.HoTen</p>
+                    <p><strong>Giới tính:</strong> @Model.GioiTinh</p>
+                    <p><strong>Chức danh:</strong> @Model.ChucDanh</p>
+                    <p><strong>Tổ chức:</strong> @Model.ToChuc</p>
+                    <p><strong>Lĩnh vực nghiên cứu:</strong> @Model.LinhVuc.TenLinhVuc</p>
+                    <p><strong>Vai trò phản biện:</strong> @(Model.PhanBien==true ? "Có" : "Không")</p>
+                </div>
+            </div>
+
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-warning text-dark">Bảo mật</div>
+                <div class="card-body">
+                    <div class="alert alert-warning">
+                        <i class="fas fa-exclamation-triangle me-2"></i> Mật khẩu được bảo mật và không hiển thị công khai.
+                    </div>
+                    <a href="#" class="btn btn-outline-primary"><i class="fas fa-key me-1"></i> Đổi mật khẩu</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

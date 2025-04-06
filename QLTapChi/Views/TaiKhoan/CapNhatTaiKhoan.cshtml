@@ -1,0 +1,156 @@
+﻿@model QLTapChi.Models.NguoiDung
+@using QLTapChi.Models;
+@{
+    ViewBag.Title = "Cập nhật tài khoản";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    QLTapChiEntities db = new QLTapChiEntities();
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0"><i class="fas fa-user-edit me-2"></i>Cập nhật thông tin cá nhân</h4>
+                </div>
+
+                <div class="card-body">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+                        @Html.HiddenFor(model => model.IDNguoiDung)
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.HoTen, htmlAttributes: new { @class = "form-label fw-bold" })
+                                @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger small" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.GioiTinh, htmlAttributes: new { @class = "form-label fw-bold" })
+                                <select class="form-control" id="GioiTinh" name="GioiTinh">
+                                    <option value="0" @(Model.GioiTinh == 1 ? "selected" : "")>Nam</option>
+                                    <option value="1" @(Model.GioiTinh == 0 ? "selected" : "")>Nữ</option>
+                                </select>
+                                @Html.ValidationMessageFor(model => model.GioiTinh, "", new { @class = "text-danger small" })
+                            </div>
+                        </div>
+
+                    </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "form-label fw-bold" })
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger small" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        @Html.LabelFor(model => model.MatKhau, htmlAttributes: new { @class = "form-label fw-bold" })
+                                        <input type="password" class="form-control" id="MatKhau" name="MatKhau" value="@Model.MatKhau" />
+                                        @Html.ValidationMessageFor(model => model.MatKhau, "", new { @class = "text-danger small" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.SDT, htmlAttributes: new { @class = "form-label fw-bold" })
+                                    @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger small" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.QuocGia, htmlAttributes: new { @class = "form-label fw-bold" })
+                                    @Html.EditorFor(model => model.QuocGia, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.QuocGia, "", new { @class = "text-danger small" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            @Html.LabelFor(model => model.DiaChi, htmlAttributes: new { @class = "form-label fw-bold" })
+                            @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger small" })
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ChucDanh, htmlAttributes: new { @class = "form-label fw-bold" })
+                                    @Html.EditorFor(model => model.ChucDanh, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ChucDanh, "", new { @class = "text-danger small" })
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @Html.LabelFor(model => model.ToChuc, htmlAttributes: new { @class = "form-label fw-bold" })
+                                    @Html.EditorFor(model => model.ToChuc, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ToChuc, "", new { @class = "text-danger small" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    @{
+                                        var linhvuc = db.LinhVucs.ToList();
+                                    }
+                                    <label class="form-label fw-bold">Lĩnh Vực</label>
+                                    <select class="form-control" name="IDLinhVuc">
+                                        <option value="">Chọn lĩnh vực</option>
+                                        @foreach (var item in linhvuc)
+                                        {
+                                            <option value="@item.IDLinhVuc" )>@item.TenLinhVuc</option>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="PhanBien" class="form-label fw-bold">Vai trò phản biện</label>
+                                    <select class="form-control" id="PhanBien" name="PhanBien">
+                                        <option value="false" @(Model.PhanBien == null || Model.PhanBien == false ? "selected" : "")>Không phải phản biện</option>
+                                        <option value="true" @(Model.PhanBien == true ? "selected" : "")>Là phản biện</option>
+                                    </select>
+                                    @Html.ValidationMessageFor(model => model.PhanBien, "", new { @class = "text-danger small" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-4">
+                            <div class="d-flex justify-content-between">
+                                @Html.ActionLink("Quay lại", "TKCaNhan", "TaiKhoan", new { id = Model.IDNguoiDung }, new { @class = "btn btn-outline-secondary" })
+
+                                <button type="submit" class="btn btn-primary px-4">
+                                    <i class="fas fa-save me-2"></i>Lưu thay đổi
+                                </button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

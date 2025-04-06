@@ -1,0 +1,111 @@
+﻿@model QLTapChi.Models.NguoiDung
+@using QLTapChi.Models;
+@{
+    ViewBag.Title = "ThemTaiKhoan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    QLTapChiEntities db = new QLTapChiEntities();
+}
+<!-- Đăng Ký -->
+<div class="container registration-container">
+    <h2>Đăng Ký</h2>
+
+    <form action="/TaiKhoan/ThemTaiKhoan" method="post">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <!-- Chức danh -->
+        <div class="mb-3">
+            <label for="chucDanh" class="form-label">Chức danh</label>
+            <input type="text" class="form-control" id="chucDanh" name="ChucDanh" placeholder="Nhập chức danh">
+        </div>a
+
+        <!-- Họ và Tên -->
+        <div class="mb-3">
+            <label for="hoTen" class="form-label">Họ và Tên</label>
+            <input type="text" class="form-control" id="hoTen" name="HoTen" required placeholder="Nhập đầy đủ họ và tên">
+            <span class="text-danger">@ViewBag.errorTenDangNhap</span>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="Email" required placeholder="Nhập email của bạn">
+            <span class="text-danger">@ViewBag.erroremail</span>
+        </div>
+
+        <!-- Số điện thoại -->
+        <div class="mb-3">
+            <label for="sdt" class="form-label">Số điện thoại</label>
+            <input type="tel" class="form-control" id="sdt" name="SDT" required placeholder="Nhập số điện thoại">
+            <span class="text-danger">@ViewBag.errorsdt</span>
+        </div>
+
+        <!-- Địa chỉ -->
+        <div class="mb-3">
+            <label for="diaChi" class="form-label">Địa chỉ</label>
+            <input type="text" class="form-control" id="diaChi" name="DiaChi" required placeholder="Nhập địa chỉ">
+        </div>
+
+        <!-- Quốc gia -->
+        <div class="mb-3">
+            <label for="quocGia" class="form-label">Quốc gia</label>
+            <input type="text" class="form-control" id="quocGia" name="QuocGia" required placeholder="Nhập quốc gia">
+        </div>
+
+        <!-- Giới tính -->
+        <div class="mb-3">
+            <label for="gioiTinh" class="form-label">Giới tính</label>
+            <select class="form-select" id="gioiTinh" name="GioiTinh" required>
+                <option value="" selected>Chọn giới tính</option>
+                <option value="0" selected>Nam</option>
+                <option value="1">Nữ</option>
+            </select>
+        </div>
+
+        <!-- Đơn vị/Tổ chức -->
+        <div class="mb-3">
+            <label for="toChuc" class="form-label">Đơn vị/Tổ chức</label>
+            <input type="text" class="form-control" id="toChuc" name="ToChuc" placeholder="Nhập đơn vị/tổ chức">
+        </div>
+
+        <!-- Lĩnh vực -->
+        <div class="mb-3">
+            <label for="linhVuc" class="form-label">Lĩnh vực</label>
+            @{
+                var linhvuc = db.LinhVucs.ToList();
+            }
+            <select class="form-control" name="IDLinhVuc">
+                <option value="">Chọn lĩnh vực</option>
+                @foreach (var item in linhvuc)
+                {
+                    <option value="@item.IDLinhVuc" @(Model?.IDLinhVuc == item.IDLinhVuc ? "selected" : "")>@item.TenLinhVuc</option>
+                }
+            </select>
+        </div>
+
+        <!-- Mật khẩu -->
+        <div class="mb-3">
+            <label for="matKhau" class="form-label">Mật khẩu</label>
+            <input type="password" class="form-control" id="matKhau" name="MatKhau" required placeholder="Nhập mật khẩu">
+        </div>
+        <div class="mb-3">
+            <label for="matKhaulai" class="form-label">Nhập lại mật khẩu</label>
+            <input type="password" class="form-control" id="matKhaulai" name="MatKhauLai" required placeholder="Nhập lại mật khẩu">
+            <span class="text-danger">@ViewBag.errorMatKhauLai</span>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PhanBien, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.PhanBien)
+                    @Html.ValidationMessageFor(model => model.PhanBien, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <!-- Nút Submit -->
+        <button type="submit" class="btn btn-primary btn-submit">Đăng Ký</button>
+    </form>
+</div>
+

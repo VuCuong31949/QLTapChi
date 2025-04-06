@@ -1,0 +1,117 @@
+﻿@model QLTapChi.Models.TapChiBaiViet
+@using QLTapChi.Models;
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    QLTapChiEntities db = new QLTapChiEntities();
+}
+
+<h2>Add</h2>
+
+@using (Html.BeginForm("Add", "BaiBao", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>TapChiBaiViet</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(model => model.TieuDe, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TieuDe, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TacGia, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TacGia, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TacGia, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <!-- Trường upload file Word -->
+    <div class="form-group">
+        <label class="control-label col-md-2" style="text-align:left;padding-left:20px;">Tải file</label>
+        <div class="col-md-10">
+            <input type="file" name="File"  />
+            @*@Html.EditorFor(model => model.Anh, new { htmlAttributes = new { @class = "form-control" } })*@
+            @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Ghi Chú</label>
+        <div class="col-md-10">
+            @Html.TextAreaFor(x => x.GhiChu, new { @class = "form-control", @id = "txtDetail" })
+        </div>
+        @*<textarea class="form-control" name="GhiChu" id="txtDetail"></textarea>*@
+    </div>
+
+    <div class="form-group">
+
+        <div class="col-md-10">
+
+            <label for="linhVuc" class="form-label">Lĩnh vực</label>
+            @{
+                var linhvuc = db.LinhVucs.ToList();
+            }
+            <select class="form-control" name="IDLinhVuc">
+                <option value="">Chọn lĩnh vực</option>
+                @foreach (var item in linhvuc)
+                {
+                    <option value="@item.IDLinhVuc" @(Model?.IDLinhVuc == item.IDLinhVuc ? "selected" : "")>@item.TenLinhVuc</option>
+                }
+            </select>
+        </div>
+    </div>    
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section  scripts{
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            if (typeof CKEDITOR !== 'undefined') {
+                CKEDITOR.replace('txtDetail', {
+                    customConfig: '/Content/ckeditor/config.js',
+                    extraAllowedContent: 'span',
+                });
+            } else {
+                console.error("CKEDITOR is not defined.");
+            }
+        });
+
+        function BrowseServer(field) {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                document.getElementById(field).value = fileUrl;
+            };
+            finder.popup();
+        }
+        //$(document).ready(function () {
+        //    CKEDITOR.replace('txtDetail', {
+        //        customConfig: '/Content/ckeditor/config.js',
+        //        extraAllowedContent: 'span',
+        //    });
+        //});
+        //function BrowseServer(field) {
+        //    var finder = new CKFinder();
+        //    finder.selectActionFunction = function (fileUrl) {
+        //        document.getElementById(field).value = fileUrl;
+        //    };
+        //    finder.popup();
+        //}
+    </script>
+}

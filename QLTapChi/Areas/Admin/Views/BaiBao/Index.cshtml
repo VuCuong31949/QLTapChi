@@ -1,0 +1,80 @@
+﻿@model IEnumerable<QLTapChi.Models.TapChiBaiViet>
+
+@{
+    ViewBag.Title = "Danh Sách Tạp Chí";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="p-2 text-bg-light w-75">Danh Sách Tạp Chí</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TieuDe)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TacGia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoiDung)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TrangThai)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayGui)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LinhVuc.TenLinhVuc)
+        </th>
+        <th>
+            <label> Ghi chú</label>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TieuDe)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TacGia)
+        </td>
+        <td>
+            <a href="@Url.Action("DownloadFile", "BaiBao", new { id = item.IDTapChiBaiViet })" class="btn btn-sm btn-outline-dark">Download</a>
+            @*<a href="@Url.Content("~/Content/BaiViet/tenfile.docx")" download>
+                <i class="fas fa-file-word text-primary"></i> tenfile.docx
+            </a>*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TrangThai)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayGui)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LinhVuc.TenLinhVuc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GhiChu)
+        </td>
+        <td>
+            <a href="@Url.Action("XoaBaiBao", "BaiBao", new { id = item.IDTapChiBaiViet })"
+               onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản này không?');">
+                <i class="fas fa-trash"></i>
+            </a>
+            &nbsp;|&nbsp;
+            <a href="@Url.Action("CapNhatBaiBao", "BaiBao", new { id = item.IDTapChiBaiViet })">
+                <i class="fas fa-edit"></i>
+            </a>
+            &nbsp;|&nbsp;
+            <!-- Chi tiết -->
+            <a href="@Url.Action("ChiTietBaiBao", "BaiBao", new { id = item.IDTapChiBaiViet })">
+                <i class="fas fa-info-circle"></i> <!-- Icon chi tiết -->
+            </a>
+        </td>
+    </tr>
+}
+
+</table>

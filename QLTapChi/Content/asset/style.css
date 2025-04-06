@@ -1,0 +1,103 @@
+.navbar-brand img{
+    width: 200px;
+}
+svg {
+    width: 14px;
+    height: 14px;
+    vertical-align: middle; /* Căn chỉnh với chữ */
+}
+.chucdanh{
+    width: 250px;
+}
+.gioitinh{
+    width: 250px;
+}
+#username, #DonVi, #Email1{
+    width: 300px;
+}
+
+/* SignIN */
+.login-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.login-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+.form-control {
+    margin-bottom: 15px;
+}
+.btn-login {
+    width: 100%;
+    margin-top: 10px;
+}
+.forgot-password {
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* SignUp */
+.registration-container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.registration-container h2 {
+    margin-bottom: 20px;
+    text-align: center;
+    color: #dc3545; /* Màu đỏ */
+}
+.form-label {
+    font-weight: bold;
+}
+.btn-submit {
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+/*portfolio*/
+.profile-header {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.info-card {
+    margin-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+    .info-card .card-header {
+        background-color: #0d6efd;
+        color: white;
+        border-radius: 10px 10px 0 0 !important;
+    }
+
+.info-item {
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+    .info-item:last-child {
+        border-bottom: none;
+    }
+
+.info-label {
+    font-weight: 600;
+    color: #555;
+}
+
+.info-value {
+    color: #333;
+}

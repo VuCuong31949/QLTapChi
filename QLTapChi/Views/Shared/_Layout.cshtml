@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="~/Content/asset/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/Content/asset/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container bg-primary text-white text-center py-3">
+        <header class="container">
+            <h1 class="mb-0">Tạp chí Khoa học Đại học Nam Cần Thơ</h1>
+        </header>
+    </div>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary small">
+        <div class="container small">
+            <a class="navbar-brand me-0" href="trangchu.html">
+                <img src="~/Content/Images/Logo.png" class="d-inline-block align-text-top">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">GIỚI THIỆU</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">HỘI ĐỒNG BIÊN TẬP</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            CÁC SỐ TẠP CHÍ
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Số hiện tại</a></li>
+                            <li><a class="dropdown-item" href="#">Đã xuất bản</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            HƯỚNG DẪN
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Hướng dẫn tác giả</a></li>
+                            <li><a class="dropdown-item" href="#">Hướng dẫn phản biện</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">GỬI BÀI</a>
+                    </li>
+                    <!-- Kiểm tra Session -->
+                    @if (Session["UserName"] != null)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/TaiKhoan/TKCaNhan">
+                                <span class="nav-link">Chào, @Session["UserName"]</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/TaiKhoan/DangXuat">ĐĂNG XUẤT</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/TaiKhoan/DangNhap">ĐĂNG NHẬP</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/TaiKhoan/ThemTaiKhoan">ĐĂNG KÝ</a>
+                        </li>
+                    }
+                </ul>
+                <form class="d-flex" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    @RenderBody()
+
+
+    <script src="~/Contentscript1.js"></script>
+    <script src="~/Content/asset/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Content/ckeditor/ckeditor.js"></script>
+    <script src="~/Content/ckfinder/ckfinder.js"></script>
+    
+
+    @RenderSection("scripts", required: false)
+</body>
+
+</html>

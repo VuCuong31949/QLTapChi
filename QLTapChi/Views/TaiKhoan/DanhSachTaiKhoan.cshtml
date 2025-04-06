@@ -1,0 +1,99 @@
+﻿@model IEnumerable<QLTapChi.Models.NguoiDung>
+
+@{
+    ViewBag.Title = "DanhSachTaiKhoan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>DanhSachTaiKhoan</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HoTen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MatKhau)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SDT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuocGia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChucDanh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GioiTinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ToChuc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhanBien)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LinhVuc.TenLinhVuc)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoTen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.MatKhau)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SDT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiaChi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuocGia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChucDanh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GioiTinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ToChuc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhanBien)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LinhVuc.TenLinhVuc)
+        </td>
+        <td>
+            <a href="@Url.Action("XoaTaiKhoan", "TaiKhoanAdmin", new { id = item.IDNguoiDung })"
+               onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản này không?');">
+                <i class="fas fa-trash"></i>
+            </a>
+            &nbsp;|&nbsp;
+            <a href="@Url.Action("CapNhatTaiKhoan", "TaiKhoan", new { id = item.IDNguoiDung })">
+                <i class="fas fa-edit"></i>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>

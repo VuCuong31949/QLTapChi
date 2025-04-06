@@ -1,0 +1,71 @@
+﻿@model IEnumerable<QLTapChi.Models.BienTapVien>
+
+@{
+    ViewBag.Title = "DanhSachBTV";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>DanhSachBTV</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HoTen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.SDT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DiaChi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuocGia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChuyenNganh)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoTen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.SDT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DiaChi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuocGia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChuyenNganh)
+        </td>
+        <td>
+            <a href="@Url.Action("XoaBTV", "BienTapViens", new { id = item.IDBienTapVien })"
+               onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản này không?');">
+                <i class="fas fa-trash"></i>
+            </a>
+            &nbsp;|&nbsp;
+            <a href="@Url.Action("CapNhatBTV", "BienTapViens", new { id = item.IDBienTapVien})">
+                <i class="fas fa-edit"></i>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>

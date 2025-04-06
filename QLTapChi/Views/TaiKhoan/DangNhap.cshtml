@@ -1,0 +1,35 @@
+﻿@model QLTapChi.Models.NguoiDung
+
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="login-container">
+
+        <h2>Đăng nhập</h2>
+        <form action="TaiKhoan/DangNhap">
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <!-- Trường Email -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Nhập email của bạn" required>
+            </div>
+
+            <!-- Trường Mật khẩu -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Mật khẩu</label>
+                <input type="password" class="form-control" id="password" name="matkhau" placeholder="Nhập mật khẩu của bạn" required>
+            </div>
+
+            <!-- Nút Đăng nhập -->
+            <button type="submit" class="btn btn-primary btn-login">Đăng nhập</button>
+
+            <!-- Liên kết Quên mật khẩu -->
+            <div class="forgot-password">
+                <a href="#">Quên mật khẩu?</a>
+            </div>
+        </form>
+    </div>
+
