@@ -57,13 +57,15 @@ namespace QLTapChi.Areas.Admin.Controllers
                     ViewBag.errorMatKhauLai = "* Mật khẩu nhập lại không khớp!";
                     return View();
                 }
+                _user.LoaiBienTapVien = "BienTapVien";
+                
 
                 // Mã hóa mật khẩu
                 _user.MatKhau = Hashing.ToSHA256(_user.MatKhau);
                 db.Configuration.ValidateOnSaveEnabled = false;
                 db.BienTapViens.Add(_user);
                 db.SaveChanges();
-
+                //Session["VaiTro"] = _user.LoaiBienTapVien;
                 return RedirectToAction("DanhSachBTV", "BientapViens");
             }
             return View();
@@ -103,9 +105,11 @@ namespace QLTapChi.Areas.Admin.Controllers
             EditUser.HoTen = model.HoTen;
             EditUser.QuocGia = model.QuocGia;
             EditUser.ChuyenNganh = model.ChuyenNganh;
+            EditUser.LoaiBienTapVien = model.LoaiBienTapVien;
            
             db.SaveChanges();
-            return RedirectToAction("TKCaNhan", "TaiKhoan");
+            
+            return RedirectToAction("DanhSachBTV", "BienTapViens");
         }
         public ActionResult XoaBTV(int id)
         {

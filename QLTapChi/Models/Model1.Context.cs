@@ -30,9 +30,9 @@ namespace QLTapChi.Models
         public virtual DbSet<NguoiDung> NguoiDungs { get; set; }
         public virtual DbSet<PhanBien> PhanBiens { get; set; }
         public virtual DbSet<PhanCong> PhanCongs { get; set; }
+        public virtual DbSet<PhanCongBienTap> PhanCongBienTaps { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TapChiBaiViet> TapChiBaiViets { get; set; }
-        public virtual DbSet<VaiTro> VaiTroes { get; set; }
         public virtual DbSet<XuatBan> XuatBans { get; set; }
     }
 }

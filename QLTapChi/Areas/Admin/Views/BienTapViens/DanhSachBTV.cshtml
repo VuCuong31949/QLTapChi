@@ -5,11 +5,9 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>DanhSachBTV</h2>
+<h2 class="p-2">DANH SÁCH BIÊN TẬP VIÊN</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -30,6 +28,9 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ChuyenNganh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LoaiBienTapVien)
         </th>
         <th></th>
     </tr>
@@ -54,6 +55,17 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.ChuyenNganh)
+        </td>
+        <td>
+            @if (item.LoaiBienTapVien == "TongBienTap")
+            {
+                <span class="text-warning">Tổng biên tập</span>
+            }
+            else if (item.LoaiBienTapVien == "BienTapVien")
+            {
+                <span class="text-success">Biên tập viên</span>
+            }
+           
         </td>
         <td>
             <a href="@Url.Action("XoaBTV", "BienTapViens", new { id = item.IDBienTapVien })"

@@ -12,6 +12,7 @@
     <Property Name="DiaChi" Type="nvarchar" MaxLength="300" Nullable="false" />
     <Property Name="QuocGia" Type="nvarchar" MaxLength="50" Nullable="false" />
     <Property Name="ChuyenNganh" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="LoaiBienTapVien" Type="nvarchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="LinhVuc">
     <Key>
@@ -37,14 +38,6 @@
     <Property Name="ToChuc" Type="nvarchar" MaxLength="100" />
     <Property Name="PhanBien" Type="bit" />
   </EntityType>
-  <EntityType Name="NguoiDung_VaiTro">
-    <Key>
-      <PropertyRef Name="IDNguoiDung" />
-      <PropertyRef Name="IDVaiTro" />
-    </Key>
-    <Property Name="IDNguoiDung" Type="int" Nullable="false" />
-    <Property Name="IDVaiTro" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="PhanBien">
     <Key>
       <PropertyRef Name="IDPhanBien" />
@@ -65,6 +58,16 @@
     <Property Name="IDTapChiBaiViet" Type="int" Nullable="false" />
     <Property Name="IDNguoiPhanBien" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="PhanCongBienTap">
+    <Key>
+      <PropertyRef Name="IDPhanCongBienTap" />
+    </Key>
+    <Property Name="IDPhanCongBienTap" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDBienTapVien" Type="int" Nullable="false" />
+    <Property Name="IDTapChiBaiViet" Type="int" Nullable="false" />
+    <Property Name="NgayPhanCong" Type="date" Nullable="false" />
+    <Property Name="GhiChu" Type="nvarchar" MaxLength="300" />
+  </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
       <PropertyRef Name="diagram_id" />
@@ -82,18 +85,12 @@
     <Property Name="IDTapChiBaiViet" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TieuDe" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="TacGia" Type="nvarchar" MaxLength="300" Nullable="false" />
-    <Property Name="NoiDung" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="NoiDung" Type="nvarchar(max)" />
     <Property Name="IDLinhVuc" Type="int" Nullable="false" />
     <Property Name="TrangThai" Type="int" />
     <Property Name="NgayGui" Type="date" Nullable="false" />
     <Property Name="GhiChu" Type="nvarchar" MaxLength="500" />
-  </EntityType>
-  <EntityType Name="VaiTro">
-    <Key>
-      <PropertyRef Name="IDVaiTro" />
-    </Key>
-    <Property Name="IDVaiTro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TenVaiTro" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="TuKhoa" Type="nvarchar" MaxLength="300" />
   </EntityType>
   <EntityType Name="XuatBan">
     <Key>
@@ -114,30 +111,6 @@
       </Principal>
       <Dependent Role="NguoiDung">
         <PropertyRef Name="IDLinhVuc" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__NguoiDung__IDNgu__403A8C7D">
-    <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="1" />
-    <End Role="NguoiDung_VaiTro" Type="Self.NguoiDung_VaiTro" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="NguoiDung">
-        <PropertyRef Name="IDNguoiDung" />
-      </Principal>
-      <Dependent Role="NguoiDung_VaiTro">
-        <PropertyRef Name="IDNguoiDung" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__NguoiDung__IDVai__412EB0B6">
-    <End Role="VaiTro" Type="Self.VaiTro" Multiplicity="1" />
-    <End Role="NguoiDung_VaiTro" Type="Self.NguoiDung_VaiTro" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="VaiTro">
-        <PropertyRef Name="IDVaiTro" />
-      </Principal>
-      <Dependent Role="NguoiDung_VaiTro">
-        <PropertyRef Name="IDVaiTro" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -189,6 +162,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__PhanCongB__IDBie__70DDC3D8">
+    <End Role="BienTapVien" Type="Self.BienTapVien" Multiplicity="1" />
+    <End Role="PhanCongBienTap" Type="Self.PhanCongBienTap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BienTapVien">
+        <PropertyRef Name="IDBienTapVien" />
+      </Principal>
+      <Dependent Role="PhanCongBienTap">
+        <PropertyRef Name="IDBienTapVien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PhanCongB__IDTap__71D1E811">
+    <End Role="TapChiBaiViet" Type="Self.TapChiBaiViet" Multiplicity="1" />
+    <End Role="PhanCongBienTap" Type="Self.PhanCongBienTap" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TapChiBaiViet">
+        <PropertyRef Name="IDTapChiBaiViet" />
+      </Principal>
+      <Dependent Role="PhanCongBienTap">
+        <PropertyRef Name="IDTapChiBaiViet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__TapChiBai__IDLin__45F365D3">
     <End Role="LinhVuc" Type="Self.LinhVuc" Multiplicity="1" />
     <End Role="TapChiBaiViet" Type="Self.TapChiBaiViet" Multiplicity="*" />
@@ -229,24 +226,15 @@
     <EntitySet Name="BienTapVien" EntityType="Self.BienTapVien" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LinhVuc" EntityType="Self.LinhVuc" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NguoiDung" EntityType="Self.NguoiDung" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="NguoiDung_VaiTro" EntityType="Self.NguoiDung_VaiTro" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PhanBien" EntityType="Self.PhanBien" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PhanCong" EntityType="Self.PhanCong" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PhanCongBienTap" EntityType="Self.PhanCongBienTap" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TapChiBaiViet" EntityType="Self.TapChiBaiViet" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="VaiTro" EntityType="Self.VaiTro" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="XuatBan" EntityType="Self.XuatBan" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__NguoiDung__IDLin__3B75D760" Association="Self.FK__NguoiDung__IDLin__3B75D760">
       <End Role="LinhVuc" EntitySet="LinhVuc" />
       <End Role="NguoiDung" EntitySet="NguoiDung" />
-    </AssociationSet>
-    <AssociationSet Name="FK__NguoiDung__IDNgu__403A8C7D" Association="Self.FK__NguoiDung__IDNgu__403A8C7D">
-      <End Role="NguoiDung" EntitySet="NguoiDung" />
-      <End Role="NguoiDung_VaiTro" EntitySet="NguoiDung_VaiTro" />
-    </AssociationSet>
-    <AssociationSet Name="FK__NguoiDung__IDVai__412EB0B6" Association="Self.FK__NguoiDung__IDVai__412EB0B6">
-      <End Role="VaiTro" EntitySet="VaiTro" />
-      <End Role="NguoiDung_VaiTro" EntitySet="NguoiDung_VaiTro" />
     </AssociationSet>
     <AssociationSet Name="FK__PhanBien__IDNguo__4AB81AF0" Association="Self.FK__PhanBien__IDNguo__4AB81AF0">
       <End Role="NguoiDung" EntitySet="NguoiDung" />
@@ -263,6 +251,14 @@
     <AssociationSet Name="FK__PhanCong__IDTapC__4E88ABD4" Association="Self.FK__PhanCong__IDTapC__4E88ABD4">
       <End Role="TapChiBaiViet" EntitySet="TapChiBaiViet" />
       <End Role="PhanCong" EntitySet="PhanCong" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PhanCongB__IDBie__70DDC3D8" Association="Self.FK__PhanCongB__IDBie__70DDC3D8">
+      <End Role="BienTapVien" EntitySet="BienTapVien" />
+      <End Role="PhanCongBienTap" EntitySet="PhanCongBienTap" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PhanCongB__IDTap__71D1E811" Association="Self.FK__PhanCongB__IDTap__71D1E811">
+      <End Role="TapChiBaiViet" EntitySet="TapChiBaiViet" />
+      <End Role="PhanCongBienTap" EntitySet="PhanCongBienTap" />
     </AssociationSet>
     <AssociationSet Name="FK__TapChiBai__IDLin__45F365D3" Association="Self.FK__TapChiBai__IDLin__45F365D3">
       <End Role="LinhVuc" EntitySet="LinhVuc" />

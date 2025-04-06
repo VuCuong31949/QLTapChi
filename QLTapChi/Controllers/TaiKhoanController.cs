@@ -126,12 +126,6 @@ namespace QLTapChi.Controllers
 
         public ActionResult DangNhap()
         {
-
-            if (Session["idUser"] != null)
-            {
-                ViewBag.ShowSuccessMessage = true;
-                return RedirectToAction("DangNhap_ThanhCong", "ThongBao");
-            }
             return View("DangNhap");
         }
         [HttpPost]
@@ -156,6 +150,17 @@ namespace QLTapChi.Controllers
 
                     return RedirectToAction("DangNhap_ThanhCong", "ThongBao");
                 }
+                var btv = db.BienTapViens
+                   .FirstOrDefault(s => s.Email.Equals(email) && s.MatKhau.Equals(f_matkhau));
+                if (btv != null)
+                {
+                    Session["UserName"] = btv.HoTen;
+                    Session["idUser"] = btv.IDBienTapVien;
+                    Session["LoaiNguoiDung"] = btv.LoaiBienTapVien;
+
+                    // CHUYỂN VỀ AREA: Admin, Controller: BienTapViens, Action: DanhSachBTV
+                    return RedirectToAction("DanhSachBTV", "BienTapViens", new { area = "Admin" });
+                }
                 else
                 {
                     ViewBag.Error = "* Tài khoản hoặc mật khẩu không đúng !";
@@ -165,11 +170,11 @@ namespace QLTapChi.Controllers
             return View();
         }
 
-        //public ActionResult DangXuat()
-        //{
-        //    Session.Clear();
-        //    return View("DangNhap");
-        //}
+        public ActionResult DangXuat()
+        {
+            Session.Clear();
+            return View("DangNhap");
+        }
         //public ActionResult ThongTinTaiKhoan()
         //{
         //    if (Session["idUser"] == null)

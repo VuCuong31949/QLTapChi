@@ -103,6 +103,20 @@ CREATE TABLE XuatBan (
     FOREIGN KEY (IDTapChiBaiViet) REFERENCES TapChiBaiViet(IDTapChiBaiViet),
     FOREIGN KEY (IDBienTapVien) REFERENCES BienTapVien(IDBienTapVien)
 );
+
+CREATE TABLE PhanCongBienTap (
+    IDPhanCongBienTap INT IDENTITY(1,1) PRIMARY KEY,
+    IDBienTapVien INT NOT NULL,
+    IDTapChiBaiViet INT NOT NULL,
+    NgayPhanCong DATE NOT NULL DEFAULT GETDATE(),
+    GhiChu NVARCHAR(300) NULL,
+
+    FOREIGN KEY (IDBienTapVien) REFERENCES BienTapVien(IDBienTapVien),
+    FOREIGN KEY (IDTapChiBaiViet) REFERENCES TapChiBaiViet(IDTapChiBaiViet)
+);
+ALTER TABLE BienTapVien
+ADD LoaiBienTapVien NVARCHAR(50);  -- 'Tong' hoặc 'PhuTrach'
+
 GO
 -- Chèn dữ liệu vào bảng VaiTro
 INSERT INTO VaiTro (TenVaiTro) VALUES (N'Tác Giả');
@@ -114,3 +128,5 @@ select * from NguoiDung
 alter table NguoiDung add PhanBien bit
 alter table TapChiBaiViet add TuKhoa nvarchar(300)
 select * from TapChiBaiViet
+ALTER TABLE TapChiBaiViet
+ALTER COLUMN NoiDung NVARCHAR(MAX);

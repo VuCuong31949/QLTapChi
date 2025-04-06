@@ -19,6 +19,7 @@ namespace QLTapChi.Models
         {
             this.PhanBiens = new HashSet<PhanBien>();
             this.PhanCongs = new HashSet<PhanCong>();
+            this.PhanCongBienTaps = new HashSet<PhanCongBienTap>();
             this.XuatBans = new HashSet<XuatBan>();
         }
     
@@ -30,12 +31,15 @@ namespace QLTapChi.Models
         public Nullable<int> TrangThai { get; set; }
         public System.DateTime NgayGui { get; set; }
         public string GhiChu { get; set; }
+        public string TuKhoa { get; set; }
     
         public virtual LinhVuc LinhVuc { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhanBien> PhanBiens { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhanCong> PhanCongs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhanCongBienTap> PhanCongBienTaps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<XuatBan> XuatBans { get; set; }
     }

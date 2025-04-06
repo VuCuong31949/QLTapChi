@@ -16,6 +16,9 @@
             @Html.DisplayNameFor(model => model.TacGia)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.TuKhoa)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.NoiDung)
         </th>
         <th>
@@ -40,6 +43,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.TacGia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TuKhoa)
         </td>
         <td>
             <a href="@Url.Action("DownloadFile", "BaiBao", new { id = item.IDTapChiBaiViet })" class="btn btn-sm btn-outline-dark">Download</a>

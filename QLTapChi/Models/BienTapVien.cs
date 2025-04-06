@@ -17,6 +17,7 @@ namespace QLTapChi.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public BienTapVien()
         {
+            this.PhanCongBienTaps = new HashSet<PhanCongBienTap>();
             this.XuatBans = new HashSet<XuatBan>();
         }
     
@@ -28,7 +29,10 @@ namespace QLTapChi.Models
         public string DiaChi { get; set; }
         public string QuocGia { get; set; }
         public string ChuyenNganh { get; set; }
+        public string LoaiBienTapVien { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PhanCongBienTap> PhanCongBienTaps { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<XuatBan> XuatBans { get; set; }
     }
