@@ -9,11 +9,11 @@ CREATE TABLE LinhVuc (
 GO
 
 -- Bảng Vai Trò
-CREATE TABLE VaiTro (
+/*CREATE TABLE VaiTro (
     IDVaiTro INT IDENTITY(1,1) PRIMARY KEY,
     TenVaiTro NVARCHAR(100) NOT NULL
 );
-GO
+GO*/
 
 -- Bảng Người Dùng
 CREATE TABLE NguoiDung (
@@ -46,14 +46,14 @@ CREATE TABLE BienTapVien (
 GO
 
 -- Bảng Người Dùng - Vai Trò
-CREATE TABLE NguoiDung_VaiTro (
+/*CREATE TABLE NguoiDung_VaiTro (
     IDNguoiDung INT NOT NULL,
     IDVaiTro INT NOT NULL,
     PRIMARY KEY (IDNguoiDung, IDVaiTro),
     FOREIGN KEY (IDNguoiDung) REFERENCES NguoiDung(IDNguoiDung),
     FOREIGN KEY (IDVaiTro) REFERENCES VaiTro(IDVaiTro)
 );
-GO
+GO*/
 
 -- Bảng Tạp Chí - Bài Viết
 CREATE TABLE TapChiBaiViet (
@@ -119,9 +119,9 @@ ADD LoaiBienTapVien NVARCHAR(50);  -- 'Tong' hoặc 'PhuTrach'
 
 GO
 -- Chèn dữ liệu vào bảng VaiTro
-INSERT INTO VaiTro (TenVaiTro) VALUES (N'Tác Giả');
+/*INSERT INTO VaiTro (TenVaiTro) VALUES (N'Tác Giả');
 INSERT INTO VaiTro (TenVaiTro) VALUES (N'Phản Biện');
-
+*/
 -- Kiểm tra dữ liệu đã được thêm vào chưa
 SELECT * FROM VaiTro;
 select * from NguoiDung
@@ -130,3 +130,11 @@ alter table TapChiBaiViet add TuKhoa nvarchar(300)
 select * from TapChiBaiViet
 ALTER TABLE TapChiBaiViet
 ALTER COLUMN NoiDung NVARCHAR(MAX);
+ALTER TABLE TapChiBaiViet
+ADD IDNguoiGui INT;
+
+ALTER TABLE TapChiBaiViet
+ADD CONSTRAINT FK_TapChiBaiViet_NguoiDung
+FOREIGN KEY (IDNguoiGui) REFERENCES NguoiDung(IDNguoiDung);
+ALTER TABLE TapChiBaiViet
+ADD DongTacGia NVARCHAR(500);

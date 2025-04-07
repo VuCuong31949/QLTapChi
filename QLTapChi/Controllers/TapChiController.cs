@@ -6,15 +6,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace QLTapChi.Areas.Admin.Controllers
+namespace QLTapChi.Controllers
 {
-    public class BaiBaoController : Controller
+    public class TapChiController : Controller
     {
-        // GET: Admin/BaiBao
+        // GET: TapChi
         QLTapChiEntities db = new QLTapChiEntities();
         public ActionResult Index()
         {
-            var BaiBao = db.TapChiBaiViets.OrderByDescending(x =>x.IDTapChiBaiViet).ToList();
+            var BaiBao = db.TapChiBaiViets.OrderByDescending(x => x.IDTapChiBaiViet).ToList();
             return View(BaiBao);
         }
         public ActionResult Add()
@@ -63,8 +63,8 @@ namespace QLTapChi.Areas.Admin.Controllers
             updateModel.TrangThai = model.TrangThai;
             updateModel.LinhVuc = model.LinhVuc;
             updateModel.GhiChu = model.GhiChu;
-           
-            
+
+
             if (File != null && File.ContentLength > 0)
             {
                 string rootFolder = Server.MapPath("/Content/BaiViet/");
@@ -75,9 +75,9 @@ namespace QLTapChi.Areas.Admin.Controllers
 
             }
 
-             db.SaveChanges();
-                return RedirectToAction("Index");
-           
+            db.SaveChanges();
+            return RedirectToAction("Index");
+
         }
         public ActionResult XoaBaiBao(int id)
         {
@@ -115,7 +115,5 @@ namespace QLTapChi.Areas.Admin.Controllers
             // Trả về file dưới dạng download
             return File(filePath, "application/octet-stream", fileName);
         }
-
-
     }
 }

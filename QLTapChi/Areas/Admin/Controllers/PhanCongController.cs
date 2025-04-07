@@ -10,57 +10,73 @@ namespace QLTapChi.Areas.Admin.Controllers
     public class PhanCongController : Controller
     {
         // GET: Admin/PhanCong
-        private QLTapChiEntities db = new QLTapChiEntities();
-        public ActionResult DanhSachPhanCong()
+        QLTapChiEntities db = new QLTapChiEntities();
+
+        // GET: Xem các bài viết chờ duyệt
+        public ActionResult BaiVietChoDuyet()
         {
-            var phancong = db.PhanCongs.ToList();
-            return View(phancong);
+            var baiChoDuyet = db.TapChiBaiViets
+                                .Where(b => b.TrangThai == 0) // Chờ duyệt
+                                .OrderByDescending(b => b.NgayGui)
+                                .ToList();
+            // Lấy danh sách lĩnh vực của các bài viết chờ duyệt
+            var linhVucCuaBaiViet = baiChoDuyet.Select(b => b.LinhVuc.TenLinhVuc).Distinct().ToList();
+
+            // Lọc biên tập viên có chuyên ngành phù hợp với lĩnh vực của bài viết
+            var bienTapVienTheoChuyenNganh = db.BienTapViens
+                                                .Where(btv => linhVucCuaBaiViet.Contains(btv.ChuyenNganh))
+                                                .ToList();
+
+            ViewBag.BienTapVien = new SelectList(db.BienTapViens, "IDBienTapVien", "HoTen");
+            return View(baiChoDuyet);
         }
-        public ActionResult phancong()
+
+        // POST: Phân công biên tập viên chịu trách nhiệm
+        public ActionResult PhanCong()
         {
             return View();
         }
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult ThemTaiKhoan(NguoiDung _user, string MatKhauLai)
+        public ActionResult PhanCong(int idBaiViet, int idBienTapVien)
         {
-            if (ModelState.IsValid)
+            // Lấy thông tin bài viết
+            var baiViet = db.TapChiBaiViets.Find(idBaiViet);
+            if (baiViet != null)
             {
-                // Kiểm tra trùng lặp
-                bool checkTenDangNhap = db.NguoiDungs.Any(s => s.HoTen == _user.HoTen);
-                bool checkEmail = db.NguoiDungs.Any(s => s.Email == _user.Email);
-                bool checkSdt = db.NguoiDungs.Any(s => s.SDT == _user.SDT);
-                if (checkTenDangNhap || checkEmail || checkSdt)
-                {
-                    if (checkTenDangNhap)
-                    {
-                        ViewBag.errorTenDangNhap = "* Tên đăng nhập đã tồn tại!";
-                    }
-                    if (checkEmail)
-                    {
-                        ViewBag.erroremail = "* Email đã tồn tại!";
-                    }
-                    if (checkSdt)
-                    {
-                        ViewBag.errorsdt = "* Số điện thoại đã được đăng ký!";
-                    }
-                    return View();
-                }
-                // Kiểm tra mật khẩu khớp
-                if (_user.MatKhau != MatKhauLai)
-                {
-                    ViewBag.errorMatKhauLai = "* Mật khẩu nhập lại không khớp!";
-                    return View();
-                }
+                // Kiểm tra xem người dùng hiện tại có phải là Tổng Biên Tập viên không
+                var userId = (int)Session["UserID"]; // Giả sử ID người dùng đang đăng nhập được lưu trong Session
+                var VaiTro = Session["LoaiNguoiDung"];
 
-                // Mã hóa mật khẩu
-                _user.MatKhau = Hashing.ToSHA256(_user.MatKhau);
-                db.Configuration.ValidateOnSaveEnabled = false;
-                db.NguoiDungs.Add(_user);
-                db.SaveChanges();
+                // Nếu người dùng là Tổng Biên Tập viên
+                if (VaiTro != null)
+                {
+                    // Cập nhật trạng thái bài viết đã duyệt
+                    baiViet.TrangThai = 1; // Trạng thái đã duyệt
+                    db.SaveChanges();
 
-                return RedirectToAction("TKCaNhan", "TaiKhoan");
+                    // Phân công biên tập viên chịu trách nhiệm
+                    var phanCong = new PhanCongBienTap
+                    {
+                        IDTapChiBaiViet = baiViet.IDTapChiBaiViet,
+                        IDBienTapVien = idBienTapVien,
+                        NgayPhanCong = DateTime.Now
+                    };
+
+                    // Thêm phân công vào cơ sở dữ liệu
+                    db.PhanCongBienTaps.Add(phanCong);
+                    db.SaveChanges();
+
+                    return RedirectToAction("BaiVietChoDuyet");
+                }
+                else
+                {
+                    // Nếu không phải Tổng Biên Tập viên, hiển thị thông báo lỗi
+                    TempData["Error"] = "Bạn không có quyền phân công biên tập viên!";
+                    return RedirectToAction("BaiVietChoDuyet");
+                }
             }
+
+            // Nếu bài viết không tồn tại
             return View();
         }
     }

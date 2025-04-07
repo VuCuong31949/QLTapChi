@@ -1,0 +1,46 @@
+﻿@model IEnumerable<QLTapChi.Models.TapChiBaiViet>
+
+@{
+    ViewBag.Title = "BaiVietChoDuyet";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Bài Viết Chờ Duyệt</h2>
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Tiêu Đề</th>
+            <th>Tác Giả</th>
+            <th>Lĩnh Vực</th>
+            <th>Ngày Gửi</th>
+            <th>Phân Công Biên Tập Viên</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var baiViet in Model)
+        {
+            <tr>
+                <td>@baiViet.TieuDe</td>
+                <td>@baiViet.TacGia</td>
+                <td>@baiViet.LinhVuc.TenLinhVuc</td>
+                <td>@baiViet.NgayGui.ToString("dd/MM/yyyy")</td>
+                <td>
+                    @using (Html.BeginForm("PhanCong", "PhanCong", FormMethod.Post, new { area = "Admin" }))
+                    {
+                        <input type="hidden" name="idBaiViet" value="@baiViet.IDTapChiBaiViet" />
+                        @Html.DropDownList("idBienTapVien", (SelectList)ViewBag.BienTapVien, "-- Chọn Biên Tập Viên --", new { @class = "form-control" })
+                        <button type="submit" class="btn btn-primary mt-1">Phân Công</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

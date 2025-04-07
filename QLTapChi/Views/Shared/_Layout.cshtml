@@ -78,22 +78,50 @@
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <button class="btn btn-outline-success" style="width: 65px; height: 32px;" type="submit">Search</button>
                 </form>
             </div>
         </div>
     </nav>
 
-    @RenderBody()
+
+        @RenderBody()
+
+        <footer class="bg-primary text-white py-4 mt-5" style="background: #003366;">
+            <div class="container">
+                <div class="row">
+                    <!-- Cột trái -->
+                    <div class="col-md-6">
+                        <h6 class="fw-bold text-uppercase">TẠP CHÍ KHOA HỌC ĐẠI Nam HỌC CẦN THƠ</h6>
+                        <p class="mb-1">Cơ quan chủ quản: Trường Đại học Nam Cần Thơ</p>
+                        <p class="mb-1">
+                            Trụ Sở: Văn phòng tòa soạn - Đại học Nam Cần Thơ,
+                            Số 168, Nguyễn Văn Cừ (ND), An Bình, Ninh Kiều, TP. Cần Thơ
+                        </p>
+                        
+                    </div>
+
+                    <!-- Cột phải -->
+                    <div class="col-md-6">
+                        <p class="mb-1">  Fax: (02923) 798 668</p>
+                        <p class="mb-1">Địa chỉ: 168, Nguyễn Văn Cừ (nối dài), P. An Bình, Quận Ninh Kiều, Thành phố Cần Thơ</p>
+                        <p class="mb-1">Điện thoại: (02923) 798 874</p>
+                        <p class="mb-1">Copyright ©2025 Trường Đại học Nam Cần Thơ</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
 
-    <script src="~/Contentscript1.js"></script>
-    <script src="~/Content/asset/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="~/Content/ckeditor/ckeditor.js"></script>
-    <script src="~/Content/ckfinder/ckfinder.js"></script>
-    
 
-    @RenderSection("scripts", required: false)
-</body>
+
+        <script src="~/Contentscript1.js"></script>
+        <script src="~/Content/asset/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="~/Content/ckeditor/ckeditor.js"></script>
+        <script src="~/Content/ckfinder/ckfinder.js"></script>
+
+
+        @RenderSection("scripts", required: false)
+    </body>
 
 </html>

@@ -140,6 +140,7 @@
     <Compile Include="Areas\Admin\Controllers\PhanCongController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TaiKhoanController.cs" />
+    <Compile Include="Controllers\TapChiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1545,6 +1546,7 @@
     <Content Include="Areas\Admin\Views\BienTapViens\DanhSachBTV.cshtml" />
     <Content Include="Areas\Admin\Views\BienTapViens\CapNhatBTV.cshtml" />
     <Content Include="Areas\Admin\Views\PhanCong\DanhSachPhanCong.cshtml" />
+    <Content Include="Areas\Admin\Views\PhanCong\BaiVietChoDuyet.cshtml" />
     <EntityDeploy Include="Models\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
@@ -1582,6 +1584,7 @@
     <Content Include="Views\TaiKhoan\CapNhatTaiKhoan.cshtml" />
     <Content Include="Views\TaiKhoan\TKCaNhan.cshtml" />
     <Content Include="Views\TaiKhoan\DangNhap.cshtml" />
+    <Content Include="Views\TapChi\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

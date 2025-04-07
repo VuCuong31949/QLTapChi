@@ -19,6 +19,7 @@ namespace QLTapChi.Models
         {
             this.PhanBiens = new HashSet<PhanBien>();
             this.PhanCongs = new HashSet<PhanCong>();
+            this.TapChiBaiViets = new HashSet<TapChiBaiViet>();
         }
     
         public int IDNguoiDung { get; set; }
@@ -39,5 +40,7 @@ namespace QLTapChi.Models
         public virtual ICollection<PhanBien> PhanBiens { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhanCong> PhanCongs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TapChiBaiViet> TapChiBaiViets { get; set; }
     }
 }

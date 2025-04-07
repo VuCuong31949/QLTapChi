@@ -32,8 +32,11 @@ namespace QLTapChi.Models
         public System.DateTime NgayGui { get; set; }
         public string GhiChu { get; set; }
         public string TuKhoa { get; set; }
+        public Nullable<int> IDNguoiGui { get; set; }
+        public string DongTacGia { get; set; }
     
         public virtual LinhVuc LinhVuc { get; set; }
+        public virtual NguoiDung NguoiDung { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhanBien> PhanBiens { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

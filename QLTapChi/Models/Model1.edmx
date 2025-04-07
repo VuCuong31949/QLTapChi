@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="QLTapChiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="QLTapChiModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BienTapVien">
           <Key>
             <PropertyRef Name="IDBienTapVien" />
@@ -96,6 +96,8 @@
           <Property Name="NgayGui" Type="date" Nullable="false" />
           <Property Name="GhiChu" Type="nvarchar" MaxLength="500" />
           <Property Name="TuKhoa" Type="nvarchar" MaxLength="300" />
+          <Property Name="IDNguoiGui" Type="int" />
+          <Property Name="DongTacGia" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="XuatBan">
           <Key>
@@ -227,6 +229,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TapChiBaiViet_NguoiDung">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
+          <End Role="TapChiBaiViet" Type="Self.TapChiBaiViet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="IDNguoiDung" />
+            </Principal>
+            <Dependent Role="TapChiBaiViet">
+              <PropertyRef Name="IDNguoiGui" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="QLTapChiModelStoreContainer">
           <EntitySet Name="BienTapVien" EntityType="Self.BienTapVien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LinhVuc" EntityType="Self.LinhVuc" Schema="dbo" store:Type="Tables" />
@@ -277,8 +291,13 @@
             <End Role="TapChiBaiViet" EntitySet="TapChiBaiViet" />
             <End Role="XuatBan" EntitySet="XuatBan" />
           </AssociationSet>
+          <AssociationSet Name="FK_TapChiBaiViet_NguoiDung" Association="Self.FK_TapChiBaiViet_NguoiDung">
+            <End Role="NguoiDung" EntitySet="NguoiDung" />
+            <End Role="TapChiBaiViet" EntitySet="TapChiBaiViet" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QLTapChiModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -326,6 +345,7 @@
           <NavigationProperty Name="LinhVuc" Relationship="Self.FK__NguoiDung__IDLin__3B75D760" FromRole="NguoiDung" ToRole="LinhVuc" />
           <NavigationProperty Name="PhanBiens" Relationship="Self.FK__PhanBien__IDNguo__4AB81AF0" FromRole="NguoiDung" ToRole="PhanBien" />
           <NavigationProperty Name="PhanCongs" Relationship="Self.FK__PhanCong__IDNguo__4F7CD00D" FromRole="NguoiDung" ToRole="PhanCong" />
+          <NavigationProperty Name="TapChiBaiViets" Relationship="Self.FK_TapChiBaiViet_NguoiDung" FromRole="NguoiDung" ToRole="TapChiBaiViet" />
         </EntityType>
         <EntityType Name="PhanBien">
           <Key>
@@ -386,7 +406,10 @@
           <Property Name="NgayGui" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="GhiChu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="TuKhoa" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="IDNguoiGui" Type="Int32" />
+          <Property Name="DongTacGia" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="LinhVuc" Relationship="Self.FK__TapChiBai__IDLin__45F365D3" FromRole="TapChiBaiViet" ToRole="LinhVuc" />
+          <NavigationProperty Name="NguoiDung" Relationship="Self.FK_TapChiBaiViet_NguoiDung" FromRole="TapChiBaiViet" ToRole="NguoiDung" />
           <NavigationProperty Name="PhanBiens" Relationship="Self.FK__PhanBien__IDTapC__49C3F6B7" FromRole="TapChiBaiViet" ToRole="PhanBien" />
           <NavigationProperty Name="PhanCongs" Relationship="Self.FK__PhanCong__IDTapC__4E88ABD4" FromRole="TapChiBaiViet" ToRole="PhanCong" />
           <NavigationProperty Name="PhanCongBienTaps" Relationship="Self.FK__PhanCongB__IDTap__71D1E811" FromRole="TapChiBaiViet" ToRole="PhanCongBienTap" />
@@ -476,6 +499,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TapChiBaiViet_NguoiDung">
+          <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
+          <End Role="TapChiBaiViet" Type="Self.TapChiBaiViet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NguoiDung">
+              <PropertyRef Name="IDNguoiDung" />
+            </Principal>
+            <Dependent Role="TapChiBaiViet">
+              <PropertyRef Name="IDNguoiGui" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__PhanBien__IDTapC__49C3F6B7">
           <End Role="TapChiBaiViet" Type="Self.TapChiBaiViet" Multiplicity="1" />
           <End Role="PhanBien" Type="Self.PhanBien" Multiplicity="*" />
@@ -557,6 +592,10 @@
           <AssociationSet Name="FK__PhanCong__IDNguo__4F7CD00D" Association="Self.FK__PhanCong__IDNguo__4F7CD00D">
             <End Role="NguoiDung" EntitySet="NguoiDungs" />
             <End Role="PhanCong" EntitySet="PhanCongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TapChiBaiViet_NguoiDung" Association="Self.FK_TapChiBaiViet_NguoiDung">
+            <End Role="NguoiDung" EntitySet="NguoiDungs" />
+            <End Role="TapChiBaiViet" EntitySet="TapChiBaiViets" />
           </AssociationSet>
           <AssociationSet Name="FK__PhanBien__IDTapC__49C3F6B7" Association="Self.FK__PhanBien__IDTapC__49C3F6B7">
             <End Role="TapChiBaiViet" EntitySet="TapChiBaiViets" />
@@ -678,6 +717,8 @@
                 <ScalarProperty Name="NgayGui" ColumnName="NgayGui" />
                 <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
                 <ScalarProperty Name="TuKhoa" ColumnName="TuKhoa" />
+                <ScalarProperty Name="IDNguoiGui" ColumnName="IDNguoiGui" />
+                <ScalarProperty Name="DongTacGia" ColumnName="DongTacGia" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

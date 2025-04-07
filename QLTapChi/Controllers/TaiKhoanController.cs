@@ -175,27 +175,6 @@ namespace QLTapChi.Controllers
             Session.Clear();
             return View("DangNhap");
         }
-        //public ActionResult ThongTinTaiKhoan()
-        //{
-        //    if (Session["idUser"] == null)
-        //    {
-        //        return View("DangNhap");
-        //    }
 
-        //    int idUser = (int)Session["idUser"];
-        //    var user = db.TaiKhoans.Find(idUser);
-
-        //    if (user == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
-
-        //    return View(user);
-        //}
-        //public ActionResult CapNhat(int id)
-        //{
-        //    TaiKhoan timkiemUser = db.TaiKhoans.Find(id);
-        //    return View(timkiemUser);
-        //}
     }
 }

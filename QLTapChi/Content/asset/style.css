@@ -1,3 +1,20 @@
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+}
+a.nav-link:hover {
+    color: #007bff !important;
+    text-decoration: underline;
+}
+
+.dropdown-menu {
+    background-color: #f1f1f1;
+}
+
+.dropdown-item:hover {
+    background-color: #e2e6ea;
+}
 .navbar-brand img{
     width: 200px;
 }
