@@ -44,6 +44,7 @@
     <NavigationProperty Name="LinhVuc" Relationship="Self.FK__NguoiDung__IDLin__3B75D760" FromRole="NguoiDung" ToRole="LinhVuc" />
     <NavigationProperty Name="PhanBiens" Relationship="Self.FK__PhanBien__IDNguo__4AB81AF0" FromRole="NguoiDung" ToRole="PhanBien" />
     <NavigationProperty Name="PhanCongs" Relationship="Self.FK__PhanCong__IDNguo__4F7CD00D" FromRole="NguoiDung" ToRole="PhanCong" />
+    <NavigationProperty Name="TapChiBaiViets" Relationship="Self.FK_TapChiBaiViet_NguoiDung" FromRole="NguoiDung" ToRole="TapChiBaiViet" />
   </EntityType>
   <EntityType Name="PhanBien">
     <Key>
@@ -104,7 +105,10 @@
     <Property Name="NgayGui" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="GhiChu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <Property Name="TuKhoa" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="IDNguoiGui" Type="Int32" />
+    <Property Name="DongTacGia" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="LinhVuc" Relationship="Self.FK__TapChiBai__IDLin__45F365D3" FromRole="TapChiBaiViet" ToRole="LinhVuc" />
+    <NavigationProperty Name="NguoiDung" Relationship="Self.FK_TapChiBaiViet_NguoiDung" FromRole="TapChiBaiViet" ToRole="NguoiDung" />
     <NavigationProperty Name="PhanBiens" Relationship="Self.FK__PhanBien__IDTapC__49C3F6B7" FromRole="TapChiBaiViet" ToRole="PhanBien" />
     <NavigationProperty Name="PhanCongs" Relationship="Self.FK__PhanCong__IDTapC__4E88ABD4" FromRole="TapChiBaiViet" ToRole="PhanCong" />
     <NavigationProperty Name="PhanCongBienTaps" Relationship="Self.FK__PhanCongB__IDTap__71D1E811" FromRole="TapChiBaiViet" ToRole="PhanCongBienTap" />
@@ -194,6 +198,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TapChiBaiViet_NguoiDung">
+    <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
+    <End Role="TapChiBaiViet" Type="Self.TapChiBaiViet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NguoiDung">
+        <PropertyRef Name="IDNguoiDung" />
+      </Principal>
+      <Dependent Role="TapChiBaiViet">
+        <PropertyRef Name="IDNguoiGui" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__PhanBien__IDTapC__49C3F6B7">
     <End Role="TapChiBaiViet" Type="Self.TapChiBaiViet" Multiplicity="1" />
     <End Role="PhanBien" Type="Self.PhanBien" Multiplicity="*" />
@@ -275,6 +291,10 @@
     <AssociationSet Name="FK__PhanCong__IDNguo__4F7CD00D" Association="Self.FK__PhanCong__IDNguo__4F7CD00D">
       <End Role="NguoiDung" EntitySet="NguoiDungs" />
       <End Role="PhanCong" EntitySet="PhanCongs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TapChiBaiViet_NguoiDung" Association="Self.FK_TapChiBaiViet_NguoiDung">
+      <End Role="NguoiDung" EntitySet="NguoiDungs" />
+      <End Role="TapChiBaiViet" EntitySet="TapChiBaiViets" />
     </AssociationSet>
     <AssociationSet Name="FK__PhanBien__IDTapC__49C3F6B7" Association="Self.FK__PhanBien__IDTapC__49C3F6B7">
       <End Role="TapChiBaiViet" EntitySet="TapChiBaiViets" />

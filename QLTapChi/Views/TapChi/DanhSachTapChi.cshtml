@@ -1,0 +1,42 @@
+﻿@model IEnumerable<QLTapChi.Models.TapChiBaiViet>
+
+@{
+    ViewBag.Title = "DanhSaxhTapChi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    
+
+    <h2>Danh sách bài chờ duyệt</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tiêu đề</th>
+                <th>Tác giả</th>
+                <th>Ngày gửi</th>
+                <th>Trạng thái</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.TieuDe</td>
+                    <td>@item.TacGia</td>
+                    <td>@item.NgayGui.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        @(item.TrangThai == 0 ? "Chờ duyệt" : (item.TrangThai == 1 ? "Đã duyệt" : "Khác"))
+                    </td>
+                    <td>
+                        @Html.ActionLink("Xem", "XemBai", new { id = item.IDTapChiBaiViet }) |
+                        @Html.ActionLink("Duyệt", "DuyetBai", new { id = item.IDTapChiBaiViet }) |
+                        @Html.ActionLink("Từ chối", "TuChoiBai", new { id = item.IDTapChiBaiViet })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

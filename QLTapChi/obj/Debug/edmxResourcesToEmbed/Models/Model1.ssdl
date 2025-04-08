@@ -91,6 +91,8 @@
     <Property Name="NgayGui" Type="date" Nullable="false" />
     <Property Name="GhiChu" Type="nvarchar" MaxLength="500" />
     <Property Name="TuKhoa" Type="nvarchar" MaxLength="300" />
+    <Property Name="IDNguoiGui" Type="int" />
+    <Property Name="DongTacGia" Type="nvarchar" MaxLength="500" />
   </EntityType>
   <EntityType Name="XuatBan">
     <Key>
@@ -222,6 +224,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_TapChiBaiViet_NguoiDung">
+    <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
+    <End Role="TapChiBaiViet" Type="Self.TapChiBaiViet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NguoiDung">
+        <PropertyRef Name="IDNguoiDung" />
+      </Principal>
+      <Dependent Role="TapChiBaiViet">
+        <PropertyRef Name="IDNguoiGui" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="QLTapChiModelStoreContainer">
     <EntitySet Name="BienTapVien" EntityType="Self.BienTapVien" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LinhVuc" EntityType="Self.LinhVuc" Schema="dbo" store:Type="Tables" />
@@ -271,6 +285,10 @@
     <AssociationSet Name="FK__XuatBan__IDTapCh__534D60F1" Association="Self.FK__XuatBan__IDTapCh__534D60F1">
       <End Role="TapChiBaiViet" EntitySet="TapChiBaiViet" />
       <End Role="XuatBan" EntitySet="XuatBan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TapChiBaiViet_NguoiDung" Association="Self.FK_TapChiBaiViet_NguoiDung">
+      <End Role="NguoiDung" EntitySet="NguoiDung" />
+      <End Role="TapChiBaiViet" EntitySet="TapChiBaiViet" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

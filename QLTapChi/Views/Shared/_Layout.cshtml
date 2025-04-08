@@ -52,14 +52,14 @@
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">GỬI BÀI</a>
+                        <a class="nav-link" href="/TapChi/Add">GỬI BÀI</a>
                     </li>
                     <!-- Kiểm tra Session -->
                     @if (Session["UserName"] != null)
                     {
                         <li class="nav-item">
-                            <a class="nav-link" href="/TaiKhoan/TKCaNhan">
-                                <span class="nav-link">Chào, @Session["UserName"]</span>
+                           <a class="nav-link" href="@Url.Action("TKCaNhan", "TaiKhoan", new { id = Session["idUser"] })">
+                                Chào, @Session["UserName"]
                             </a>
                         </li>
                         <li class="nav-item">

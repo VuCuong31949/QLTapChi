@@ -27,16 +27,12 @@ namespace QLTapChi.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Kiểm tra trùng lặp
-                bool checkTenDangNhap = db.NguoiDungs.Any(s => s.HoTen == _user.HoTen);
+               
                 bool checkEmail = db.NguoiDungs.Any(s => s.Email == _user.Email);
                 bool checkSdt = db.NguoiDungs.Any(s => s.SDT == _user.SDT);
-                if (checkTenDangNhap || checkEmail || checkSdt)
+                if ( checkEmail || checkSdt)
                 {
-                    if (checkTenDangNhap)
-                    {
-                        ViewBag.errorTenDangNhap = "* Tên đăng nhập đã tồn tại!";
-                    }
+                    
                     if (checkEmail)
                     {
                         ViewBag.erroremail = "* Email đã tồn tại!";
@@ -60,7 +56,7 @@ namespace QLTapChi.Controllers
                 db.NguoiDungs.Add(_user);
                 db.SaveChanges(); 
 
-                return RedirectToAction("TKCaNhan", "TaiKhoan");
+                return RedirectToAction("DangNhap", "TaiKhoan");
             }
             return View();
         }
@@ -109,7 +105,7 @@ namespace QLTapChi.Controllers
             EditUser.ToChuc = model.ToChuc;
             EditUser.PhanBien = model.PhanBien;
             db.SaveChanges();
-            return RedirectToAction("TKCaNhan", "TaiKhoan");
+            return RedirectToAction("TKCaNhan", "TaiKhoan", new { id = model.IDNguoiDung });
         }
         public ActionResult XoaTaiKhoan(int id)
         {
@@ -131,42 +127,39 @@ namespace QLTapChi.Controllers
         [HttpPost]
         public ActionResult DangNhap(string email, string matkhau)
         {
-            if (ModelState.IsValid)
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(matkhau))
             {
-                var f_matkhau = Hashing.ToSHA256(matkhau);
-                var data = db.NguoiDungs.Where(s => s.HoTen.Equals(email) && s.MatKhau.Equals(f_matkhau)).ToList();
-                if (data.Count() > 0)
-                {
-                    Session["UserName"] = data.FirstOrDefault().HoTen;
-                    Session["idUser"] = data.FirstOrDefault().IDNguoiDung;
-                    ViewBag.ShowSuccessMessage = true;
-
-                    // Lưu thông tin người dùng vào Cookie
-                    //HttpCookie userCookie = new HttpCookie("UserInfo");
-                    //userCookie["UserName"] = data.FirstOrDefault().TenDangNhap;
-                    //userCookie["idUser"] = data.FirstOrDefault().ID_TaiKhoan.ToString();
-                    //userCookie.Expires = DateTime.Now.AddDays(7); // Cookie hết hạn sau 7 ngày
-                    //Response.Cookies.Add(userCookie);
-
-                    return RedirectToAction("DangNhap_ThanhCong", "ThongBao");
-                }
-                var btv = db.BienTapViens
-                   .FirstOrDefault(s => s.Email.Equals(email) && s.MatKhau.Equals(f_matkhau));
-                if (btv != null)
-                {
-                    Session["UserName"] = btv.HoTen;
-                    Session["idUser"] = btv.IDBienTapVien;
-                    Session["LoaiNguoiDung"] = btv.LoaiBienTapVien;
-
-                    // CHUYỂN VỀ AREA: Admin, Controller: BienTapViens, Action: DanhSachBTV
-                    return RedirectToAction("DanhSachBTV", "BienTapViens", new { area = "Admin" });
-                }
-                else
-                {
-                    ViewBag.Error = "* Tài khoản hoặc mật khẩu không đúng !";
-                    return View();
-                }
+                ViewBag.Error = "Vui lòng nhập đầy đủ thông tin.";
+                return View();
             }
+
+            var f_matkhau = Hashing.ToSHA256(matkhau);
+
+            // 1. Kiểm tra Biên Tập Viên
+            var btv = db.BienTapViens.FirstOrDefault(s => s.Email.Trim() == email.Trim() && s.MatKhau.Equals(f_matkhau));
+            if (btv != null)
+            {
+                Session["UserName"] = btv.HoTen;
+                Session["idUser"] = btv.IDBienTapVien;
+                Session["LoaiNguoiDung"] = "BienTapVien"; // Có thể dùng để phân quyền view
+                Session["LoaiBienTapVien"] = btv.LoaiBienTapVien; // Tổng hoặc PhuTrach
+
+                return RedirectToAction("DanhSachBTV", "BienTapViens", new { area = "Admin" });
+            }
+
+            // 2. Kiểm tra Người Dùng (Tác giả, phản biện,...)
+            var nguoiDung = db.NguoiDungs.FirstOrDefault(s => s.Email.Trim() == email.Trim() && s.MatKhau.Equals(f_matkhau));
+            if (nguoiDung != null)
+            {
+                Session["UserName"] = nguoiDung.HoTen;
+                Session["idUser"] = nguoiDung.IDNguoiDung;
+                Session["LoaiNguoiDung"] = "NguoiDung"; // có thể để kiểm tra phân quyền
+
+                return RedirectToAction("TKCaNhan", "TaiKhoan", new { id = nguoiDung.IDNguoiDung });
+            }
+
+            // Sai tài khoản hoặc mật khẩu
+            ViewBag.Error = "* Tài khoản hoặc mật khẩu không đúng !";
             return View();
         }
 

@@ -1,0 +1,111 @@
+﻿@model QLTapChi.Models.TapChiBaiViet
+@using QLTapChi.Models;
+@{
+    ViewBag.Title = "CapNhatTapChi";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    QLTapChiEntities db = new QLTapChiEntities();
+}
+
+<div class="container">
+    <h2 class="text-center">Cập nhật bài báo</h2>
+
+    @using (Html.BeginForm("CapNhatTapChi", "TapChi", FormMethod.Post, new { enctype = "multipart/form-data", @class = "mt-4" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="card p-4 shadow-lg rounded">
+            <h4 class="mb-4">Thông tin bài báo</h4>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.IDTapChiBaiViet)
+
+            <div class="form-group mb-3">
+                @Html.LabelFor(model => model.TieuDe, htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.EditorFor(model => model.TieuDe, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TieuDe, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mb-3">
+                @Html.LabelFor(model => model.TacGia, htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.EditorFor(model => model.TacGia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TacGia, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="form-label fw-bold">Đồng tác giả</label>
+                @Html.EditorFor(model => model.DongTacGia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DongTacGia, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="form-label fw-bold">Từ khóa</label>
+                @Html.EditorFor(model => model.TuKhoa, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TuKhoa, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mb-3">
+                @Html.LabelFor(model => model.NoiDung, htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.EditorFor(model => model.NoiDung, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NoiDung, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="form-label fw-bold">Lĩnh vực</label>
+                @{
+                    var linhvuc = db.LinhVucs.ToList();
+                }
+                <select class="form-control" name="IDLinhVuc">
+                    @foreach (var item in linhvuc)
+                    {
+                        <option value="@item.IDLinhVuc">@item.TenLinhVuc</option>
+                    }
+                </select>
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="form-label fw-bold">Trạng thái phản biện</label>
+                <select class="form-control" id="PhanBien" name="PhanBien">
+                    <option value="1" @(Model.TrangThai == null || Model.TrangThai == 1 ? "selected" : "")>Chưa phản biện</option>
+                    <option value="2" @(Model.TrangThai == 2 ? "selected" : "")>Đã phản biện</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.TrangThai, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mb-3">
+                @Html.LabelFor(model => model.NgayGui, htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.EditorFor(model => model.NgayGui, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.NgayGui, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group mb-4">
+                @Html.LabelFor(model => model.GhiChu, htmlAttributes: new { @class = "form-label fw-bold" })
+                @Html.TextAreaFor(x => x.GhiChu, new { @class = "form-control", @id = "txtDetail", rows = 6 })
+                @Html.ValidationMessageFor(model => model.GhiChu, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group text-end">
+                <input type="submit" value="Lưu bài viết" class="btn btn-primary" />
+                @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-secondary ms-2" })
+            </div>
+        </div>
+    }
+
+    @section scripts {
+        <script>
+            $(document).ready(function () {
+                CKEDITOR.replace('txtDetail', {
+                    customConfig: '/Content/ckeditor/config.js',
+                    extraAllowedContent: 'span',
+                });
+            });
+
+            function BrowseServer(field) {
+                var finder = new CKFinder();
+                finder.selectActionFunction = function (fileUrl) {
+                    document.getElementById(field).value = fileUrl;
+                };
+                finder.popup();
+            }
+        </script>
+    }
+
+</div>

@@ -12,13 +12,16 @@ namespace QLTapChi.Controllers
     {
         // GET: TapChi
         QLTapChiEntities db = new QLTapChiEntities();
-        public ActionResult Index()
+        public ActionResult DanhSachTapChi()
         {
-            var BaiBao = db.TapChiBaiViets.OrderByDescending(x => x.IDTapChiBaiViet).ToList();
+            int idNguoiDung = (int)Session["idUser"];
+            var BaiBao = db.TapChiBaiViets.Where(x => x.IDNguoiGui == idNguoiDung).OrderByDescending(x => x.NgayGui).ToList();
             return View(BaiBao);
         }
         public ActionResult Add()
         {
+            if (Session["idUser"] == null)
+                return RedirectToAction("DangNhap", "TaiKhoan");
             return View();
         }
 
@@ -26,7 +29,9 @@ namespace QLTapChi.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Add(TapChiBaiViet model, HttpPostedFileBase File)
         {
-            model.TrangThai = 0;
+            int idNguoiDung = (int)Session["idUser"];
+            model.IDNguoiGui = idNguoiDung;
+            model.TrangThai = 0;//chờ duyệt
             model.NgayGui = DateTime.Now;
             if (File != null && File.ContentLength > 0)
             {
@@ -38,11 +43,11 @@ namespace QLTapChi.Controllers
                 db.TapChiBaiViets.Add(model);
 
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("DanhSachTapChi", "TapChi");
             }
             return View(model);
         }
-        public ActionResult CapNhatBaiBao(int id)
+        public ActionResult CapNhatTapChi(int id)
         {
             var baiBao = db.TapChiBaiViets.FirstOrDefault(s => s.IDTapChiBaiViet == id);
             if (baiBao == null)
@@ -55,7 +60,7 @@ namespace QLTapChi.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CapNhatBaiBao(TapChiBaiViet model, HttpPostedFileBase File)
+        public ActionResult CapNhatTapChi(TapChiBaiViet model, HttpPostedFileBase File)
         {
             var updateModel = db.TapChiBaiViets.Find(model.IDTapChiBaiViet);
             //2.Gán Giá Trị cho đối tượng

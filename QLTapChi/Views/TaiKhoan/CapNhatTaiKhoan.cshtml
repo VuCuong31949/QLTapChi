@@ -116,8 +116,9 @@
                                         <option value="">Chọn lĩnh vực</option>
                                         @foreach (var item in linhvuc)
                                         {
-                                            <option value="@item.IDLinhVuc" )>@item.TenLinhVuc</option>
+                                            <option value="@item.IDLinhVuc" @(item.IDLinhVuc == Model.IDLinhVuc ? "selected" : "")>@item.TenLinhVuc</option>
                                         }
+
                                     </select>
                                 </div>
                             </div>

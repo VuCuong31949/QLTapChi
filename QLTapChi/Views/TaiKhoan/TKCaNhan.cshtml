@@ -36,7 +36,7 @@
                 <div class="card-header bg-primary text-white">Thông tin cá nhân</div>
                 <div class="card-body">
                     <p><strong>Họ và tên:</strong> @Model.HoTen</p>
-                    <p><strong>Giới tính:</strong> @Model.GioiTinh</p>
+                    <p><strong>Giới tính:</strong> @(Model.GioiTinh == 0 ? "Nam" : "Nữ")</p>
                     <p><strong>Chức danh:</strong> @Model.ChucDanh</p>
                     <p><strong>Tổ chức:</strong> @Model.ToChuc</p>
                     <p><strong>Lĩnh vực nghiên cứu:</strong> @Model.LinhVuc.TenLinhVuc</p>
@@ -50,7 +50,7 @@
                     <div class="alert alert-warning">
                         <i class="fas fa-exclamation-triangle me-2"></i> Mật khẩu được bảo mật và không hiển thị công khai.
                     </div>
-                    <a href="#" class="btn btn-outline-primary"><i class="fas fa-key me-1"></i> Đổi mật khẩu</a>
+                   
                 </div>
             </div>
         </div>

@@ -30,6 +30,38 @@ namespace QLTapChi.Areas.Admin.Controllers
             ViewBag.BienTapVien = new SelectList(db.BienTapViens, "IDBienTapVien", "HoTen");
             return View(baiChoDuyet);
         }
+        public ActionResult BaiVietChoDuyet(int id)
+        {
+            // Kiểm tra đăng nhập và loại biên tập viên
+            if (Session["idUser"] == null || Session["LoaiNguoiDung"] == null || Session["LoaiNguoiDung"].ToString() != "Tong")
+            {
+                return RedirectToAction("DangNhap", "TaiKhoan");
+            }
+
+            int idBTV = (int)Session["idUser"];
+            var bienTapVien = db.BienTapViens.FirstOrDefault(b => b.IDBienTapVien == idBTV);
+
+            if (bienTapVien == null)
+            {
+                return RedirectToAction("DangNhap", "TaiKhoan");
+            }
+
+            string chuyenNganh = bienTapVien.ChuyenNganh;
+
+            // Lấy bài viết chờ duyệt theo chuyên ngành của biên tập viên
+            var baiChoDuyet = db.TapChiBaiViets
+                                .Where(b => b.TrangThai == 0 && b.LinhVuc.TenLinhVuc == chuyenNganh)
+                                .OrderByDescending(b => b.NgayGui)
+                                .ToList();
+
+            // Danh sách biên tập viên thuộc cùng chuyên ngành để phân công
+            var bienTapVienTheoChuyenNganh = db.BienTapViens
+                                               .Where(btv => btv.ChuyenNganh == chuyenNganh)
+                                               .ToList();
+
+            ViewBag.BienTapVien = new SelectList(bienTapVienTheoChuyenNganh, "IDBienTapVien", "HoTen");
+            return View(baiChoDuyet);
+        }
 
         // POST: Phân công biên tập viên chịu trách nhiệm
         public ActionResult PhanCong()

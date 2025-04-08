@@ -98,6 +98,8 @@
           <ScalarProperty Name="NgayGui" ColumnName="NgayGui" />
           <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
           <ScalarProperty Name="TuKhoa" ColumnName="TuKhoa" />
+          <ScalarProperty Name="IDNguoiGui" ColumnName="IDNguoiGui" />
+          <ScalarProperty Name="DongTacGia" ColumnName="DongTacGia" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -18,9 +18,7 @@
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MatKhau)
-        </th>
+
         <th>
             @Html.DisplayNameFor(model => model.SDT)
         </th>
@@ -56,9 +54,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Email)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MatKhau)
-        </td>
+
         <td>
             @Html.DisplayFor(modelItem => item.SDT)
         </td>
@@ -84,7 +80,7 @@
             @Html.DisplayFor(modelItem => item.LinhVuc.TenLinhVuc)
         </td>
         <td>
-            <a href="@Url.Action("XoaTaiKhoan", "TaiKhoanAdmin", new { id = item.IDNguoiDung })"
+            <a href="@Url.Action("XoaTaiKhoan", "TaiKhoan", new { id = item.IDNguoiDung })"
                onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản này không?');">
                 <i class="fas fa-trash"></i>
             </a>
