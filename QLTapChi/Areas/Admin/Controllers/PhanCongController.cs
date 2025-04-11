@@ -1,6 +1,8 @@
 ﻿using QLTapChi.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,28 +14,10 @@ namespace QLTapChi.Areas.Admin.Controllers
         // GET: Admin/PhanCong
         QLTapChiEntities db = new QLTapChiEntities();
 
-        // GET: Xem các bài viết chờ duyệt
         public ActionResult BaiVietChoDuyet()
         {
-            var baiChoDuyet = db.TapChiBaiViets
-                                .Where(b => b.TrangThai == 0) // Chờ duyệt
-                                .OrderByDescending(b => b.NgayGui)
-                                .ToList();
-            // Lấy danh sách lĩnh vực của các bài viết chờ duyệt
-            var linhVucCuaBaiViet = baiChoDuyet.Select(b => b.LinhVuc.TenLinhVuc).Distinct().ToList();
-
-            // Lọc biên tập viên có chuyên ngành phù hợp với lĩnh vực của bài viết
-            var bienTapVienTheoChuyenNganh = db.BienTapViens
-                                                .Where(btv => linhVucCuaBaiViet.Contains(btv.ChuyenNganh))
-                                                .ToList();
-
-            ViewBag.BienTapVien = new SelectList(db.BienTapViens, "IDBienTapVien", "HoTen");
-            return View(baiChoDuyet);
-        }
-        public ActionResult BaiVietChoDuyet(int id)
-        {
             // Kiểm tra đăng nhập và loại biên tập viên
-            if (Session["idUser"] == null || Session["LoaiNguoiDung"] == null || Session["LoaiNguoiDung"].ToString() != "Tong")
+            if (Session["idUser"] == null || Session["LoaiNguoiDung"] == null || Session["LoaiBienTapVien"].ToString() != "TongBienTap")
             {
                 return RedirectToAction("DangNhap", "TaiKhoan");
             }
@@ -56,7 +40,7 @@ namespace QLTapChi.Areas.Admin.Controllers
 
             // Danh sách biên tập viên thuộc cùng chuyên ngành để phân công
             var bienTapVienTheoChuyenNganh = db.BienTapViens
-                                               .Where(btv => btv.ChuyenNganh == chuyenNganh)
+                                               .Where(btv => btv.ChuyenNganh == chuyenNganh && btv.LoaiBienTapVien != "TongBienTap")
                                                .ToList();
 
             ViewBag.BienTapVien = new SelectList(bienTapVienTheoChuyenNganh, "IDBienTapVien", "HoTen");
@@ -71,45 +55,167 @@ namespace QLTapChi.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult PhanCong(int idBaiViet, int idBienTapVien)
         {
-            // Lấy thông tin bài viết
-            var baiViet = db.TapChiBaiViets.Find(idBaiViet);
-            if (baiViet != null)
+            // Kiểm tra đăng nhập
+            if (Session["idUser"] == null || Session["LoaiBienTapVien"] == null)
             {
-                // Kiểm tra xem người dùng hiện tại có phải là Tổng Biên Tập viên không
-                var userId = (int)Session["UserID"]; // Giả sử ID người dùng đang đăng nhập được lưu trong Session
-                var VaiTro = Session["LoaiNguoiDung"];
-
-                // Nếu người dùng là Tổng Biên Tập viên
-                if (VaiTro != null)
-                {
-                    // Cập nhật trạng thái bài viết đã duyệt
-                    baiViet.TrangThai = 1; // Trạng thái đã duyệt
-                    db.SaveChanges();
-
-                    // Phân công biên tập viên chịu trách nhiệm
-                    var phanCong = new PhanCongBienTap
-                    {
-                        IDTapChiBaiViet = baiViet.IDTapChiBaiViet,
-                        IDBienTapVien = idBienTapVien,
-                        NgayPhanCong = DateTime.Now
-                    };
-
-                    // Thêm phân công vào cơ sở dữ liệu
-                    db.PhanCongBienTaps.Add(phanCong);
-                    db.SaveChanges();
-
-                    return RedirectToAction("BaiVietChoDuyet");
-                }
-                else
-                {
-                    // Nếu không phải Tổng Biên Tập viên, hiển thị thông báo lỗi
-                    TempData["Error"] = "Bạn không có quyền phân công biên tập viên!";
-                    return RedirectToAction("BaiVietChoDuyet");
-                }
+                TempData["Error"] = "Bạn chưa đăng nhập hoặc không có quyền truy cập.";
+                return RedirectToAction("DangNhap", "TaiKhoan");
             }
 
-            // Nếu bài viết không tồn tại
-            return View();
+            var userId = (int)Session["idUser"];
+            var vaiTro = Session["LoaiBienTapVien"].ToString();
+
+            // Kiểm tra vai trò Tổng Biên Tập
+            if (vaiTro != "TongBienTap")
+            {
+                TempData["Error"] = "Bạn không có quyền phân công biên tập viên!";
+                return RedirectToAction("BaiVietChoDuyet");
+            }
+
+            // Tìm bài viết
+            var baiViet = db.TapChiBaiViets.Find(idBaiViet);
+            if (baiViet == null)
+            {
+                TempData["Error"] = "Không tìm thấy bài viết!";
+                return RedirectToAction("BaiVietChoDuyet");
+            }
+
+            // Kiểm tra đã duyệt chưa
+            if (baiViet.TrangThai != 0)
+            {
+                TempData["Error"] = "Bài viết này đã được duyệt hoặc xử lý trước đó!";
+                return RedirectToAction("BaiVietChoDuyet");
+            }
+
+            // Kiểm tra đã phân công chưa
+            bool daPhanCong = db.PhanCongBienTaps.Any(p => p.IDTapChiBaiViet == idBaiViet);
+            if (daPhanCong)
+            {
+                TempData["Error"] = "Bài viết đã được phân công cho biên tập viên khác.";
+                return RedirectToAction("BaiVietChoDuyet");
+            }
+
+            // Cập nhật trạng thái bài viết
+            baiViet.TrangThai = 1; // Đã duyệt
+            db.SaveChanges();
+
+            // Thêm bản ghi phân công
+            var phanCong = new PhanCongBienTap
+            {
+                IDTapChiBaiViet = baiViet.IDTapChiBaiViet,
+                IDBienTapVien = idBienTapVien,
+                NgayPhanCong = DateTime.Now
+            };
+            db.PhanCongBienTaps.Add(phanCong);
+            db.SaveChanges();
+
+            TempData["Success"] = "Phân công biên tập viên thành công.";
+            return RedirectToAction("BaiVietChoDuyet");
+        }
+        public ActionResult BaiVietChoPhanBien()
+        {
+            int idBTV = (int)Session["idUser"];
+            var bienTapVien = db.BienTapViens.FirstOrDefault(b => b.IDBienTapVien == idBTV);
+
+            if (bienTapVien == null)
+            {
+                return RedirectToAction("DangNhap", "TaiKhoan");
+            }
+
+            string chuyenNganh = bienTapVien.ChuyenNganh;
+
+            // Lấy bài viết chờ duyệt theo chuyên ngành của biên tập viên
+            var baiChoPhanBien = db.TapChiBaiViets
+                                .Where(b => b.TrangThai == 1 && b.LinhVuc.TenLinhVuc == chuyenNganh)
+                                .OrderByDescending(b => b.NgayGui)
+                                .ToList();
+
+            // Danh sách biên tập viên thuộc cùng chuyên ngành để phân công
+            var PhanBien = db.NguoiDungs.Where(pb => pb.LinhVuc.TenLinhVuc == chuyenNganh && pb.PhanBien == true).ToList();
+
+            ViewBag.PhanBien = new SelectList(PhanBien, "IDNguoiDung", "HoTen");
+          
+            return View( baiChoPhanBien);
+        }
+        [HttpPost]
+        public ActionResult PhanCongPhanBien(int idBaiViet, int idPhanBien)
+        {
+            // Kiểm tra đăng nhập
+            if (Session["idUser"] == null || Session["LoaiBienTapVien"] == null)
+            {
+                TempData["Error"] = "Bạn chưa đăng nhập hoặc không có quyền truy cập.";
+                return RedirectToAction("DangNhap", "TaiKhoan");
+            }
+
+            var userId = (int)Session["idUser"];
+            var vaiTro = Session["LoaiBienTapVien"].ToString();
+
+            // Tìm bài viết
+            var baiViet = db.TapChiBaiViets.Find(idBaiViet);
+            if (baiViet == null)
+            {
+                TempData["Error"] = "Không tìm thấy bài viết!";
+                return RedirectToAction("BaiVietChoDuyet");
+            }
+
+            // Kiểm tra đã duyệt chưa
+            if (baiViet.TrangThai != 1)
+            {
+                TempData["Error"] = "Bài viết này đã được duyệt hoặc xử lý trước đó!";
+                return RedirectToAction("BaiVietChoDuyet");
+            }
+
+            // Kiểm tra đã phân công chưa
+            bool daPhanCong = db.PhanCongs.Any(p => p.IDTapChiBaiViet == idBaiViet);
+            if (daPhanCong)
+            {
+                TempData["Error"] = "Bài viết đã được phân công cho biên tập viên khác.";
+                return RedirectToAction("BaiVietChoPhanBien");
+            }
+
+            // Cập nhật trạng thái bài viết
+            baiViet.TrangThai = 2; // Đã duyệt
+            db.SaveChanges();
+
+            // Thêm bản ghi phân công
+            var phanCong = new PhanCong
+            {
+                IDTapChiBaiViet = baiViet.IDTapChiBaiViet,
+                IDNguoiPhanBien = userId,
+                NgayPhanCong = DateTime.Now,
+                NgayKetThuc = DateTime.Now
+            };
+            db.PhanCongs.Add(phanCong);
+            db.SaveChanges();
+
+            TempData["Success"] = "Phân công phản biện thành công.";
+            return RedirectToAction("BaiVietChoPhanBien");
+        }
+        public ActionResult DownloadFile(int id)
+        {
+            // Tìm bài báo theo ID
+            var baiBao = db.TapChiBaiViets.FirstOrDefault(b => b.IDTapChiBaiViet == id);
+
+            // Nếu không tìm thấy bài báo, trả về 404
+            if (baiBao == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Lấy đường dẫn tới file (trong trường hợp là "NoiDung" là đường dẫn file)
+            string filePath = Server.MapPath("~/" + baiBao.NoiDung);
+
+            // Kiểm tra file có tồn tại không
+            if (!System.IO.File.Exists(filePath))
+            {
+                return HttpNotFound();
+            }
+
+            // Lấy tên file
+            string fileName = Path.GetFileName(filePath);
+
+            // Trả về file dưới dạng download
+            return File(filePath, "application/octet-stream", fileName);
         }
     }
 }

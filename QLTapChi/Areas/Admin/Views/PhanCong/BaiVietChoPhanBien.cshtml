@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<QLTapChi.Models.TapChiBaiViet>
 
 @{
-    ViewBag.Title = "BaiVietChoDuyet";
+    ViewBag.Title = "BaiVietChoPhanBien";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -28,7 +28,7 @@
             <th>Nội Dung</th>
             <th>Ngày gửi</th>
             <th>Trạng thái</th>
-            <th>Phân công cho BTV</th>
+            <th>Phân công cho PB</th>
             <th>Thao tác</th>
         </tr>
     </thead>
@@ -53,7 +53,7 @@
                                 badgeHtml = "<span class='badge bg-warning text-dark'>Chờ TBT phân công</span>";
                                 break;
                             case 1:
-                                badgeHtml = "<span class='badge bg-info text-dark'>Chờ BTV phân công </span>";
+                                badgeHtml = "<span class='badge bg-info text-dark'>Chờ BTV phân công</span>";
                                 break;
                             case 2:
                                 badgeHtml = "<span class='badge bg-primary'>Phản biện đã phản hồi</span>";
@@ -65,11 +65,11 @@
 
                 </td>
                 <td>
-                    @using (Html.BeginForm("PhanCong", "PhanCong", FormMethod.Post, new { area = "Admin" }))
+                    @using (Html.BeginForm("PhanCongPhanBien", "PhanCong", FormMethod.Post, new { area = "Admin" }))
                     {
                         @Html.Hidden("idBaiViet", bai.IDTapChiBaiViet)
 
-                        @Html.DropDownList("idBienTapVien", (SelectList)ViewBag.BienTapVien, "-- Chọn BTV --", new { @class = "form-select form-select-sm" })
+                        @Html.DropDownList("idPhanBien", (SelectList)ViewBag.PhanBien, "-- Chọn BTV --", new { @class = "form-select form-select-sm" })
 
                         <button type="submit" class="btn btn-sm btn-primary mt-1">Phân công</button>
                     }

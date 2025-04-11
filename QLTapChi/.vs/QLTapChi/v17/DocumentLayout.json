@@ -3,48 +3,40 @@
   "WorkspaceRootPath": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|d:\\hoc\\hk9\\kltn\\qltapchi\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
-      "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|d:\\hoc\\hk9\\kltn\\qltapchi\\views\\tapchi\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:views\\tapchi\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\content\\asset\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:content\\asset\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\areas\\admin\\controllers\\baibaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:areas\\admin\\controllers\\baibaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\areas\\admin\\controllers\\phancongcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|d:\\hoc\\hk9\\kltn\\qltapchi\\areas\\admin\\controllers\\phancongcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:areas\\admin\\controllers\\phancongcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\controllers\\tapchicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:controllers\\tapchicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\areas\\admin\\views\\baibao\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:areas\\admin\\views\\baibao\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\areas\\admin\\views\\phancong\\baivietchoduyet.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:areas\\admin\\views\\phancong\\baivietchoduyet.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|d:\\hoc\\hk9\\kltn\\qltapchi\\areas\\admin\\views\\phancong\\baivietchophanbien.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:areas\\admin\\views\\phancong\\baivietchophanbien.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|d:\\hoc\\hk9\\kltn\\qltapchi\\views\\tapchi\\danhsachtapchi.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:views\\tapchi\\danhsachtapchi.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\areas\\admin\\views\\baibao\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:areas\\admin\\views\\baibao\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\areas\\admin\\controllers\\baibaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:areas\\admin\\controllers\\baibaocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\controllers\\tapchicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:controllers\\tapchicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|d:\\hoc\\hk9\\kltn\\qltapchi\\views\\tapchi\\capnhattapchi.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:views\\tapchi\\capnhattapchi.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\views\\tapchi\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:views\\tapchi\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\controllers\\taikhoancontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -53,6 +45,30 @@
     {
       "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\views\\taikhoan\\dangnhap.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:views\\taikhoan\\dangnhap.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\areas\\admin\\views\\shared\\_layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:areas\\admin\\views\\shared\\_layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\content\\asset\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:content\\asset\\style.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\areas\\admin\\views\\baibao\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:areas\\admin\\views\\baibao\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\areas\\admin\\controllers\\bientapvienscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -99,10 +115,6 @@
       "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:views\\taikhoan\\themtaikhoan.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\areas\\admin\\views\\shared\\_layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:areas\\admin\\views\\shared\\_layoutadmin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|D:\\Hoc\\HK9\\KLTN\\QLTapChi\\areas\\admin\\views\\baibao\\capnhatbaibao.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{CA71665A-BA0F-41BC-8288-B411A873189D}|QLTapChi.csproj|solutionrelative:areas\\admin\\views\\baibao\\capnhatbaibao.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
@@ -142,57 +154,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Model1.edmx [Diagram1]",
-              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Models\\Model1.edmx",
-              "RelativeDocumentMoniker": "Models\\Model1.edmx",
-              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Models\\Model1.edmx [Diagram1]",
-              "RelativeToolTip": "Models\\Model1.edmx [Diagram1]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
-              "WhenOpened": "2025-04-07T15:29:47.905Z",
-              "EditorCaption": " [Diagram1]"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "Add.cshtml",
-              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Views\\TapChi\\Add.cshtml",
-              "RelativeDocumentMoniker": "Views\\TapChi\\Add.cshtml",
-              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Views\\TapChi\\Add.cshtml",
-              "RelativeToolTip": "Views\\TapChi\\Add.cshtml",
-              "ViewState": "AgIAADwAAAAAAAAAAAAAAFAAAABeAAAAAAAAAA==",
+              "Title": "DanhSachTapChi.cshtml",
+              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Views\\TapChi\\DanhSachTapChi.cshtml",
+              "RelativeDocumentMoniker": "Views\\TapChi\\DanhSachTapChi.cshtml",
+              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Views\\TapChi\\DanhSachTapChi.cshtml",
+              "RelativeToolTip": "Views\\TapChi\\DanhSachTapChi.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-07T14:20:16.646Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "TaiKhoanController.cs",
-              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Controllers\\TaiKhoanController.cs",
-              "RelativeDocumentMoniker": "Controllers\\TaiKhoanController.cs",
-              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Controllers\\TaiKhoanController.cs",
-              "RelativeToolTip": "Controllers\\TaiKhoanController.cs",
-              "ViewState": "AgIAAIkAAAAAAAAAAAAUwJ4AAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-31T14:39:09.153Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "PhanCongController.cs",
-              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Controllers\\PhanCongController.cs",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\PhanCongController.cs",
-              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Controllers\\PhanCongController.cs",
-              "RelativeToolTip": "Areas\\Admin\\Controllers\\PhanCongController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAA1AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-06T07:59:05.768Z",
+              "WhenOpened": "2025-04-11T16:56:34.337Z",
               "EditorCaption": ""
             },
             {
@@ -203,40 +177,166 @@
               "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\BaiBaoController.cs",
               "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Controllers\\BaiBaoController.cs",
               "RelativeToolTip": "Areas\\Admin\\Controllers\\BaiBaoController.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAcwFsAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAABoAAAAAAAAAAAA0wFsAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-04T04:44:07.073Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAEIAAAAAAAAAAAAmwFAAAABMAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Views\\BaiBao\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\BaiBao\\Index.cshtml",
+              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Views\\BaiBao\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\BaiBao\\Index.cshtml",
+              "ViewState": "AgIAABMAAAAAAAAAAAAuwDYAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-30T15:45:04.093Z",
+              "WhenOpened": "2025-04-04T04:57:04.406Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "style.css",
-              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Content\\asset\\style.css",
-              "RelativeDocumentMoniker": "Content\\asset\\style.css",
-              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Content\\asset\\style.css",
-              "RelativeToolTip": "Content\\asset\\style.css",
-              "ViewState": "AgIAAGIAAAAAAAAAAAAmwHgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2025-04-01T07:43:59.629Z",
+              "DocumentIndex": 0,
+              "Title": "PhanCongController.cs",
+              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Controllers\\PhanCongController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\PhanCongController.cs",
+              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Controllers\\PhanCongController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\PhanCongController.cs",
+              "ViewState": "AgIAAL0AAAAAAAAAAADwv9gAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-06T07:59:05.768Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "BaiVietChoDuyet.cshtml",
+              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Views\\PhanCong\\BaiVietChoDuyet.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\PhanCong\\BaiVietChoDuyet.cshtml",
+              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Views\\PhanCong\\BaiVietChoDuyet.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\PhanCong\\BaiVietChoDuyet.cshtml",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACMAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-07T13:12:34.79Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BaiVietChoPhanBien.cshtml",
+              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Views\\PhanCong\\BaiVietChoPhanBien.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\PhanCong\\BaiVietChoPhanBien.cshtml",
+              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Views\\PhanCong\\BaiVietChoPhanBien.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\PhanCong\\BaiVietChoPhanBien.cshtml",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAD8AAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-11T16:40:13.577Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "TapChiController.cs",
+              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Controllers\\TapChiController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TapChiController.cs",
+              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Controllers\\TapChiController.cs",
+              "RelativeToolTip": "Controllers\\TapChiController.cs",
+              "ViewState": "AgIAAFQAAAAAAAAAAAAowGAAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-07T14:12:50.974Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "CapNhatTapChi.cshtml",
+              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Views\\TapChi\\CapNhatTapChi.cshtml",
+              "RelativeDocumentMoniker": "Views\\TapChi\\CapNhatTapChi.cshtml",
+              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Views\\TapChi\\CapNhatTapChi.cshtml",
+              "RelativeToolTip": "Views\\TapChi\\CapNhatTapChi.cshtml",
+              "ViewState": "AgIAAEIAAAAAAAAAAAAAAFMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-11T16:57:14.542Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "TaiKhoanController.cs",
+              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Controllers\\TaiKhoanController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TaiKhoanController.cs",
+              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Controllers\\TaiKhoanController.cs",
+              "RelativeToolTip": "Controllers\\TaiKhoanController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJAAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T14:39:09.153Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "DangNhap.cshtml",
+              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Views\\TaiKhoan\\DangNhap.cshtml",
+              "RelativeDocumentMoniker": "Views\\TaiKhoan\\DangNhap.cshtml",
+              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Views\\TaiKhoan\\DangNhap.cshtml",
+              "RelativeToolTip": "Views\\TaiKhoan\\DangNhap.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-01T09:06:52.176Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Add.cshtml",
+              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Views\\TapChi\\Add.cshtml",
+              "RelativeDocumentMoniker": "Views\\TapChi\\Add.cshtml",
+              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Views\\TapChi\\Add.cshtml",
+              "RelativeToolTip": "Views\\TapChi\\Add.cshtml",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAFoAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-07T14:20:16.646Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "_LayoutAdmin.cshtml",
+              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Shared\\_LayoutAdmin.cshtml",
+              "ViewState": "AgIAAOcAAAAAAAAAAAAAwAQBAABhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-05T12:48:20.362Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAADkAAAAAAAAAAAAmwFAAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-03-30T15:45:04.093Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Model1.edmx [Diagram1]",
+              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Models\\Model1.edmx",
+              "RelativeDocumentMoniker": "Models\\Model1.edmx",
+              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Models\\Model1.edmx [Diagram1]",
+              "RelativeToolTip": "Models\\Model1.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2025-04-07T15:29:47.905Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "Web.config",
               "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Web.config",
               "RelativeDocumentMoniker": "Web.config",
@@ -249,46 +349,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "DangNhap.cshtml",
-              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Views\\TaiKhoan\\DangNhap.cshtml",
-              "RelativeDocumentMoniker": "Views\\TaiKhoan\\DangNhap.cshtml",
-              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Views\\TaiKhoan\\DangNhap.cshtml",
-              "RelativeToolTip": "Views\\TaiKhoan\\DangNhap.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAABiAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-01T09:06:52.176Z",
-              "EditorCaption": ""
+              "DocumentIndex": 15,
+              "Title": "style.css",
+              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Content\\asset\\style.css",
+              "RelativeDocumentMoniker": "Content\\asset\\style.css",
+              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Content\\asset\\style.css",
+              "RelativeToolTip": "Content\\asset\\style.css",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAmwHgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-04-01T07:43:59.629Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "BaiVietChoDuyet.cshtml",
-              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Views\\PhanCong\\BaiVietChoDuyet.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\PhanCong\\BaiVietChoDuyet.cshtml",
-              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Views\\PhanCong\\BaiVietChoDuyet.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\PhanCong\\BaiVietChoDuyet.cshtml",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAmwBQAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-07T13:12:34.79Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "TapChiController.cs",
-              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Controllers\\TapChiController.cs",
-              "RelativeDocumentMoniker": "Controllers\\TapChiController.cs",
-              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Controllers\\TapChiController.cs",
-              "RelativeToolTip": "Controllers\\TapChiController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAowBQAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-07T14:12:50.974Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 16,
               "Title": "Add.cshtml",
               "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Views\\BaiBao\\Add.cshtml",
               "RelativeDocumentMoniker": "Areas\\Admin\\Views\\BaiBao\\Add.cshtml",
@@ -296,12 +369,11 @@
               "RelativeToolTip": "Areas\\Admin\\Views\\BaiBao\\Add.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAHsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-04T06:37:52.555Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-04T06:37:52.555Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 17,
               "Title": "BienTapViensController.cs",
               "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Controllers\\BienTapViensController.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\BienTapViensController.cs",
@@ -309,25 +381,11 @@
               "RelativeToolTip": "Areas\\Admin\\Controllers\\BienTapViensController.cs",
               "ViewState": "AgIAAFIAAAAAAAAAAAAswGAAAAALAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-05T13:20:28.445Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-05T13:20:28.445Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "Index.cshtml",
-              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Views\\BaiBao\\Index.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\BaiBao\\Index.cshtml",
-              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Views\\BaiBao\\Index.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\BaiBao\\Index.cshtml",
-              "ViewState": "AgIAAB8AAAAAAAAAAAAuwCcAAAAIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-04T04:57:04.406Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 20,
               "Title": "ThemBTV.cshtml",
               "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Views\\BienTapViens\\ThemBTV.cshtml",
               "RelativeDocumentMoniker": "Areas\\Admin\\Views\\BienTapViens\\ThemBTV.cshtml",
@@ -335,12 +393,11 @@
               "RelativeToolTip": "Areas\\Admin\\Views\\BienTapViens\\ThemBTV.cshtml",
               "ViewState": "AgIAADAAAAAAAAAAAAAAADAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-06T06:44:20.402Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-06T06:44:20.402Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 19,
               "Title": "CapNhatBTV.cshtml",
               "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Views\\BienTapViens\\CapNhatBTV.cshtml",
               "RelativeDocumentMoniker": "Areas\\Admin\\Views\\BienTapViens\\CapNhatBTV.cshtml",
@@ -348,12 +405,11 @@
               "RelativeToolTip": "Areas\\Admin\\Views\\BienTapViens\\CapNhatBTV.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-06T07:17:15.672Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-06T07:17:15.672Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 18,
               "Title": "DanhSachBTV.cshtml",
               "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Views\\BienTapViens\\DanhSachBTV.cshtml",
               "RelativeDocumentMoniker": "Areas\\Admin\\Views\\BienTapViens\\DanhSachBTV.cshtml",
@@ -361,12 +417,11 @@
               "RelativeToolTip": "Areas\\Admin\\Views\\BienTapViens\\DanhSachBTV.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-06T07:04:20.678Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-06T07:04:20.678Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 21,
               "Title": "DanhSachTaiKhoan.cshtml",
               "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Views\\TaiKhoan\\DanhSachTaiKhoan.cshtml",
               "RelativeDocumentMoniker": "Views\\TaiKhoan\\DanhSachTaiKhoan.cshtml",
@@ -374,12 +429,11 @@
               "RelativeToolTip": "Views\\TaiKhoan\\DanhSachTaiKhoan.cshtml",
               "ViewState": "AgIAADoAAAAAAAAAAAAQwGMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-31T14:44:59.538Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-31T14:44:59.538Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 24,
               "Title": "AdminAreaRegistration.cs",
               "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\AdminAreaRegistration.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\AdminAreaRegistration.cs",
@@ -387,12 +441,11 @@
               "RelativeToolTip": "Areas\\Admin\\AdminAreaRegistration.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAABIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T15:33:56.359Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-30T15:33:56.359Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 22,
               "Title": "DanhSachPhanCong.cshtml",
               "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Views\\PhanCong\\DanhSachPhanCong.cshtml",
               "RelativeDocumentMoniker": "Areas\\Admin\\Views\\PhanCong\\DanhSachPhanCong.cshtml",
@@ -400,12 +453,11 @@
               "RelativeToolTip": "Areas\\Admin\\Views\\PhanCong\\DanhSachPhanCong.cshtml",
               "ViewState": "AgIAAAwAAAAAAAAAAAAAACkAAABEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-06T08:01:40.682Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-06T08:01:40.682Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 23,
               "Title": "RouteConfig.cs",
               "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\App_Start\\RouteConfig.cs",
               "RelativeDocumentMoniker": "App_Start\\RouteConfig.cs",
@@ -413,12 +465,11 @@
               "RelativeToolTip": "App_Start\\RouteConfig.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T15:35:50.433Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-30T15:35:50.433Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 25,
               "Title": "CapNhatTaiKhoan.cshtml",
               "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Views\\TaiKhoan\\CapNhatTaiKhoan.cshtml",
               "RelativeDocumentMoniker": "Views\\TaiKhoan\\CapNhatTaiKhoan.cshtml",
@@ -426,12 +477,11 @@
               "RelativeToolTip": "Views\\TaiKhoan\\CapNhatTaiKhoan.cshtml",
               "ViewState": "AgIAAGsAAAAAAAAAAAAYwIAAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-31T16:23:34.609Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-31T16:23:34.609Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 26,
               "Title": "createLV.cshtml",
               "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Views\\LinhVuc\\createLV.cshtml",
               "RelativeDocumentMoniker": "Areas\\Admin\\Views\\LinhVuc\\createLV.cshtml",
@@ -439,12 +489,11 @@
               "RelativeToolTip": "Areas\\Admin\\Views\\LinhVuc\\createLV.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-30T16:25:18.561Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-30T16:25:18.561Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 27,
               "Title": "ThemTaiKhoan.cshtml",
               "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Views\\TaiKhoan\\ThemTaiKhoan.cshtml",
               "RelativeDocumentMoniker": "Views\\TaiKhoan\\ThemTaiKhoan.cshtml",
@@ -452,25 +501,11 @@
               "RelativeToolTip": "Views\\TaiKhoan\\ThemTaiKhoan.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-05T14:45:12.037Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-05T14:45:12.037Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
-              "Title": "_LayoutAdmin.cshtml",
-              "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Views\\Shared\\_LayoutAdmin.cshtml",
-              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Shared\\_LayoutAdmin.cshtml",
-              "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Views\\Shared\\_LayoutAdmin.cshtml",
-              "RelativeToolTip": "Areas\\Admin\\Views\\Shared\\_LayoutAdmin.cshtml",
-              "ViewState": "AgIAAPgAAAAAAAAAAAAuwEIBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-05T12:48:20.362Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 28,
               "Title": "CapNhatBaiBao.cshtml",
               "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Views\\BaiBao\\CapNhatBaiBao.cshtml",
               "RelativeDocumentMoniker": "Areas\\Admin\\Views\\BaiBao\\CapNhatBaiBao.cshtml",
@@ -478,12 +513,11 @@
               "RelativeToolTip": "Areas\\Admin\\Views\\BaiBao\\CapNhatBaiBao.cshtml",
               "ViewState": "AgIAAGEAAAAAAAAAAAAuwHYAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-05T12:34:31.173Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-05T12:34:31.173Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 29,
               "Title": "config.js",
               "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Content\\ckeditor\\config.js",
               "RelativeDocumentMoniker": "Content\\ckeditor\\config.js",
@@ -491,24 +525,22 @@
               "RelativeToolTip": "Content\\ckeditor\\config.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-04-04T08:05:58.161Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-04T08:05:58.161Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 30,
               "Title": "connector.aspx",
               "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Content\\ckfinder\\core\\connector\\aspx\\connector.aspx",
               "RelativeDocumentMoniker": "Content\\ckfinder\\core\\connector\\aspx\\connector.aspx",
               "ToolTip": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Content\\ckfinder\\core\\connector\\aspx\\connector.aspx",
               "RelativeToolTip": "Content\\ckfinder\\core\\connector\\aspx\\connector.aspx",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
-              "WhenOpened": "2025-04-04T06:35:52.514Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-04T06:35:52.514Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 31,
               "Title": "config.js",
               "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Content\\ckfinder\\config.js",
               "RelativeDocumentMoniker": "Content\\ckfinder\\config.js",
@@ -516,12 +548,11 @@
               "RelativeToolTip": "Content\\ckfinder\\config.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-04-04T06:35:40.586Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-04T06:35:40.586Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 32,
               "Title": "TKCaNhan.cshtml",
               "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Views\\TaiKhoan\\TKCaNhan.cshtml",
               "RelativeDocumentMoniker": "Views\\TaiKhoan\\TKCaNhan.cshtml",
@@ -529,12 +560,11 @@
               "RelativeToolTip": "Views\\TaiKhoan\\TKCaNhan.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-04-01T07:39:40.137Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-04-01T07:39:40.137Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 33,
               "Title": "Hashing.cs",
               "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Models\\Hashing.cs",
               "RelativeDocumentMoniker": "Models\\Hashing.cs",
@@ -542,12 +572,11 @@
               "RelativeToolTip": "Models\\Hashing.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T17:02:11.527Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-30T17:02:11.527Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 34,
               "Title": "LinhVucController.cs",
               "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Controllers\\LinhVucController.cs",
               "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\LinhVucController.cs",
@@ -555,12 +584,11 @@
               "RelativeToolTip": "Areas\\Admin\\Controllers\\LinhVucController.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T15:48:01.983Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-30T15:48:01.983Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 35,
               "Title": "DanhSachLinhVuc.cshtml",
               "DocumentMoniker": "D:\\Hoc\\HK9\\KLTN\\QLTapChi\\Areas\\Admin\\Views\\LinhVuc\\DanhSachLinhVuc.cshtml",
               "RelativeDocumentMoniker": "Areas\\Admin\\Views\\LinhVuc\\DanhSachLinhVuc.cshtml",
@@ -568,8 +596,7 @@
               "RelativeToolTip": "Areas\\Admin\\Views\\LinhVuc\\DanhSachLinhVuc.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-03-30T16:27:38.569Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-30T16:27:38.569Z"
             }
           ]
         }
