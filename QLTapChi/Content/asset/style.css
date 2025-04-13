@@ -1,4 +1,4 @@
-
+﻿
 body {
     font-family: 'Roboto', sans-serif;
     background-color: #f8f9fa;
@@ -21,7 +21,7 @@ a.nav-link:hover {
 svg {
     width: 14px;
     height: 14px;
-    vertical-align: middle; /* Căn chỉnh với chữ */
+    vertical-align: middle; /* CÄƒn chá»‰nh vá»›i chá»¯ */
 }
 .chucdanh{
     width: 250px;
@@ -70,7 +70,7 @@ svg {
 .registration-container h2 {
     margin-bottom: 20px;
     text-align: center;
-    color: #dc3545; /* Màu đỏ */
+    color: #dc3545; /* MÃ u Ä‘á» */
 }
 .form-label {
     font-weight: bold;
@@ -117,4 +117,137 @@ svg {
 
 .info-value {
     color: #333;
+}
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.header {
+    background: linear-gradient(90deg, #003366 0%, #005599 100%);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+    .header h1 {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+    }
+
+.navbar {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-img {
+    height: 40px;
+    transition: transform 0.3s;
+}
+
+    .logo-img:hover {
+        transform: scale(1.1);
+    }
+.navbar-nav .nav-link {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.85rem !important; /* Giảm kích thước chữ và tăng độ ưu tiên */
+    font-weight: 600;
+    color: #333;
+    padding: 0.5rem 0.75rem; /* Giảm padding để tiết kiệm không gian */
+    transition: color 0.3s, background-color 0.3s;
+}
+    .navbar-nav .nav-link:hover {
+        color: #003366;
+        background-color: #e9ecef;
+        border-radius: 5px;
+    }
+
+.dropdown-menu {
+    border: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+}
+
+.dropdown-item {
+    font-size: 0.9rem;
+    color: #333;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+    .dropdown-item:hover {
+        background-color: #003366;
+        color: white;
+    }
+.search-form {
+    flex-shrink: 0; /* Ngăn form bị co lại quá nhiều */
+}
+
+    .search-form .form-control {
+        border-radius: 20px 0 0 20px;
+        border: 1px solid #ced4da;
+        font-size: 0.85rem; /* Giảm kích thước chữ trong thanh tìm kiếm */
+        padding: 0.25rem 0.5rem; /* Giảm padding để nhỏ gọn */
+    }
+
+    .search-form .btn {
+        border-radius: 0 20px 20px 0;
+        background-color: #003366;
+        color: white;
+        font-size: 0.85rem;
+        border: none;
+        padding: 0.25rem 0.5rem; /* Giảm padding */
+    }
+
+    .search-form .btn:hover {
+        background-color: #005599;
+    }
+
+.content {
+    min-height: calc(100vh - 250px);
+    padding: 2rem 0;
+}
+
+.footer {
+    background: linear-gradient(90deg, #003366 0%, #005599 100%);
+}
+
+    .footer h6 {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .footer p {
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .footer a {
+        color: #a8d4ff;
+        text-decoration: none;
+        transition: color 0.3s;
+    }
+
+        .footer a:hover {
+            color: white;
+        }
+
+.social-icons a {
+    color: white;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+    transition: color 0.3s;
+}
+
+    .social-icons a:hover {
+        color: #a8d4ff;
+    }
+
+@media (max-width: 768px) {
+    .navbar-nav .nav-link {
+        font-size: 0.8rem !important; /* Giảm thêm trên mobile */
+        padding: 0.5rem 1rem;
+    }
+}
 }

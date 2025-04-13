@@ -37,7 +37,8 @@ namespace QLTapChi.Areas.Admin.Controllers
                                 .Where(b => b.TrangThai == 0 && b.LinhVuc.TenLinhVuc == chuyenNganh)
                                 .OrderByDescending(b => b.NgayGui)
                                 .ToList();
-
+            int soBaiChoDuyet = baiChoDuyet.Count;
+    ViewBag.SoBaiChoDuyet = soBaiChoDuyet;
             // Danh sách biên tập viên thuộc cùng chuyên ngành để phân công
             var bienTapVienTheoChuyenNganh = db.BienTapViens
                                                .Where(btv => btv.ChuyenNganh == chuyenNganh && btv.LoaiBienTapVien != "TongBienTap")
@@ -48,10 +49,7 @@ namespace QLTapChi.Areas.Admin.Controllers
         }
 
         // POST: Phân công biên tập viên chịu trách nhiệm
-        public ActionResult PhanCong()
-        {
-            return View();
-        }
+ 
         [HttpPost]
         public ActionResult PhanCong(int idBaiViet, int idBienTapVien)
         {
@@ -129,7 +127,8 @@ namespace QLTapChi.Areas.Admin.Controllers
                                 .Where(b => b.TrangThai == 1 && b.LinhVuc.TenLinhVuc == chuyenNganh)
                                 .OrderByDescending(b => b.NgayGui)
                                 .ToList();
-
+            int soBaiChoPB = baiChoPhanBien.Count;
+            ViewBag.SoBaiChoPB = soBaiChoPB;
             // Danh sách biên tập viên thuộc cùng chuyên ngành để phân công
             var PhanBien = db.NguoiDungs.Where(pb => pb.LinhVuc.TenLinhVuc == chuyenNganh && pb.PhanBien == true).ToList();
 

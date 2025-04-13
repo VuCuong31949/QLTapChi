@@ -3,32 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="~/Content/asset/bootstrap/css/bootstrap.min.css">
+    <title>Tạp chí Khoa học Đại học Nam Cần Thơ</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="~/Content/asset/style.css">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <div class="container bg-primary text-white text-center py-3">
-        <header class="container">
+    <!-- Header -->
+    <header class="header text-white text-center py-4">
+        <div class="container">
             <h1 class="mb-0">Tạp chí Khoa học Đại học Nam Cần Thơ</h1>
-        </header>
-    </div>
+        </div>
+    </header>
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary small">
-        <div class="container small">
-            <a class="navbar-brand me-0" href="trangchu.html">
-                <img src="~/Content/Images/Logo.png" class="d-inline-block align-text-top">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="/trangchu.html">
+                <img src="~/Content/Images/Logo.png" alt="Logo" class="logo-img">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">GIỚI THIỆU</a>
+                        <a class="nav-link" href="#">GIỚI THIỆU</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">HỘI ĐỒNG BIÊN TẬP</a>
@@ -51,77 +56,103 @@
                             <li><a class="dropdown-item" href="#">Hướng dẫn phản biện</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/TapChi/Add">GỬI BÀI</a>
+                    <li class="nav-item dropdown">
+                        
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            GỬI BÀI
+                        </a>
+                        <ul class="dropdown-menu">
+                            @if (Session["UserName"] != null)
+                            {
+                                <li><a class="dropdown-item" href="/TapChi/Add">Gửi Bài</a></li>
+                                <li><a class="dropdown-item" href="/TapChi/DanhSachTapChi">Danh Sách</a></li>
+                            }
+                            else
+                            {
+                                <li><a class="dropdown-item" href="/TaiKhoan/DangNhap">Gửi Bài</a></li>
+                            }
+                        </ul>
                     </li>
+                    @if (Session["LoaiNguoiDung"]?.ToString() == "PhanBien")
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="/PhanBien">PHẢN BIỆN</a>
+                        </li>
+                    }
                     <!-- Kiểm tra Session -->
                     @if (Session["UserName"] != null)
                     {
                         <li class="nav-item">
-                           <a class="nav-link" href="@Url.Action("TKCaNhan", "TaiKhoan", new { id = Session["idUser"] })">
-                                Chào, @Session["UserName"]
+                            <a class="nav-link" href="@Url.Action("TKCaNhan", "TaiKhoan", new { id = Session["idUser"] })">
+                                <i class="fas fa-user me-1"></i>@Session["UserName"]
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/TaiKhoan/DangXuat">ĐĂNG XUẤT</a>
+                            <a class="nav-link" href="/TaiKhoan/DangXuat">
+                                <i class="fas fa-sign-out-alt me-1"></i> ĐĂNG XUẤT
+                            </a>
                         </li>
                     }
                     else
                     {
                         <li class="nav-item">
-                            <a class="nav-link" href="/TaiKhoan/DangNhap">ĐĂNG NHẬP</a>
+                            <a class="nav-link" href="/TaiKhoan/DangNhap">
+                                <i class="fas fa-sign-in-alt me-1"></i> ĐĂNG NHẬP
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/TaiKhoan/ThemTaiKhoan">ĐĂNG KÝ</a>
+                            <a class="nav-link" href="/TaiKhoan/ThemTaiKhoan">
+                                <i class="fas fa-user-plus me-1"></i> ĐĂNG KÝ
+                            </a>
                         </li>
                     }
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" style="width: 65px; height: 32px;" type="submit">Search</button>
+                <form class="d-flex search-form align-items-center" role="search">
+                    <input class="form-control me-1 mt-3" style="max-width: 150px;" type="search" placeholder="Tìm kiếm..." aria-label="Search">
+                    <button class="btn btn-outline-primary" type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </div>
         </div>
     </nav>
 
-
+    <!-- Content -->
+    <div class="content">
         @RenderBody()
+    </div>
 
-        <footer class="bg-primary text-white py-4 mt-5" style="background: #003366;">
-            <div class="container">
-                <div class="row">
-                    <!-- Cột trái -->
-                    <div class="col-md-6">
-                        <h6 class="fw-bold text-uppercase">TẠP CHÍ KHOA HỌC ĐẠI Nam HỌC CẦN THƠ</h6>
-                        <p class="mb-1">Cơ quan chủ quản: Trường Đại học Nam Cần Thơ</p>
-                        <p class="mb-1">
-                            Trụ Sở: Văn phòng tòa soạn - Đại học Nam Cần Thơ,
-                            Số 168, Nguyễn Văn Cừ (ND), An Bình, Ninh Kiều, TP. Cần Thơ
-                        </p>
-                        
-                    </div>
-
-                    <!-- Cột phải -->
-                    <div class="col-md-6">
-                        <p class="mb-1">  Fax: (02923) 798 668</p>
-                        <p class="mb-1">Địa chỉ: 168, Nguyễn Văn Cừ (nối dài), P. An Bình, Quận Ninh Kiều, Thành phố Cần Thơ</p>
-                        <p class="mb-1">Điện thoại: (02923) 798 874</p>
-                        <p class="mb-1">Copyright ©2025 Trường Đại học Nam Cần Thơ</p>
+    <!-- Footer -->
+    <footer class="footer text-white py-4">
+        <div class="container">
+            <div class="row">
+                <!-- Left Column -->
+                <div class="col-md-6">
+                    <h6 class="text-uppercase">Tạp chí Khoa học Đại học Nam Cần Thơ</h6>
+                    <p>Cơ quan chủ quản: Trường Đại học Nam Cần Thơ</p>
+                    <p>
+                        Trụ sở: Văn phòng tòa soạn - Đại học Nam Cần Thơ,<br>
+                        Số 168, Nguyễn Văn Cừ (ND), An Bình, Ninh Kiều, TP. Cần Thơ
+                    </p>
+                    <div class="social-icons mt-3">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
+                <!-- Right Column -->
+                <div class="col-md-6">
+                    <p>Fax: (02923) 798 668</p>
+                    <p>Điện thoại: (02923) 798 874</p>
+                    <p>Địa chỉ: 168, Nguyễn Văn Cừ (nối dài), P. An Bình, Quận Ninh Kiều, TP. Cần Thơ</p>
+                    <p>Copyright © 2025 Trường Đại học Nam Cần Thơ</p>
+                </div>
             </div>
-        </footer>
+        </div>
+    </footer>
 
-
-
-
-        <script src="~/Contentscript1.js"></script>
-        <script src="~/Content/asset/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="~/Content/ckeditor/ckeditor.js"></script>
-        <script src="~/Content/ckfinder/ckfinder.js"></script>
-
-
-        @RenderSection("scripts", required: false)
-    </body>
-
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="~/Content/ckeditor/ckeditor.js"></script>
+    <script src="~/Content/ckfinder/ckfinder.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
 </html>

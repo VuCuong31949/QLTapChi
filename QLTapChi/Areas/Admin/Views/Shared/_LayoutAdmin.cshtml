@@ -130,9 +130,18 @@
                 </li>
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
+                    
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
-                        <span class="badge badge-warning navbar-badge">15</span>
+                        @if (ViewBag.SoBaiChoDuyet != null && ViewBag.SoBaiChoDuyet > 0)
+                        {
+                            <span class="badge badge-warning navbar-badge">@ViewBag.SoBaiChoDuyet</span>
+                        }
+                        else if (ViewBag.SoBaiChoPB != null && ViewBag.SoBaiChoPB > 0)
+                        {
+                            <span class="badge badge-warning navbar-badge">@ViewBag.SoBaiChoPB</span>
+                        }
+                        @*<span class="badge badge-warning navbar-badge">15</span>*@
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <span class="dropdown-item dropdown-header">15 Notifications</span>
@@ -234,7 +243,7 @@
                                 </li>
                             </ul>
                         </li>
-                        @if (Session["LoaiBienTapVien"].ToString() == "TongBienTap")
+                        @if (Session["LoaiBienTapVien"] != null && Session["LoaiBienTapVien"].ToString() == "TongBienTap")
                         {
                             <li class="nav-item">
                                 <a href="" class="nav-link">

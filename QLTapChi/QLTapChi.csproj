@@ -138,6 +138,7 @@
     <Compile Include="Areas\Admin\Controllers\BienTapViensController.cs" />
     <Compile Include="Areas\Admin\Controllers\LinhVucController.cs" />
     <Compile Include="Areas\Admin\Controllers\PhanCongController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TaiKhoanController.cs" />
     <Compile Include="Controllers\TapChiController.cs" />
@@ -147,6 +148,7 @@
     <Compile Include="Models\BienTapVien.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CookieHelper.cs" />
     <Compile Include="Models\Hashing.cs" />
     <Compile Include="Models\LinhVuc.cs">
       <DependentUpon>Model1.tt</DependentUpon>
@@ -1594,6 +1596,7 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Content\BaiViet\" />
     <Folder Include="Content\ckfinder\userfiles\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
