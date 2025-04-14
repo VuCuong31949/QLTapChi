@@ -69,6 +69,22 @@
                         </form>
                     </div>
                 </li>
+                
+                    
+                    
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fas fa-user me-2"></i>
+                                @Session["UserName"]
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                                <li>
+                                    <a class="dropdown-item" href="/TaiKhoan/DangXuat">Đăng Xuất</a>
+                                </li>
+                            </ul>
+                        </li>
+                    
+                
 
                 <!-- Messages Dropdown Menu -->
                 <li class="nav-item dropdown">
@@ -130,7 +146,7 @@
                 </li>
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
-                    
+
                     <a class="nav-link" data-toggle="dropdown" href="#">
                         <i class="far fa-bell"></i>
                         @if (ViewBag.SoBaiChoDuyet != null && ViewBag.SoBaiChoDuyet > 0)
@@ -175,7 +191,7 @@
                     </a>
                 </li>
             </ul>
-        </nav>
+</nav>
         <!-- /.navbar -->
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
@@ -330,7 +346,7 @@
     <!-- AdminLTE App -->
     <script src="~/Content/clients/dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="~/Content/clients/dist/js/demo.js"></script>
+    <!--<script src="~/Content/clients/dist/js/demo.js"></script> -->
     <!-- Page specific script -->
     <script>
 

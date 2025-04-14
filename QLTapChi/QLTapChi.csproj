@@ -140,6 +140,7 @@
     <Compile Include="Areas\Admin\Controllers\PhanCongController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PhanBienController.cs" />
     <Compile Include="Controllers\TaiKhoanController.cs" />
     <Compile Include="Controllers\TapChiController.cs" />
     <Compile Include="Global.asax.cs">
@@ -1542,7 +1543,6 @@
     <Content Include="Content\clients\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Content\clients\ckeditor\SECURITY.md" />
     <Content Include="Content\clients\ckeditor\skins\moono-lisa\readme.md" />
-    <Content Include="Areas\Admin\Views\BaiBao\uploade.cshtml" />
     <Content Include="Areas\Admin\Views\BaiBao\CapNhatBaiBao.cshtml" />
     <Content Include="Areas\Admin\Views\BienTapViens\ThemBTV.cshtml" />
     <Content Include="Areas\Admin\Views\BienTapViens\DanhSachBTV.cshtml" />
@@ -1597,6 +1597,7 @@
     <Folder Include="Content\BaiViet\" />
     <Folder Include="Content\ckfinder\userfiles\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\PhanBien\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

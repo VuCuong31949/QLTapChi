@@ -5,82 +5,79 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2 class="p-2 text-bg-light w-75">Danh Sách Tạp Chí</h2>
+<div class="p-3">
+    <h2 class="p-2 text-bg-light w-75">Danh Sách Tạp Chí</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TieuDe)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TacGia)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TuKhoa)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NoiDung)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TrangThai)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NgayGui)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LinhVuc.TenLinhVuc)
-        </th>
-        <th>
-            <label> Ghi chú</label>
-        </th>
-        <th></th>
-    </tr>
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["Error"]
+        </div>
+    }
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TieuDe)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TacGia)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TuKhoa)
-        </td>
-        <td>
-            <a href="@Url.Action("DownloadFile", "BaiBao", new { id = item.IDTapChiBaiViet })" class="btn btn-sm btn-outline-dark">Download</a>
-            @*<a href="@Url.Content("~/Content/BaiViet/tenfile.docx")" download>
-                <i class="fas fa-file-word text-primary"></i> tenfile.docx
-            </a>*@
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TrangThai)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgayGui)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LinhVuc.TenLinhVuc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GhiChu)
-        </td>
-        <td>
-            <a href="@Url.Action("XoaBaiBao", "BaiBao", new { id = item.IDTapChiBaiViet })"
-               onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản này không?');">
-                <i class="fas fa-trash"></i>
-            </a>
-            &nbsp;|&nbsp;
-            <a href="@Url.Action("CapNhatBaiBao", "BaiBao", new { id = item.IDTapChiBaiViet })">
-                <i class="fas fa-edit"></i>
-            </a>
-            &nbsp;|&nbsp;
-            <!-- Chi tiết -->
-            <a href="@Url.Action("ChiTietBaiBao", "BaiBao", new { id = item.IDTapChiBaiViet })">
-                <i class="fas fa-info-circle"></i> <!-- Icon chi tiết -->
-            </a>
-        </td>
-    </tr>
-}
-
-</table>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Tiêu Đề</th>
+                <th>Tác Giả</th>
+                <th>Từ Khóa</th>
+                <th>Nội Dung</th>
+                <th>Trạng Thái</th>
+                <th>Ngày Gửi</th>
+                <th>Tên Lĩnh Vực</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.TieuDe)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TacGia)</td>
+                    <td>@Html.DisplayFor(modelItem => item.TuKhoa)</td>
+                    <td>
+                        <a href="@Url.Action("DownloadFile", "BaiBao", new { id = item.IDTapChiBaiViet })" class="btn btn-sm btn-outline-dark">Download</a>
+                    </td>
+                    <td>
+                        @{
+                            string badgeHtml = "";
+                            switch (item.TrangThai)
+                            {
+                                case 0:
+                                    badgeHtml = "<span class='badge bg-warning text-dark'>Chờ TBT phân công</span>";
+                                    break;
+                                case 1:
+                                    badgeHtml = "<span class='badge bg-info text-dark'>Chờ BTV phân công</span>";
+                                    break;
+                                case 2:
+                                    badgeHtml = "<span class='badge bg-primary'>Chờ PB phản hồi</span>";
+                                    break;
+                            }
+                        }
+                        @Html.Raw(badgeHtml)
+                    </td>
+                    <td>@item.NgayGui.ToString("dd/MM/yyyy")</td>
+                    <td>@Html.DisplayFor(modelItem => item.LinhVuc.TenLinhVuc)</td>
+                    <td>
+                        <a href="@Url.Action("XoaBaiBao", "BaiBao", new { id = item.IDTapChiBaiViet })"
+                           onclick="return confirm('Bạn có chắc chắn muốn xóa bài báo này không?');">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                        | 
+                        <a href="@Url.Action("CapNhatBaiBao", "BaiBao", new { id = item.IDTapChiBaiViet })">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                        | 
+                        <a href="@Url.Action("ChiTietBaiBao", "BaiBao", new { id = item.IDTapChiBaiViet })">
+                            <i class="fas fa-info-circle"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

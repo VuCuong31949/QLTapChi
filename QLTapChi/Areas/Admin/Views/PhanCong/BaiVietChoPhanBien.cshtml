@@ -19,6 +19,7 @@
 {
     <div class="alert alert-success">@TempData["Success"]</div>
 }
+
 <table class="table table-bordered table-striped">
     <thead>
         <tr>
@@ -41,7 +42,6 @@
                 <td>@bai.DongTacGia</td>
                 <td>
                     <a href="@Url.Action("DownloadFile", "BaiBao", new { id = bai.IDTapChiBaiViet })" class="btn btn-sm btn-outline-dark">Download</a>
-                   
                 </td>
                 <td>@bai.NgayGui.ToString("dd/MM/yyyy")</td>
                 <td>
@@ -59,26 +59,64 @@
                                 badgeHtml = "<span class='badge bg-primary'>Phản biện đã phản hồi</span>";
                                 break;
                         }
-
                     }
                     @Html.Raw(badgeHtml)
-
                 </td>
                 <td>
-                    @using (Html.BeginForm("PhanCongPhanBien", "PhanCong", FormMethod.Post, new { area = "Admin" }))
-                    {
-                        @Html.Hidden("idBaiViet", bai.IDTapChiBaiViet)
-
-                        @Html.DropDownList("idPhanBien", (SelectList)ViewBag.PhanBien, "-- Chọn BTV --", new { @class = "form-select form-select-sm" })
-
-                        <button type="submit" class="btn btn-sm btn-primary mt-1">Phân công</button>
-                    }
+                    <div class="d-flex align-items-center">
+                        @Html.DropDownList("idPhanBien", (SelectList)ViewBag.PhanBien, "-- Chọn BTV --", new { @class = "form-select form-select-sm", @id = "idPhanBien_" + bai.IDTapChiBaiViet })
+                        <button type="button" class="btn btn-sm btn-primary mt-1 ms-2"
+                                onclick="openPhanCongModal(@bai.IDTapChiBaiViet, document.getElementById('idPhanBien_@bai.IDTapChiBaiViet').value)">
+                            Phân công
+                        </button>
+                    </div>
                 </td>
                 <td>
-                    @* Thao tác khác nếu cần *@
                     @Html.ActionLink("Xem chi tiết", "ChiTiet", "BaiViet", new { id = bai.IDTapChiBaiViet }, new { @class = "btn btn-sm btn-info" })
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<!-- Modal chọn ngày kết thúc -->
+<div class="modal fade" id="phanCongModal" tabindex="-1" aria-labelledby="phanCongModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="phanCongModalLabel">Chọn Ngày Kết Thúc Phản Biện</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="phanCongForm" action="@Url.Action("PhanCongPhanBien", "PhanCong", new { area = "Admin" })" method="post">
+                    <input type="hidden" name="idBaiViet" id="modalIdBaiViet" value="" />
+                    <input type="hidden" name="idPhanBien" id="modalIdPhanBien" value="" />
+                    <div class="mb-3">
+                        <label for="ngayKetThuc" class="form-label">Ngày Kết Thúc</label>
+                        <input type="date" class="form-control" id="ngayKetThuc" name="ngayKetThuc" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Xác nhận phân công</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script>
+        function openPhanCongModal(idBaiViet, idPhanBien) {
+            if (!idPhanBien || idPhanBien === "-- Chọn BTV --") {
+                alert("Vui lòng chọn người phản biện trước khi phân công!");
+                return;
+            }
+
+            // Truyền dữ liệu vào modal
+            document.getElementById("modalIdBaiViet").value = idBaiViet;
+            document.getElementById("modalIdPhanBien").value = idPhanBien;
+
+            // Mở modal
+            var modal = new bootstrap.Modal(document.getElementById("phanCongModal"));
+            modal.show();
+        }
+    </script>
+}

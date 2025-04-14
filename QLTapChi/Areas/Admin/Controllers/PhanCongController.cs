@@ -38,7 +38,7 @@ namespace QLTapChi.Areas.Admin.Controllers
                                 .OrderByDescending(b => b.NgayGui)
                                 .ToList();
             int soBaiChoDuyet = baiChoDuyet.Count;
-    ViewBag.SoBaiChoDuyet = soBaiChoDuyet;
+            ViewBag.SoBaiChoDuyet = soBaiChoDuyet;
             // Danh sách biên tập viên thuộc cùng chuyên ngành để phân công
             var bienTapVienTheoChuyenNganh = db.BienTapViens
                                                .Where(btv => btv.ChuyenNganh == chuyenNganh && btv.LoaiBienTapVien != "TongBienTap")
@@ -122,11 +122,11 @@ namespace QLTapChi.Areas.Admin.Controllers
 
             string chuyenNganh = bienTapVien.ChuyenNganh;
 
-            // Lấy bài viết chờ duyệt theo chuyên ngành của biên tập viên
-            var baiChoPhanBien = db.TapChiBaiViets
-                                .Where(b => b.TrangThai == 1 && b.LinhVuc.TenLinhVuc == chuyenNganh)
-                                .OrderByDescending(b => b.NgayGui)
-                                .ToList();
+            var baiChoPhanBien = (from b in db.TapChiBaiViets
+                                  join p in db.PhanCongBienTaps on b.IDTapChiBaiViet equals p.IDTapChiBaiViet
+                                  where b.TrangThai == 1 && p.IDBienTapVien == idBTV
+                                  orderby b.NgayGui descending
+                                  select b).ToList();
             int soBaiChoPB = baiChoPhanBien.Count;
             ViewBag.SoBaiChoPB = soBaiChoPB;
             // Danh sách biên tập viên thuộc cùng chuyên ngành để phân công
@@ -137,7 +137,7 @@ namespace QLTapChi.Areas.Admin.Controllers
             return View( baiChoPhanBien);
         }
         [HttpPost]
-        public ActionResult PhanCongPhanBien(int idBaiViet, int idPhanBien)
+        public ActionResult PhanCongPhanBien(int idBaiViet, int idPhanBien, DateTime ngayKetThuc)
         {
             // Kiểm tra đăng nhập
             if (Session["idUser"] == null || Session["LoaiBienTapVien"] == null)
@@ -146,43 +146,47 @@ namespace QLTapChi.Areas.Admin.Controllers
                 return RedirectToAction("DangNhap", "TaiKhoan");
             }
 
-            var userId = (int)Session["idUser"];
-            var vaiTro = Session["LoaiBienTapVien"].ToString();
-
             // Tìm bài viết
             var baiViet = db.TapChiBaiViets.Find(idBaiViet);
             if (baiViet == null)
             {
                 TempData["Error"] = "Không tìm thấy bài viết!";
-                return RedirectToAction("BaiVietChoDuyet");
+                return RedirectToAction("BaiVietChoPhanBien");
             }
 
             // Kiểm tra đã duyệt chưa
             if (baiViet.TrangThai != 1)
             {
                 TempData["Error"] = "Bài viết này đã được duyệt hoặc xử lý trước đó!";
-                return RedirectToAction("BaiVietChoDuyet");
+                return RedirectToAction("BaiVietChoPhanBien");
             }
 
             // Kiểm tra đã phân công chưa
             bool daPhanCong = db.PhanCongs.Any(p => p.IDTapChiBaiViet == idBaiViet);
             if (daPhanCong)
             {
-                TempData["Error"] = "Bài viết đã được phân công cho biên tập viên khác.";
+                TempData["Error"] = "Bài viết đã được phân công cho người phản biện khác.";
+                return RedirectToAction("BaiVietChoPhanBien");
+            }
+
+            // Kiểm tra ngày kết thúc có hợp lệ không (phải lớn hơn hoặc bằng ngày hiện tại)
+            if (ngayKetThuc < DateTime.Today)
+            {
+                TempData["Error"] = "Ngày kết thúc phải từ hôm nay trở đi!";
                 return RedirectToAction("BaiVietChoPhanBien");
             }
 
             // Cập nhật trạng thái bài viết
-            baiViet.TrangThai = 2; // Đã duyệt
+            baiViet.TrangThai = 2; // Đã phân công
             db.SaveChanges();
 
             // Thêm bản ghi phân công
             var phanCong = new PhanCong
             {
                 IDTapChiBaiViet = baiViet.IDTapChiBaiViet,
-                IDNguoiPhanBien = userId,
+                IDNguoiPhanBien = idPhanBien, // Sử dụng idPhanBien từ form, không phải userId
                 NgayPhanCong = DateTime.Now,
-                NgayKetThuc = DateTime.Now
+                NgayKetThuc = ngayKetThuc
             };
             db.PhanCongs.Add(phanCong);
             db.SaveChanges();
