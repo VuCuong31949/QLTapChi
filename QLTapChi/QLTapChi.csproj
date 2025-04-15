@@ -1590,6 +1590,7 @@
     <Content Include="Views\TapChi\Add.cshtml" />
     <Content Include="Views\TapChi\CapNhatTapChi.cshtml" />
     <Content Include="Views\TapChi\DanhSachTapChi.cshtml" />
+    <Content Include="Views\PhanBien\PhanBien.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1597,7 +1598,6 @@
     <Folder Include="Content\BaiViet\" />
     <Folder Include="Content\ckfinder\userfiles\" />
     <Folder Include="Views\Base\" />
-    <Folder Include="Views\PhanBien\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

@@ -27,6 +27,7 @@ CREATE TABLE NguoiDung (
 	ChucDanh nvarchar(100),
 	GioiTinh int,
 	ToChuc nvarchar(100),
+	PhanBien bit,
     IDLinhVuc INT NULL,
     FOREIGN KEY (IDLinhVuc) REFERENCES LinhVuc(IDLinhVuc)
 );
@@ -41,7 +42,8 @@ CREATE TABLE BienTapVien (
     SDT VARCHAR(15) NOT NULL,
     DiaChi NVARCHAR(300) NOT NULL,
     QuocGia NVARCHAR(50) NOT NULL,
-    ChuyenNganh NVARCHAR(100) NOT NULL
+    ChuyenNganh NVARCHAR(100) NOT NULL,
+	LoaiBienTapVien NVARCHAR(50);  -- 'TongBienTap' hoặc 'BienTapVien'
 );
 GO
 
@@ -60,15 +62,21 @@ CREATE TABLE TapChiBaiViet (
     IDTapChiBaiViet INT IDENTITY(1,1) PRIMARY KEY,
     TieuDe NVARCHAR(200) NOT NULL,
     TacGia NVARCHAR(300) NOT NULL,
-    NoiDung VARCHAR(100) NOT NULL,
+    NoiDung NVARCHAR(MAX)NOT NULL,
     IDLinhVuc INT NOT NULL,
     TrangThai INT DEFAULT 0,  -- 0: Chờ duyệt, 1: Đã duyệt, 2: Xuất bản
     NgayGui DATE NOT NULL DEFAULT GETDATE(),
-    FOREIGN KEY (IDLinhVuc) REFERENCES LinhVuc(IDLinhVuc)
+	TuKhoa nvarchar(300),	
+	IDNguoiGui INT,
+	DongTacGia NVARCHAR(500),
+	TrangThaiPhanBien INT DEFAULT 0,
+	-- 0: Chờ phản biện 1: Đang phản biện 2: Đạt (chờ xuất bản)
+	-- 3: Không đạt (chờ chỉnh sửa) 4: Từ chối
+    FOREIGN KEY (IDLinhVuc) REFERENCES LinhVuc(IDLinhVuc),
+	CONSTRAINT FK_TapChiBaiViet_NguoiDung FOREIGN KEY (IDNguoiGui) REFERENCES NguoiDung(IDNguoiDung)
 );
 GO
 
--- Bảng Phản Biện
 CREATE TABLE PhanBien (
     IDPhanBien INT IDENTITY(1,1) PRIMARY KEY,
     NhanXet NVARCHAR(500) NOT NULL,
@@ -87,6 +95,8 @@ CREATE TABLE PhanCong (
     NgayKetThuc DATE NULL,
     IDTapChiBaiViet INT NOT NULL,
     IDNguoiPhanBien INT NOT NULL,
+	VongPhanBien INT DEFAULT 1,
+    TrangThaiPhanBien INT DEFAULT 0,  -- 0: chưa phản hồi, 1: đạt, 2: không đạt
     FOREIGN KEY (IDTapChiBaiViet) REFERENCES TapChiBaiViet(IDTapChiBaiViet),
     FOREIGN KEY (IDNguoiPhanBien) REFERENCES NguoiDung(IDNguoiDung)
 );
@@ -114,27 +124,22 @@ CREATE TABLE PhanCongBienTap (
     FOREIGN KEY (IDBienTapVien) REFERENCES BienTapVien(IDBienTapVien),
     FOREIGN KEY (IDTapChiBaiViet) REFERENCES TapChiBaiViet(IDTapChiBaiViet)
 );
-ALTER TABLE BienTapVien
-ADD LoaiBienTapVien NVARCHAR(50);  -- 'Tong' hoặc 'PhuTrach'
+CREATE TABLE LichSuChinhSua (
+    ID INT IDENTITY PRIMARY KEY,
+    IDTapChiBaiViet INT,
+    NoiDungCu NVARCHAR(MAX),
+    NoiDungMoi NVARCHAR(MAX),
+    NgayChinhSua DATETIME DEFAULT GETDATE(),
+    constraint FK_LichSuChinhSua_TapChi FOREIGN KEY (IDTapChiBaiViet) REFERENCES TapChiBaiViet(IDTapChiBaiViet)
+);
 
-GO
 -- Chèn dữ liệu vào bảng VaiTro
 /*INSERT INTO VaiTro (TenVaiTro) VALUES (N'Tác Giả');
 INSERT INTO VaiTro (TenVaiTro) VALUES (N'Phản Biện');
 */
 -- Kiểm tra dữ liệu đã được thêm vào chưa
-SELECT * FROM VaiTro;
+
 select * from NguoiDung
-alter table NguoiDung add PhanBien bit
+
 alter table TapChiBaiViet add TuKhoa nvarchar(300)
 select * from TapChiBaiViet
-ALTER TABLE TapChiBaiViet
-ALTER COLUMN NoiDung NVARCHAR(MAX);
-ALTER TABLE TapChiBaiViet
-ADD IDNguoiGui INT;
-
-ALTER TABLE TapChiBaiViet
-ADD CONSTRAINT FK_TapChiBaiViet_NguoiDung
-FOREIGN KEY (IDNguoiGui) REFERENCES NguoiDung(IDNguoiDung);
-ALTER TABLE TapChiBaiViet
-ADD DongTacGia NVARCHAR(500);

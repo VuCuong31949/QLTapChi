@@ -190,7 +190,14 @@ namespace QLTapChi.Areas.Admin.Controllers
             };
             db.PhanCongs.Add(phanCong);
             db.SaveChanges();
+            int soLuongPhanBien = db.PhanCongs.Count(p => p.IDTapChiBaiViet == idBaiViet);
+            int maxPB = 2; // Số lượng tối đa người phản biện (có thể thay đổi)
 
+            if (soLuongPhanBien >= maxPB)
+            {
+                baiViet.TrangThai = 2; // Đã phân công đủ người phản biện
+                db.SaveChanges();
+            }
             TempData["Success"] = "Phân công phản biện thành công.";
             return RedirectToAction("BaiVietChoPhanBien");
         }

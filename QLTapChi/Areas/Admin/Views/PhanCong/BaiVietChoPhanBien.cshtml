@@ -29,6 +29,7 @@
             <th>Nội Dung</th>
             <th>Ngày gửi</th>
             <th>Trạng thái</th>
+            <th>Số lượng PB đã phân công</th>
             <th>Phân công cho PB</th>
             <th>Thao tác</th>
         </tr>
@@ -63,13 +64,28 @@
                     @Html.Raw(badgeHtml)
                 </td>
                 <td>
-                    <div class="d-flex align-items-center">
-                        @Html.DropDownList("idPhanBien", (SelectList)ViewBag.PhanBien, "-- Chọn BTV --", new { @class = "form-select form-select-sm", @id = "idPhanBien_" + bai.IDTapChiBaiViet })
-                        <button type="button" class="btn btn-sm btn-primary mt-1 ms-2"
-                                onclick="openPhanCongModal(@bai.IDTapChiBaiViet, document.getElementById('idPhanBien_@bai.IDTapChiBaiViet').value)">
-                            Phân công
-                        </button>
-                    </div>
+                    @{
+                        int soLuongPhanBien = bai.PhanCongs.Count();
+                        <span>@soLuongPhanBien / 2</span>
+                    }
+                </td>
+                <td>
+                    @{
+                        if (soLuongPhanBien < 2)
+                        {
+                            <div class="d-flex align-items-center">
+                                @Html.DropDownList("idPhanBien", (SelectList)ViewBag.PhanBien, "-- Chọn BTV --", new { @class = "form-select form-select-sm", @id = "idPhanBien_" + bai.IDTapChiBaiViet })
+                                <button type="button" class="btn btn-sm btn-primary mt-1 ms-2"
+                                        onclick="openPhanCongModal(@bai.IDTapChiBaiViet, document.getElementById('idPhanBien_@bai.IDTapChiBaiViet').value)">
+                                    Phân công
+                                </button>
+                            </div>
+                        }
+                        else
+                        {
+                            <span>Đã phân công đủ</span>
+                        }
+                    }
                 </td>
                 <td>
                     @Html.ActionLink("Xem chi tiết", "ChiTiet", "BaiViet", new { id = bai.IDTapChiBaiViet }, new { @class = "btn btn-sm btn-info" })
