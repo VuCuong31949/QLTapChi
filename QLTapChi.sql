@@ -103,6 +103,39 @@ CREATE TABLE PhanCong (
 GO
 
 
+CREATE TABLE PhanCongBienTap (
+    IDPhanCongBienTap INT IDENTITY(1,1) PRIMARY KEY,
+    IDBienTapVien INT NOT NULL,
+    IDTapChiBaiViet INT NOT NULL,
+    NgayPhanCong DATE NOT NULL DEFAULT GETDATE(),
+    GhiChu NVARCHAR(300) NULL,
+	TrangThai INT DEFAULT 0,-- 0 chưa phản hồi, 1 nhận,2 từ chối
+    FOREIGN KEY (IDBienTapVien) REFERENCES BienTapVien(IDBienTapVien),
+    FOREIGN KEY (IDTapChiBaiViet) REFERENCES TapChiBaiViet(IDTapChiBaiViet)
+);
+
+
+CREATE TABLE LichSuChinhSua (
+    ID INT IDENTITY PRIMARY KEY,
+    IDTapChiBaiViet INT,
+    NoiDungCu NVARCHAR(MAX),
+    NoiDungMoi NVARCHAR(MAX),
+    NgayChinhSua DATETIME DEFAULT GETDATE(),
+	VongPhanBien INT DEFAULT 1,
+    LanChinhSua INT DEFAULT 1,
+    GhiChu NVARCHAR(500) NULL,
+    DuongDanFile NVARCHAR(200) NULL, 
+	IDNguoiChinhSua INT,
+    constraint FK_LichSuChinhSua_TapChi FOREIGN KEY (IDTapChiBaiViet) REFERENCES TapChiBaiViet(IDTapChiBaiViet),
+	CONSTRAINT FK_LichSuChinhSua_NguoiDung FOREIGN KEY (IDNguoiChinhSua) REFERENCES NguoiDung(IDNguoiDung)
+);
+CREATE TABLE SoTapChi (
+    IDSoTapChi INT IDENTITY(1,1) PRIMARY KEY,
+    TenSo NVARCHAR(100) NOT NULL,      -- Ví dụ: "Số 1/2024"
+    ChuDe NVARCHAR(200) NULL,          -- Chủ đề chính của số tạp chí (nếu có)
+    NgayPhatHanh DATE NOT NULL,
+    MoTa NVARCHAR(300) NULL
+);
 -- Bảng Xuất Bản Tạp Chí
 CREATE TABLE XuatBan (
     IDXuatBan INT IDENTITY(1,1) PRIMARY KEY,
@@ -110,29 +143,12 @@ CREATE TABLE XuatBan (
     NgayXuatBan DATE NOT NULL DEFAULT GETDATE(),
     IDTapChiBaiViet INT NOT NULL,
     IDBienTapVien INT NOT NULL,
+	IDSoTapChi INT,
     FOREIGN KEY (IDTapChiBaiViet) REFERENCES TapChiBaiViet(IDTapChiBaiViet),
-    FOREIGN KEY (IDBienTapVien) REFERENCES BienTapVien(IDBienTapVien)
-);
-
-CREATE TABLE PhanCongBienTap (
-    IDPhanCongBienTap INT IDENTITY(1,1) PRIMARY KEY,
-    IDBienTapVien INT NOT NULL,
-    IDTapChiBaiViet INT NOT NULL,
-    NgayPhanCong DATE NOT NULL DEFAULT GETDATE(),
-    GhiChu NVARCHAR(300) NULL,
-
     FOREIGN KEY (IDBienTapVien) REFERENCES BienTapVien(IDBienTapVien),
-    FOREIGN KEY (IDTapChiBaiViet) REFERENCES TapChiBaiViet(IDTapChiBaiViet)
+	CONSTRAINT FK_XuatBan_SoTapChi
+FOREIGN KEY (IDSoTapChi) REFERENCES SoTapChi(IDSoTapChi)
 );
-CREATE TABLE LichSuChinhSua (
-    ID INT IDENTITY PRIMARY KEY,
-    IDTapChiBaiViet INT,
-    NoiDungCu NVARCHAR(MAX),
-    NoiDungMoi NVARCHAR(MAX),
-    NgayChinhSua DATETIME DEFAULT GETDATE(),
-    constraint FK_LichSuChinhSua_TapChi FOREIGN KEY (IDTapChiBaiViet) REFERENCES TapChiBaiViet(IDTapChiBaiViet)
-);
-
 -- Chèn dữ liệu vào bảng VaiTro
 /*INSERT INTO VaiTro (TenVaiTro) VALUES (N'Tác Giả');
 INSERT INTO VaiTro (TenVaiTro) VALUES (N'Phản Biện');
@@ -141,5 +157,4 @@ INSERT INTO VaiTro (TenVaiTro) VALUES (N'Phản Biện');
 
 select * from NguoiDung
 
-alter table TapChiBaiViet add TuKhoa nvarchar(300)
 select * from TapChiBaiViet

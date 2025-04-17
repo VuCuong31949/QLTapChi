@@ -73,13 +73,18 @@
                     @{
                         if (soLuongPhanBien < 2)
                         {
-                            <div class="d-flex align-items-center">
-                                @Html.DropDownList("idPhanBien", (SelectList)ViewBag.PhanBien, "-- Chọn BTV --", new { @class = "form-select form-select-sm", @id = "idPhanBien_" + bai.IDTapChiBaiViet })
-                                <button type="button" class="btn btn-sm btn-primary mt-1 ms-2"
-                                        onclick="openPhanCongModal(@bai.IDTapChiBaiViet, document.getElementById('idPhanBien_@bai.IDTapChiBaiViet').value)">
-                                    Phân công
-                                </button>
-                            </div>
+                                        <div class="d-flex align-items-center">
+                                            @Html.DropDownList("idPhanBien", (SelectList)ViewBag.PhanBien, "-- Chọn BTV --", new { @class = "form-select form-select-sm", @id = "idPhanBien_" + bai.IDTapChiBaiViet })
+                                            <button type="button" class="btn btn-sm btn-primary mt-1 ms-2"
+                                                    onclick="openPhanCongModal(@bai.IDTapChiBaiViet, document.getElementById('idPhanBien_@bai.IDTapChiBaiViet').value)">
+                                                Phân công
+                                            </button>
+                                            <button type="submit" class="btn btn-sm btn-danger mt-1 ms-2"
+                                                    onclick="tuChoiBaiViet(@bai.IDTapChiBaiViet)">
+                                                Từ chối
+                                            </button>
+                                        </div>
+                            
                         }
                         else
                         {
@@ -134,5 +139,10 @@
             var modal = new bootstrap.Modal(document.getElementById("phanCongModal"));
             modal.show();
         }
+         function tuChoiBaiViet(idBaiViet) {
+        if (confirm("Bạn có chắc chắn muốn từ chối bài viết này không?")) {
+            window.location.href = '@Url.Action("TuChoiBaiViet", "PhanCong", new { area = "Admin" })' + '?id=' + idBaiViet;
+        }
+    }
     </script>
 }

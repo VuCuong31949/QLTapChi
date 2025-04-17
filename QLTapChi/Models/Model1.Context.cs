@@ -26,11 +26,13 @@ namespace QLTapChi.Models
         }
     
         public virtual DbSet<BienTapVien> BienTapViens { get; set; }
+        public virtual DbSet<LichSuChinhSua> LichSuChinhSuas { get; set; }
         public virtual DbSet<LinhVuc> LinhVucs { get; set; }
         public virtual DbSet<NguoiDung> NguoiDungs { get; set; }
         public virtual DbSet<PhanBien> PhanBiens { get; set; }
         public virtual DbSet<PhanCong> PhanCongs { get; set; }
         public virtual DbSet<PhanCongBienTap> PhanCongBienTaps { get; set; }
+        public virtual DbSet<SoTapChi> SoTapChis { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TapChiBaiViet> TapChiBaiViets { get; set; }
         public virtual DbSet<XuatBan> XuatBans { get; set; }

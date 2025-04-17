@@ -12,16 +12,20 @@ namespace QLTapChi.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PhanCongBienTap
+    public partial class LichSuChinhSua
     {
-        public int IDPhanCongBienTap { get; set; }
-        public int IDBienTapVien { get; set; }
-        public int IDTapChiBaiViet { get; set; }
-        public System.DateTime NgayPhanCong { get; set; }
+        public int ID { get; set; }
+        public Nullable<int> IDTapChiBaiViet { get; set; }
+        public string NoiDungCu { get; set; }
+        public string NoiDungMoi { get; set; }
+        public Nullable<System.DateTime> NgayChinhSua { get; set; }
+        public Nullable<int> VongPhanBien { get; set; }
+        public Nullable<int> LanChinhSua { get; set; }
         public string GhiChu { get; set; }
-        public Nullable<int> TrangThai { get; set; }
+        public string DuongDanFile { get; set; }
+        public Nullable<int> IDNguoiChinhSua { get; set; }
     
-        public virtual BienTapVien BienTapVien { get; set; }
+        public virtual NguoiDung NguoiDung { get; set; }
         public virtual TapChiBaiViet TapChiBaiViet { get; set; }
     }
 }

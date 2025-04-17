@@ -201,6 +201,38 @@ namespace QLTapChi.Areas.Admin.Controllers
             TempData["Success"] = "Phân công phản biện thành công.";
             return RedirectToAction("BaiVietChoPhanBien");
         }
+        public ActionResult TuChoiPhanCong(int id)
+        {
+            // Kiểm tra đăng nhập
+            if (Session["idUser"] == null || Session["LoaiBienTapVien"] == null)
+            {
+                TempData["Error"] = "Bạn chưa đăng nhập hoặc không có quyền truy cập.";
+                return RedirectToAction("DangNhap", "TaiKhoan");
+            }
+
+            // Tìm phân công
+            var phanCong = db.PhanCongBienTaps.FirstOrDefault(p => p.IDPhanCongBienTap == id);
+            if (phanCong == null)
+            {
+                TempData["Error"] = "Không tìm thấy thông tin phân công.";
+                return RedirectToAction("DanhSachPhanCong");
+            }
+
+            // Kiểm tra trạng thái hiện tại
+            if (phanCong.TrangThai != 0) // Chỉ cho phép từ chối nếu trạng thái là "chưa phản hồi"
+            {
+                TempData["Error"] = "Phân công này đã được xử lý.";
+                return RedirectToAction("PhanCongPhanBien");
+            }
+
+            // Cập nhật trạng thái: 2 = từ chối
+            phanCong.TrangThai = 2;
+            db.SaveChanges();
+
+            TempData["Success"] = "Bạn đã từ chối phân công thành công.";
+            return RedirectToAction("DanhSachPhanCong");
+        }
+
         public ActionResult DownloadFile(int id)
         {
             // Tìm bài báo theo ID

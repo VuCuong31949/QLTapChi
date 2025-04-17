@@ -19,6 +19,8 @@ namespace QLTapChi.Models
         public Nullable<System.DateTime> NgayKetThuc { get; set; }
         public int IDTapChiBaiViet { get; set; }
         public int IDNguoiPhanBien { get; set; }
+        public Nullable<int> VongPhanBien { get; set; }
+        public Nullable<int> TrangThaiPhanBien { get; set; }
     
         public virtual NguoiDung NguoiDung { get; set; }
         public virtual TapChiBaiViet TapChiBaiViet { get; set; }

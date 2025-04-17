@@ -17,6 +17,7 @@ namespace QLTapChi.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public NguoiDung()
         {
+            this.LichSuChinhSuas = new HashSet<LichSuChinhSua>();
             this.PhanBiens = new HashSet<PhanBien>();
             this.PhanCongs = new HashSet<PhanCong>();
             this.TapChiBaiViets = new HashSet<TapChiBaiViet>();
@@ -35,6 +36,8 @@ namespace QLTapChi.Models
         public string ToChuc { get; set; }
         public Nullable<bool> PhanBien { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LichSuChinhSua> LichSuChinhSuas { get; set; }
         public virtual LinhVuc LinhVuc { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PhanBien> PhanBiens { get; set; }

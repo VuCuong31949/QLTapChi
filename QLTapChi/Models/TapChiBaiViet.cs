@@ -11,13 +11,13 @@ namespace QLTapChi.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Web.Mvc;
-
+    
     public partial class TapChiBaiViet
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TapChiBaiViet()
         {
+            this.LichSuChinhSuas = new HashSet<LichSuChinhSua>();
             this.PhanBiens = new HashSet<PhanBien>();
             this.PhanCongs = new HashSet<PhanCong>();
             this.PhanCongBienTaps = new HashSet<PhanCongBienTap>();
@@ -31,12 +31,14 @@ namespace QLTapChi.Models
         public int IDLinhVuc { get; set; }
         public Nullable<int> TrangThai { get; set; }
         public System.DateTime NgayGui { get; set; }
-        [AllowHtml]
         public string GhiChu { get; set; }
         public string TuKhoa { get; set; }
         public Nullable<int> IDNguoiGui { get; set; }
         public string DongTacGia { get; set; }
+        public Nullable<int> TrangThaiPhanBien { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<LichSuChinhSua> LichSuChinhSuas { get; set; }
         public virtual LinhVuc LinhVuc { get; set; }
         public virtual NguoiDung NguoiDung { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
