@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container">
+@*<div class="container">
     
 
     <h2>Danh sách bài chờ duyệt</h2>
@@ -39,4 +39,91 @@
         </tbody>
     </table>
 
+</div>*@
+<div class="container container-main">
+    <h2 class="mb-4">Danh sách bài viết của bạn</h2>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Tiêu đề</th>
+                <th>Tác giả</th>
+                <th>Ngày gửi</th>
+                <th>Trạng thái duyệt</th>
+                <th>Trạng thái phản biện</th>
+                <th>Thao tác</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.TieuDe</td>
+                    <td>@item.TacGia</td>
+                    <td>@item.NgayGui.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        @switch (item.TrangThai)
+                        {
+                            case 0:
+                                <span class="badge bg-warning">Chờ duyệt</span>
+                                break;
+                            case 1:
+                                <span class="badge bg-success">Đã duyệt</span>
+                                break;
+                            case 2:
+                                <span class="badge bg-info">Đã phân công phản biện</span>
+                                break;
+                            case 4:
+                                <span class="badge bg-primary">Xuất bản</span>
+                                break;
+                            default:
+                                <span class="badge bg-secondary">Không xác định</span>
+                                break;
+                        }
+                    </td>
+                    <td>
+                        @switch (item.TrangThaiPhanBien)
+                        {
+                            case 0:
+                                <span class="badge bg-warning">Chờ phản biện</span>
+                                break;
+                            case 1:
+                                <span class="badge bg-info">Đang phản biện</span>
+                                break;
+                            case 2:
+                                <span class="badge bg-success">đạt</span>
+                                break;
+                            case 3:
+                                <span class="badge bg-primary">không đạt</span>
+                                break;
+                            case 4:
+                                <span class="badge bg-danger">Từ chối</span>
+                                break;
+                            default:
+                                <span class="badge bg-secondary">Không xác định</span>
+                                break;
+                        }
+                    </td>
+                    <td>
+                        <a href="@Url.Action("DownloadFile", "TapChi", new { id = item.IDTapChiBaiViet })" class="btn btn-sm btn-primary">Tải bài</a>
+                        @if (item.TrangThaiPhanBien == 2 || item.TrangThaiPhanBien == 3 || item.TrangThaiPhanBien == 4)
+                        {
+                            <a href="@Url.Action("XemPhanBien", "TapChi", new { id = item.IDTapChiBaiViet })" class="btn btn-sm btn-info">Xem phản biện</a>
+                        }
+                        <a href="@Url.Action("CapNhatTapChi", "TapChi", new { id = item.IDTapChiBaiViet })" class="btn btn-sm btn-warning">Sửa</a>
+                        <a href="@Url.Action("XoaBaiBao", "TapChi", new { id = item.IDTapChiBaiViet })" class="btn btn-sm btn-danger" onclick="return confirm('Bạn có chắc muốn xóa bài viết này?')">Xóa</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

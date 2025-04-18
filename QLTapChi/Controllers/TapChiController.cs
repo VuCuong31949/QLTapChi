@@ -18,6 +18,38 @@ namespace QLTapChi.Controllers
             var BaiBao = db.TapChiBaiViets.Where(x => x.IDNguoiGui == idNguoiDung).OrderByDescending(x => x.NgayGui).ToList();
             return View(BaiBao);
         }
+        public ActionResult XemPhanBien(int id)
+        {
+            // Kiểm tra đăng nhập
+            if (Session["idUser"] == null)
+            {
+                TempData["Error"] = "Bạn chưa đăng nhập hoặc không có quyền truy cập.";
+                return RedirectToAction("DangNhap", "TaiKhoan");
+            }
+
+            // Lấy ID người dùng từ session
+            int idNguoiDung = (int)Session["idUser"];
+
+            // Tìm bài viết và xác minh quyền sở hữu
+            var baiViet = db.TapChiBaiViets.FirstOrDefault(b => b.IDTapChiBaiViet == id && b.IDNguoiGui == idNguoiDung);
+            if (baiViet == null)
+            {
+                TempData["Error"] = "Không tìm thấy bài viết hoặc bạn không có quyền truy cập.";
+                return RedirectToAction("DanhSachTapChi");
+            }
+
+            // Lấy danh sách phản biện cho bài viết
+            var phanBien = db.PhanBiens.Where(p => p.IDTapChiBaiViet == id).ToList();
+
+            // Tạo ViewModel
+            var viewModel = new XemPhanBienViewModel
+            {
+                BaiViet = baiViet,
+                DanhSachPhanBien = phanBien
+            };
+
+            return View(viewModel);
+        }
         public ActionResult Add()
         {
             if (Session["idUser"] == null)

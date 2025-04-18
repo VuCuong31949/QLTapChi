@@ -64,7 +64,7 @@ CREATE TABLE TapChiBaiViet (
     TacGia NVARCHAR(300) NOT NULL,
     NoiDung NVARCHAR(MAX)NOT NULL,
     IDLinhVuc INT NOT NULL,
-    TrangThai INT DEFAULT 0,  -- 0: Chờ duyệt, 1: Đã duyệt, 2: Xuất bản
+    TrangThai INT DEFAULT 0,  -- 0: Chờ duyệt, 1: Đã duyệt, 2: đã phan công phản biện, 4:Xuất bản
     NgayGui DATE NOT NULL DEFAULT GETDATE(),
 	TuKhoa nvarchar(300),	
 	IDNguoiGui INT,

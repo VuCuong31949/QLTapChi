@@ -1,0 +1,84 @@
+﻿@model IEnumerable<QLTapChi.Models.TapChiBaiViet>
+
+@{
+    ViewBag.Title = "DanhSachDaChapNhan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        background-color: #f4f6f9;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .navbar {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .container-main {
+        margin-top: 30px;
+    }
+
+    .journal-card {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .gap-2 {
+        gap: 10px;
+    }
+</style>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Hệ thống Phản biện</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="@Url.Action("PhanBien", "PhanBien")">Bài chờ phản biện</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="@Url.Action("DanhSachDaChapNhan", "PhanBien")">Hàng chờ tải/nộp</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Nội dung chính -->
+    <div class="container container-main">
+        <h2 class="mb-4">Hàng chờ tải/nộp phản biện</h2>
+
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success">@TempData["Success"]</div>
+        }
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">@TempData["Error"]</div>
+        }
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-lg-12 mb-3">
+                    <div class="journal-card p-3 shadow rounded border bg-white">
+                        <h4 class="journal-title">Tạp chí: @item.TieuDe</h4>
+                        <p><strong>Tác giả:</strong> @item.TacGia</p>
+                        <p><strong>Tóm tắt:</strong> @item.NoiDung</p>
+                        <p><strong>Ngày gửi:</strong> @item.NgayGui.ToString("dd/MM/yyyy")</p>
+                        <div class="d-flex gap-2">
+                            <a href="@Url.Action("GuiPhanBien", "PhanBien", new { id = item.IDTapChiBaiViet })" class="btn btn-primary">Xem chi tiết & Nộp phản biện</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>

@@ -193,6 +193,7 @@
     <Compile Include="Models\TapChiBaiViet.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\XemPhanBienViewModel.cs" />
     <Compile Include="Models\XuatBan.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -1597,6 +1598,8 @@
     <Content Include="Views\TapChi\CapNhatTapChi.cshtml" />
     <Content Include="Views\TapChi\DanhSachTapChi.cshtml" />
     <Content Include="Views\PhanBien\PhanBien.cshtml" />
+    <Content Include="Views\PhanBien\DanhSachDaChapNhan.cshtml" />
+    <Content Include="Views\TapChi\XemPhanBien.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

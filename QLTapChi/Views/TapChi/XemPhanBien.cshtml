@@ -1,0 +1,159 @@
+﻿@model QLTapChi.Models.XemPhanBienViewModel
+
+@{
+    ViewBag.Title = "Xem phản biện bài viết";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    body {
+        background-color: #f4f6f9;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .navbar {
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .container-main {
+        margin-top: 30px;
+    }
+
+    .journal-card {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+
+    .gap-2 {
+        gap: 10px;
+    }
+</style>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Hệ thống Tạp chí</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("DanhSachTapChi", "TapChi")">Danh sách bài viết</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("Add", "TapChi")">Gửi bài viết mới</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="@Url.Action("DangXuat", "TaiKhoan")">Đăng xuất</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container container-main">
+    <h2 class="mb-4">Chi tiết phản biện bài viết</h2>
+
+    @if (TempData["Success"] != null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">@TempData["Error"]</div>
+    }
+
+    <!-- Thông tin bài viết -->
+    <div class="row">
+        <div class="col-lg-12 mb-3">
+            <div class="journal-card p-3 shadow rounded border bg-white">
+                <h4 class="journal-title">Bài viết: @Model.BaiViet.TieuDe</h4>
+                <p><strong>Tác giả:</strong> @Model.BaiViet.TacGia</p>
+                <p><strong>Ngày gửi:</strong> @Model.BaiViet.NgayGui?.ToString("dd/MM/yyyy")</p>
+                <p>
+                    <strong>Trạng thái duyệt:</strong>
+                    @switch (Model.BaiViet.TrangThai)
+                    {
+                        case 0:
+                            <span class="badge bg-warning">Chờ duyệt</span>
+                            break;
+                        case 1:
+                            <span class="badge bg-success">Đã duyệt</span>
+                            break;
+                        case 2:
+                            <span class="badge bg-info">Đã phân công phản biện</span>
+                            break;
+                        case 4:
+                            <span class="badge bg-primary">Xuất bản</span>
+                            break;
+                        default:
+                            <span class="badge bg-secondary">Không xác định</span>
+                            break;
+                    }
+                </p>
+                <p>
+                    <strong>Trạng thái phản biện:</strong>
+                    @switch (Model.BaiViet.TrangThaiPhanBien)
+                    {
+                        case 0:
+                            <span class="badge bg-warning">Chờ phản biện</span>
+                            break;
+                        case 1:
+                            <span class="badge bg-info">Đang phản biện</span>
+                            break;
+                        case 2:
+                            <span class="badge bg-success">Chấp nhận</span>
+                            break;
+                        case 3:
+                            <span class="badge bg-primary">Sửa đổi</span>
+                            break;
+                        case 4:
+                            <span class="badge bg-danger">Từ chối</span>
+                            break;
+                        default:
+                            <span class="badge bg-secondary">Không xác định</span>
+                            break;
+                    }
+                </p>
+                <div class="d-flex gap-2">
+                    <a href="@Url.Action("DownloadFile", "TapChi", new { id = Model.BaiViet.IDTapChiBaiViet })" class="btn btn-primary">Tải bài viết</a>
+                    @if (Model.BaiViet.TrangThaiPhanBien == 3 || Model.BaiViet.TrangThai == 0)
+                    {
+                        <a href="@Url.Action("CapNhatTapChi", "TapChi", new { id = Model.BaiViet.IDTapChiBaiViet })" class="btn btn-warning">Sửa bài viết</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Danh sách phản biện -->
+    <h4 class="mb-4">Phản biện</h4>
+    <div class="row">
+        @if (Model.DanhSachPhanBien.Any())
+        {
+            foreach (var phanBien in Model.DanhSachPhanBien)
+            {
+                <div class="col-lg-12 mb-3">
+                    <div class="journal-card p-3 shadow rounded border bg-white">
+                        <h5>Phản biện ngày @phanBien.NgayPhanBien?.ToString("dd/MM/yyyy")</h5>
+                        <p><strong>Nhận xét:</strong> @phanBien.NhanXet</p>
+                        @if (phanBien.NhanXet.Contains("Tệp đính kèm:"))
+                        {
+                            <p><strong>File đính kèm:</strong> <a href="@Url.Action("DownloadPhanBienFile", "TapChi", new { idPhanBien = phanBien.IDPhanBien })" class="btn btn-primary">Tải file phản biện</a></p>
+                        }
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-lg-12">
+                <div class="alert alert-info">Chưa có phản biện cho bài viết này.</div>
+            </div>
+        }
+    </div>
+</div>

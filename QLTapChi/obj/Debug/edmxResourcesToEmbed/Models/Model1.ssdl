@@ -14,6 +14,21 @@
     <Property Name="ChuyenNganh" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="LoaiBienTapVien" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="LichSuChinhSua">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IDTapChiBaiViet" Type="int" />
+    <Property Name="NoiDungCu" Type="nvarchar(max)" />
+    <Property Name="NoiDungMoi" Type="nvarchar(max)" />
+    <Property Name="NgayChinhSua" Type="datetime" />
+    <Property Name="VongPhanBien" Type="int" />
+    <Property Name="LanChinhSua" Type="int" />
+    <Property Name="GhiChu" Type="nvarchar" MaxLength="500" />
+    <Property Name="DuongDanFile" Type="nvarchar" MaxLength="200" />
+    <Property Name="IDNguoiChinhSua" Type="int" />
+  </EntityType>
   <EntityType Name="LinhVuc">
     <Key>
       <PropertyRef Name="IDLinhVuc" />
@@ -57,6 +72,8 @@
     <Property Name="NgayKetThuc" Type="date" />
     <Property Name="IDTapChiBaiViet" Type="int" Nullable="false" />
     <Property Name="IDNguoiPhanBien" Type="int" Nullable="false" />
+    <Property Name="VongPhanBien" Type="int" />
+    <Property Name="TrangThaiPhanBien" Type="int" />
   </EntityType>
   <EntityType Name="PhanCongBienTap">
     <Key>
@@ -67,6 +84,17 @@
     <Property Name="IDTapChiBaiViet" Type="int" Nullable="false" />
     <Property Name="NgayPhanCong" Type="date" Nullable="false" />
     <Property Name="GhiChu" Type="nvarchar" MaxLength="300" />
+    <Property Name="TrangThai" Type="int" />
+  </EntityType>
+  <EntityType Name="SoTapChi">
+    <Key>
+      <PropertyRef Name="IDSoTapChi" />
+    </Key>
+    <Property Name="IDSoTapChi" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenSo" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ChuDe" Type="nvarchar" MaxLength="200" />
+    <Property Name="NgayPhatHanh" Type="date" Nullable="false" />
+    <Property Name="MoTa" Type="nvarchar" MaxLength="300" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -93,6 +121,7 @@
     <Property Name="TuKhoa" Type="nvarchar" MaxLength="300" />
     <Property Name="IDNguoiGui" Type="int" />
     <Property Name="DongTacGia" Type="nvarchar" MaxLength="500" />
+    <Property Name="TrangThaiPhanBien" Type="int" />
   </EntityType>
   <EntityType Name="XuatBan">
     <Key>
@@ -103,6 +132,7 @@
     <Property Name="NgayXuatBan" Type="date" Nullable="false" />
     <Property Name="IDTapChiBaiViet" Type="int" Nullable="false" />
     <Property Name="IDBienTapVien" Type="int" Nullable="false" />
+    <Property Name="IDSoTapChi" Type="int" />
   </EntityType>
   <Association Name="FK__NguoiDung__IDLin__3B75D760">
     <End Role="LinhVuc" Type="Self.LinhVuc" Multiplicity="0..1" />
@@ -224,6 +254,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_LichSuChinhSua_NguoiDung">
+    <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
+    <End Role="LichSuChinhSua" Type="Self.LichSuChinhSua" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NguoiDung">
+        <PropertyRef Name="IDNguoiDung" />
+      </Principal>
+      <Dependent Role="LichSuChinhSua">
+        <PropertyRef Name="IDNguoiChinhSua" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LichSuChinhSua_TapChi">
+    <End Role="TapChiBaiViet" Type="Self.TapChiBaiViet" Multiplicity="0..1" />
+    <End Role="LichSuChinhSua" Type="Self.LichSuChinhSua" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TapChiBaiViet">
+        <PropertyRef Name="IDTapChiBaiViet" />
+      </Principal>
+      <Dependent Role="LichSuChinhSua">
+        <PropertyRef Name="IDTapChiBaiViet" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_TapChiBaiViet_NguoiDung">
     <End Role="NguoiDung" Type="Self.NguoiDung" Multiplicity="0..1" />
     <End Role="TapChiBaiViet" Type="Self.TapChiBaiViet" Multiplicity="*" />
@@ -236,13 +290,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_XuatBan_SoTapChi">
+    <End Role="SoTapChi" Type="Self.SoTapChi" Multiplicity="0..1" />
+    <End Role="XuatBan" Type="Self.XuatBan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SoTapChi">
+        <PropertyRef Name="IDSoTapChi" />
+      </Principal>
+      <Dependent Role="XuatBan">
+        <PropertyRef Name="IDSoTapChi" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="QLTapChiModelStoreContainer">
     <EntitySet Name="BienTapVien" EntityType="Self.BienTapVien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LichSuChinhSua" EntityType="Self.LichSuChinhSua" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LinhVuc" EntityType="Self.LinhVuc" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="NguoiDung" EntityType="Self.NguoiDung" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PhanBien" EntityType="Self.PhanBien" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PhanCong" EntityType="Self.PhanCong" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PhanCongBienTap" EntityType="Self.PhanCongBienTap" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SoTapChi" EntityType="Self.SoTapChi" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TapChiBaiViet" EntityType="Self.TapChiBaiViet" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="XuatBan" EntityType="Self.XuatBan" Schema="dbo" store:Type="Tables" />
@@ -286,9 +354,21 @@
       <End Role="TapChiBaiViet" EntitySet="TapChiBaiViet" />
       <End Role="XuatBan" EntitySet="XuatBan" />
     </AssociationSet>
+    <AssociationSet Name="FK_LichSuChinhSua_NguoiDung" Association="Self.FK_LichSuChinhSua_NguoiDung">
+      <End Role="NguoiDung" EntitySet="NguoiDung" />
+      <End Role="LichSuChinhSua" EntitySet="LichSuChinhSua" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LichSuChinhSua_TapChi" Association="Self.FK_LichSuChinhSua_TapChi">
+      <End Role="TapChiBaiViet" EntitySet="TapChiBaiViet" />
+      <End Role="LichSuChinhSua" EntitySet="LichSuChinhSua" />
+    </AssociationSet>
     <AssociationSet Name="FK_TapChiBaiViet_NguoiDung" Association="Self.FK_TapChiBaiViet_NguoiDung">
       <End Role="NguoiDung" EntitySet="NguoiDung" />
       <End Role="TapChiBaiViet" EntitySet="TapChiBaiViet" />
+    </AssociationSet>
+    <AssociationSet Name="FK_XuatBan_SoTapChi" Association="Self.FK_XuatBan_SoTapChi">
+      <End Role="SoTapChi" EntitySet="SoTapChi" />
+      <End Role="XuatBan" EntitySet="XuatBan" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -201,7 +201,7 @@ namespace QLTapChi.Areas.Admin.Controllers
             TempData["Success"] = "Phân công phản biện thành công.";
             return RedirectToAction("BaiVietChoPhanBien");
         }
-        public ActionResult TuChoiPhanCong(int id)
+        public ActionResult TuChoiPhanBien(int id)
         {
             // Kiểm tra đăng nhập
             if (Session["idUser"] == null || Session["LoaiBienTapVien"] == null)

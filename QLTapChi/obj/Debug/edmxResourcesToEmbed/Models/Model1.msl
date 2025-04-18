@@ -16,6 +16,22 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="LichSuChinhSuas">
+      <EntityTypeMapping TypeName="QLTapChiModel.LichSuChinhSua">
+        <MappingFragment StoreEntitySet="LichSuChinhSua">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="IDTapChiBaiViet" ColumnName="IDTapChiBaiViet" />
+          <ScalarProperty Name="NoiDungCu" ColumnName="NoiDungCu" />
+          <ScalarProperty Name="NoiDungMoi" ColumnName="NoiDungMoi" />
+          <ScalarProperty Name="NgayChinhSua" ColumnName="NgayChinhSua" />
+          <ScalarProperty Name="VongPhanBien" ColumnName="VongPhanBien" />
+          <ScalarProperty Name="LanChinhSua" ColumnName="LanChinhSua" />
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+          <ScalarProperty Name="DuongDanFile" ColumnName="DuongDanFile" />
+          <ScalarProperty Name="IDNguoiChinhSua" ColumnName="IDNguoiChinhSua" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="LinhVucs">
       <EntityTypeMapping TypeName="QLTapChiModel.LinhVuc">
         <MappingFragment StoreEntitySet="LinhVuc">
@@ -61,6 +77,8 @@
           <ScalarProperty Name="NgayKetThuc" ColumnName="NgayKetThuc" />
           <ScalarProperty Name="IDTapChiBaiViet" ColumnName="IDTapChiBaiViet" />
           <ScalarProperty Name="IDNguoiPhanBien" ColumnName="IDNguoiPhanBien" />
+          <ScalarProperty Name="VongPhanBien" ColumnName="VongPhanBien" />
+          <ScalarProperty Name="TrangThaiPhanBien" ColumnName="TrangThaiPhanBien" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -72,6 +90,18 @@
           <ScalarProperty Name="IDTapChiBaiViet" ColumnName="IDTapChiBaiViet" />
           <ScalarProperty Name="NgayPhanCong" ColumnName="NgayPhanCong" />
           <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SoTapChis">
+      <EntityTypeMapping TypeName="QLTapChiModel.SoTapChi">
+        <MappingFragment StoreEntitySet="SoTapChi">
+          <ScalarProperty Name="IDSoTapChi" ColumnName="IDSoTapChi" />
+          <ScalarProperty Name="TenSo" ColumnName="TenSo" />
+          <ScalarProperty Name="ChuDe" ColumnName="ChuDe" />
+          <ScalarProperty Name="NgayPhatHanh" ColumnName="NgayPhatHanh" />
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -100,6 +130,7 @@
           <ScalarProperty Name="TuKhoa" ColumnName="TuKhoa" />
           <ScalarProperty Name="IDNguoiGui" ColumnName="IDNguoiGui" />
           <ScalarProperty Name="DongTacGia" ColumnName="DongTacGia" />
+          <ScalarProperty Name="TrangThaiPhanBien" ColumnName="TrangThaiPhanBien" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -111,6 +142,7 @@
           <ScalarProperty Name="NgayXuatBan" ColumnName="NgayXuatBan" />
           <ScalarProperty Name="IDTapChiBaiViet" ColumnName="IDTapChiBaiViet" />
           <ScalarProperty Name="IDBienTapVien" ColumnName="IDBienTapVien" />
+          <ScalarProperty Name="IDSoTapChi" ColumnName="IDSoTapChi" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
